@@ -19,6 +19,7 @@
 		CC64159C28A2CFE60052050E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159B28A2CFE60052050E /* Constants.swift */; };
 		CC64159E28A2D0040052050E /* RestApiProvaiderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159D28A2D0040052050E /* RestApiProvaiderProtocol.swift */; };
 		CC6415A028A2DDB30052050E /* HotelsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159F28A2DDB30052050E /* HotelsData.swift */; };
+		CC6415A628A2E74E0052050E /* FlightsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A528A2E74E0052050E /* FlightsInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		CC64159B28A2CFE60052050E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CC64159D28A2D0040052050E /* RestApiProvaiderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestApiProvaiderProtocol.swift; sourceTree = "<group>"; };
 		CC64159F28A2DDB30052050E /* HotelsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsData.swift; sourceTree = "<group>"; };
+		CC6415A528A2E74E0052050E /* FlightsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		CC6415A128A2DE870052050E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CC6415A528A2E74E0052050E /* FlightsInfo.swift */,
 				CC64159928A28BE80052050E /* PopularFlights.swift */,
 				CC64159F28A2DDB30052050E /* HotelsData.swift */,
 			);
@@ -193,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC6415A628A2E74E0052050E /* FlightsInfo.swift in Sources */,
 				CC64159A28A28BE80052050E /* PopularFlights.swift in Sources */,
 				CC64158228A2563A0052050E /* ViewController.swift in Sources */,
 				CC64157E28A2563A0052050E /* AppDelegate.swift in Sources */,
