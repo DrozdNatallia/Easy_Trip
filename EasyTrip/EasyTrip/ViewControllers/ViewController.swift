@@ -12,6 +12,7 @@ var alamofireProvaider = AlamofireProvaider()
     override func viewDidLoad() {
         super.viewDidLoad()
         getPopularFlights()
+        getHotelsByCityName()
     }
 
 
@@ -30,5 +31,21 @@ var alamofireProvaider = AlamofireProvaider()
         }
     }
     
+    
+    fileprivate func getHotelsByCityName() {
+        alamofireProvaider.getHoltelsByCityName(name: "moscow") { [weak self] result in
+            //  guard let self = self else { return }
+              switch result {
+              case .success(let value):
+                  guard let val = value.results, let hotels = val.hotels else {return}
+                  for hotel in hotels {
+                      print(hotel.fullName)
+                  }
+
+              case .failure(let error):
+                  print(error.localizedDescription)
+              }
+          }
+    }
 }
 

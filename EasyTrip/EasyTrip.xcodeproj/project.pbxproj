@@ -18,6 +18,7 @@
 		CC64159A28A28BE80052050E /* PopularFlights.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159928A28BE80052050E /* PopularFlights.swift */; };
 		CC64159C28A2CFE60052050E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159B28A2CFE60052050E /* Constants.swift */; };
 		CC64159E28A2D0040052050E /* RestApiProvaiderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159D28A2D0040052050E /* RestApiProvaiderProtocol.swift */; };
+		CC6415A028A2DDB30052050E /* HotelsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159F28A2DDB30052050E /* HotelsData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		CC64159928A28BE80052050E /* PopularFlights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularFlights.swift; sourceTree = "<group>"; };
 		CC64159B28A2CFE60052050E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CC64159D28A2D0040052050E /* RestApiProvaiderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestApiProvaiderProtocol.swift; sourceTree = "<group>"; };
+		CC64159F28A2DDB30052050E /* HotelsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,17 +70,50 @@
 			children = (
 				CC64157D28A2563A0052050E /* AppDelegate.swift */,
 				CC64157F28A2563A0052050E /* SceneDelegate.swift */,
-				CC64158128A2563A0052050E /* ViewController.swift */,
-				CC64159728A27BE60052050E /* AlamofireProvaider.swift */,
-				CC64159D28A2D0040052050E /* RestApiProvaiderProtocol.swift */,
 				CC64159B28A2CFE60052050E /* Constants.swift */,
-				CC64159928A28BE80052050E /* PopularFlights.swift */,
+				CC6415A228A2DE9B0052050E /* ViewControllers */,
+				CC6415A328A2DEF70052050E /* Services */,
+				CC6415A428A2DF040052050E /* Protocols */,
+				CC6415A128A2DE870052050E /* Models */,
 				CC64158328A2563A0052050E /* Main.storyboard */,
 				CC64158628A2563C0052050E /* Assets.xcassets */,
 				CC64158828A2563C0052050E /* LaunchScreen.storyboard */,
 				CC64158B28A2563C0052050E /* Info.plist */,
 			);
 			path = EasyTrip;
+			sourceTree = "<group>";
+		};
+		CC6415A128A2DE870052050E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CC64159928A28BE80052050E /* PopularFlights.swift */,
+				CC64159F28A2DDB30052050E /* HotelsData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CC6415A228A2DE9B0052050E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CC64158128A2563A0052050E /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CC6415A328A2DEF70052050E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CC64159728A27BE60052050E /* AlamofireProvaider.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CC6415A428A2DF040052050E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CC64159D28A2D0040052050E /* RestApiProvaiderProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +197,7 @@
 				CC64158228A2563A0052050E /* ViewController.swift in Sources */,
 				CC64157E28A2563A0052050E /* AppDelegate.swift in Sources */,
 				CC64159E28A2D0040052050E /* RestApiProvaiderProtocol.swift in Sources */,
+				CC6415A028A2DDB30052050E /* HotelsData.swift in Sources */,
 				CC64158028A2563A0052050E /* SceneDelegate.swift in Sources */,
 				CC64159828A27BE60052050E /* AlamofireProvaider.swift in Sources */,
 				CC64159C28A2CFE60052050E /* Constants.swift in Sources */,

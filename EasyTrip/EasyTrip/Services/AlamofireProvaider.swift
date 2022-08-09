@@ -10,6 +10,7 @@ import Alamofire
 import UIKit
 
 class AlamofireProvaider: RestAPIProviderProtocol {
+
     // добавление параметров в запрос
     private func addParams(queryItems: [String: String]) -> [String: String] {
         var params: [String: String] = [:]
@@ -19,9 +20,22 @@ class AlamofireProvaider: RestAPIProviderProtocol {
     }
     // получение популярных полетов
     func getPopularFlights(country: String, completion: @escaping (Result<PopularFlight, Error>) -> Void) {
-        let params = addParams(queryItems: ["origin" : "MOW", "currency" : "usd", "limit" : "5"])
+        let params = addParams(queryItems: ["origin" : country, "currency" : "usd", "limit" : "5"])
         
         AF.request(Constants.getPopularFlightsURL, method: .get, parameters: params).responseDecodable(of: PopularFlight.self) { response in
+            switch response.result {
+            case .success(let result):
+                completion(.success(result))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    //query=moscow&lang=ru&lookFor=both&limit=1
+    
+    func getHoltelsByCityName(name: String, completion: @escaping (Result<HotelsData, Error>) -> Void) {
+        let params = addParams(queryItems: ["query" : "moscow", "lang" : "ru", "lookFor" : "both", "limit" : "5"])
+        AF.request(Constants.getHotelsByNameCity, method: .get, parameters: params).responseDecodable(of: HotelsData.self) { response in
             switch response.result {
             case .success(let result):
                 completion(.success(result))
