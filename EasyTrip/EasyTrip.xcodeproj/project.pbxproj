@@ -20,6 +20,8 @@
 		CC64159E28A2D0040052050E /* RestApiProvaiderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159D28A2D0040052050E /* RestApiProvaiderProtocol.swift */; };
 		CC6415A028A2DDB30052050E /* HotelsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159F28A2DDB30052050E /* HotelsData.swift */; };
 		CC6415A628A2E74E0052050E /* FlightsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A528A2E74E0052050E /* FlightsInfo.swift */; };
+		CC6415A828A2FE9E0052050E /* ExcursionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A728A2FE9E0052050E /* ExcursionInfo.swift */; };
+		CC6415AA28A310950052050E /* Autocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A928A310950052050E /* Autocomplete.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		CC64159D28A2D0040052050E /* RestApiProvaiderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestApiProvaiderProtocol.swift; sourceTree = "<group>"; };
 		CC64159F28A2DDB30052050E /* HotelsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsData.swift; sourceTree = "<group>"; };
 		CC6415A528A2E74E0052050E /* FlightsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsInfo.swift; sourceTree = "<group>"; };
+		CC6415A728A2FE9E0052050E /* ExcursionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcursionInfo.swift; sourceTree = "<group>"; };
+		CC6415A928A310950052050E /* Autocomplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autocomplete.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,8 @@
 				CC6415A528A2E74E0052050E /* FlightsInfo.swift */,
 				CC64159928A28BE80052050E /* PopularFlights.swift */,
 				CC64159F28A2DDB30052050E /* HotelsData.swift */,
+				CC6415A728A2FE9E0052050E /* ExcursionInfo.swift */,
+				CC6415A928A310950052050E /* Autocomplete.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -201,7 +207,9 @@
 				CC64158228A2563A0052050E /* ViewController.swift in Sources */,
 				CC64157E28A2563A0052050E /* AppDelegate.swift in Sources */,
 				CC64159E28A2D0040052050E /* RestApiProvaiderProtocol.swift in Sources */,
+				CC6415AA28A310950052050E /* Autocomplete.swift in Sources */,
 				CC6415A028A2DDB30052050E /* HotelsData.swift in Sources */,
+				CC6415A828A2FE9E0052050E /* ExcursionInfo.swift in Sources */,
 				CC64158028A2563A0052050E /* SceneDelegate.swift in Sources */,
 				CC64159828A27BE60052050E /* AlamofireProvaider.swift in Sources */,
 				CC64159C28A2CFE60052050E /* Constants.swift in Sources */,

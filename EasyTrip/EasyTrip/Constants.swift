@@ -18,6 +18,15 @@ struct Constants {
         return baseURL.appending("v1/prices/calendar")
     }
     
+    static var getExcursionInfoURL: String {
+        return baseURL.appending("weatlas/v1/search_prices_by_iata")
+    }
+    
     static var getHotelsByNameCity = "https://engine.hotellook.com/api/v2/lookup.json"
-
+    
+    static var autocompleteURL = "https://autocomplete.travelpayouts.com/places2"
 }
+
+
+
+
