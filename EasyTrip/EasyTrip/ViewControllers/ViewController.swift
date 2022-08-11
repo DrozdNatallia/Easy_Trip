@@ -11,13 +11,48 @@ class ViewController: UIViewController {
 var alamofireProvaider = AlamofireProvaider()
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Они не будут тут все, поэтому диспатч груп делать не буду пока что
         getPopularFlights()
         getHotelsByCityName()
         getFlightInfo()
         getExcursionInfo()
     }
 
+    // оставлю пока так, если получится исправить через async await, добавлю в след домашку
+    func getNamePopularCityByCode(code: String, isName: Bool, completion: @escaping (String) -> Void){
+        alamofireProvaider.getNameCityByCode(code: code) { result in
+            switch result {
+            case .success(let value):
+                guard let name = value.first?.name, let code = value.first?.code else { return }
+                completion(isName ? name : code)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 
+    func getPopularFlights(localCodeCity: String) {
+       alamofireProvaider.getPopularFlights(country: localCodeCity) { [weak self] result in
+           guard let self = self else { return }
+           switch result {
+           case .success(let value):
+               guard let date = value.data else {return}
+               for flight in date.values {
+                   // код страны прибытия
+                   guard let destination = flight.destination else {return}
+                   // добавляем массив картинок
+                   self.getNamePopularCityByCode(code: destination, isName: true) { result in
+                       // добавляем массив имен
+                       print(result)
+                   }
+               }
+           case .failure(let error):
+               print(error.localizedDescription)
+           }
+       }
+    }
+    
+    
     fileprivate func getPopularFlights() {
         alamofireProvaider.getPopularFlights(country: "MOW") { result in
             switch result {
@@ -44,7 +79,6 @@ var alamofireProvaider = AlamofireProvaider()
         }
     }
     
-    
     fileprivate func getHotelsByCityName() {
         alamofireProvaider.getHoltelsByCityName(name: "moscow") { result in
               switch result {
@@ -62,7 +96,6 @@ var alamofireProvaider = AlamofireProvaider()
               }
           }
     }
-    
     
     fileprivate func getFlightInfo() {
         alamofireProvaider.getFlightsInfo(origin: "MOW", date: "2202-11", destination: "BCN")  { result in
