@@ -13,6 +13,15 @@
 		CC64158528A2563A0052050E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC64158328A2563A0052050E /* Main.storyboard */; };
 		CC64158728A2563C0052050E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC64158628A2563C0052050E /* Assets.xcassets */; };
 		CC64158A28A2563C0052050E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC64158828A2563C0052050E /* LaunchScreen.storyboard */; };
+		CC64159628A27B680052050E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CC64159528A27B680052050E /* Alamofire */; };
+		CC64159828A27BE60052050E /* AlamofireProvaider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159728A27BE60052050E /* AlamofireProvaider.swift */; };
+		CC64159A28A28BE80052050E /* PopularFlights.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159928A28BE80052050E /* PopularFlights.swift */; };
+		CC64159C28A2CFE60052050E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159B28A2CFE60052050E /* Constants.swift */; };
+		CC64159E28A2D0040052050E /* RestApiProvaiderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159D28A2D0040052050E /* RestApiProvaiderProtocol.swift */; };
+		CC6415A028A2DDB30052050E /* HotelsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159F28A2DDB30052050E /* HotelsData.swift */; };
+		CC6415A628A2E74E0052050E /* FlightsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A528A2E74E0052050E /* FlightsInfo.swift */; };
+		CC6415A828A2FE9E0052050E /* ExcursionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A728A2FE9E0052050E /* ExcursionInfo.swift */; };
+		CC6415AA28A310950052050E /* Autocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A928A310950052050E /* Autocomplete.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +33,14 @@
 		CC64158628A2563C0052050E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC64158928A2563C0052050E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC64158B28A2563C0052050E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC64159728A27BE60052050E /* AlamofireProvaider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireProvaider.swift; sourceTree = "<group>"; };
+		CC64159928A28BE80052050E /* PopularFlights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularFlights.swift; sourceTree = "<group>"; };
+		CC64159B28A2CFE60052050E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CC64159D28A2D0040052050E /* RestApiProvaiderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestApiProvaiderProtocol.swift; sourceTree = "<group>"; };
+		CC64159F28A2DDB30052050E /* HotelsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsData.swift; sourceTree = "<group>"; };
+		CC6415A528A2E74E0052050E /* FlightsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsInfo.swift; sourceTree = "<group>"; };
+		CC6415A728A2FE9E0052050E /* ExcursionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcursionInfo.swift; sourceTree = "<group>"; };
+		CC6415A928A310950052050E /* Autocomplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autocomplete.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC64159628A27B680052050E /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,13 +76,53 @@
 			children = (
 				CC64157D28A2563A0052050E /* AppDelegate.swift */,
 				CC64157F28A2563A0052050E /* SceneDelegate.swift */,
-				CC64158128A2563A0052050E /* ViewController.swift */,
+				CC64159B28A2CFE60052050E /* Constants.swift */,
+				CC6415A228A2DE9B0052050E /* ViewControllers */,
+				CC6415A328A2DEF70052050E /* Services */,
+				CC6415A428A2DF040052050E /* Protocols */,
+				CC6415A128A2DE870052050E /* Models */,
 				CC64158328A2563A0052050E /* Main.storyboard */,
 				CC64158628A2563C0052050E /* Assets.xcassets */,
 				CC64158828A2563C0052050E /* LaunchScreen.storyboard */,
 				CC64158B28A2563C0052050E /* Info.plist */,
 			);
 			path = EasyTrip;
+			sourceTree = "<group>";
+		};
+		CC6415A128A2DE870052050E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CC6415A528A2E74E0052050E /* FlightsInfo.swift */,
+				CC64159928A28BE80052050E /* PopularFlights.swift */,
+				CC64159F28A2DDB30052050E /* HotelsData.swift */,
+				CC6415A728A2FE9E0052050E /* ExcursionInfo.swift */,
+				CC6415A928A310950052050E /* Autocomplete.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CC6415A228A2DE9B0052050E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CC64158128A2563A0052050E /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CC6415A328A2DEF70052050E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CC64159728A27BE60052050E /* AlamofireProvaider.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CC6415A428A2DF040052050E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CC64159D28A2D0040052050E /* RestApiProvaiderProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +141,9 @@
 			dependencies = (
 			);
 			name = EasyTrip;
+			packageProductDependencies = (
+				CC64159528A27B680052050E /* Alamofire */,
+			);
 			productName = EasyTrip;
 			productReference = CC64157A28A2563A0052050E /* EasyTrip.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +172,9 @@
 				Base,
 			);
 			mainGroup = CC64157128A256390052050E;
+			packageReferences = (
+				CC64159428A27B680052050E /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = CC64157B28A2563A0052050E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,9 +202,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC6415A628A2E74E0052050E /* FlightsInfo.swift in Sources */,
+				CC64159A28A28BE80052050E /* PopularFlights.swift in Sources */,
 				CC64158228A2563A0052050E /* ViewController.swift in Sources */,
 				CC64157E28A2563A0052050E /* AppDelegate.swift in Sources */,
+				CC64159E28A2D0040052050E /* RestApiProvaiderProtocol.swift in Sources */,
+				CC6415AA28A310950052050E /* Autocomplete.swift in Sources */,
+				CC6415A028A2DDB30052050E /* HotelsData.swift in Sources */,
+				CC6415A828A2FE9E0052050E /* ExcursionInfo.swift in Sources */,
 				CC64158028A2563A0052050E /* SceneDelegate.swift in Sources */,
+				CC64159828A27BE60052050E /* AlamofireProvaider.swift in Sources */,
+				CC64159C28A2CFE60052050E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +428,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CC64159428A27B680052050E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CC64159528A27B680052050E /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC64159428A27B680052050E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CC64157228A256390052050E /* Project object */;
 }
