@@ -10,16 +10,23 @@ import Alamofire
 import CoreLocation
 
 class HomeViewController: UIViewController {
+    // точечки для скрола картинок
+    @IBOutlet weak var pageControl: UIPageControl!
+    // менеджер corelocation
     lazy var coreManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyBest
         return manager
     }()
+    // техтовое поле для поиска направлений
     @IBOutlet weak var searchDirection: UITextField!
     @IBOutlet weak var searchButton: UIButton!
+    // лэйбл для локации
     @IBOutlet weak var userLocation: UILabel!
     var alamofireProvaider = AlamofireProvaider()
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    // экземпляр в котором хранятся массивы с картинками и именами популярных направлений
     var popularCity: PopulareCityDate!
     
     override func viewDidLoad() {
@@ -39,16 +46,20 @@ class HomeViewController: UIViewController {
         // getExcursionInfo()
         
     }
-    // получение картинки по URL
+    // функция для работы pageControl
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+            pageControl.currentPage = Int(targetContentOffset.pointee.x / view.frame.width)
+        }
+    // поиск по заданному направлению
     @IBAction func onSearchButton(_ sender: Any) {
+        // чистим массивы имеющихся картинок и имен
         self.popularCity.removePopularcityDate()
         guard let nameDirection = searchDirection.text else {return}
         getNamePopularCityByCode(code: nameDirection, isName: false) { code in
             self.getPopularFlights(localCodeCity: code)
         }
     }
-    
-    
+    // получение картинки по URL
     func getImagebyURL(url: String) -> UIImage {
         if let url = URL(string: url) {
             do {
@@ -68,7 +79,7 @@ class HomeViewController: UIViewController {
             switch result {
             case .success(let value):
                 print("value: \(value)")
-                // некоторых городов нет в базе, в этом случае направления будут стандартные
+                // некоторых городов нет в базе, в этом случае  направления будут стандартные
                 guard !value.isEmpty else {
                     completion (isName ? "SanFrancisco" : "SFO")
                     return
@@ -91,7 +102,8 @@ class HomeViewController: UIViewController {
                 for flight in date.values {
                     // код страны прибытия
                     guard let destination = flight.destination else {return}
-                    let url = Constants.getImageCityByURL + "\(destination).jpg"
+                    let size = Int(self.view.frame.width)
+                    let url = Constants.getImageCityByURL + "\(size)x250/" + "\(destination).jpg"
                     // добавляем массив картинок
                     self.popularCity.addNewImage(image: self.getImagebyURL(url: url))
                     self.getNamePopularCityByCode(code: destination, isName: true) { result in

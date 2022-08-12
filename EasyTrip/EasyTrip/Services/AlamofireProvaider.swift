@@ -10,7 +10,7 @@ import Alamofire
 import UIKit
 
 class AlamofireProvaider: RestAPIProviderProtocol {
-   private var key: String? {
+    private var key: String? {
         get {
             Bundle.main.infoDictionary?["API_KEY"] as? String
         }
@@ -49,7 +49,7 @@ class AlamofireProvaider: RestAPIProviderProtocol {
             }
         }
     }
-
+    
     func getHoltelsByCityName(name: String, completion: @escaping (Result<HotelsData, Error>) -> Void) {
         let params = addParams(queryItems: ["query" : "moscow", "lang" : "ru", "lookFor" : "both", "limit" : "5"])
         AF.request(Constants.getHotelsByNameCity, method: .get, parameters: params).responseDecodable(of: HotelsData.self) { response in
