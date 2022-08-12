@@ -156,27 +156,27 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Vie all"/>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LWb-lo-unT">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LWb-lo-unT">
                                 <rect key="frame" x="0.0" y="404" width="414" height="315"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="40" minimumInteritemSpacing="40" id="crQ-Su-hNi">
-                                    <size key="itemSize" width="180" height="230"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="crQ-Su-hNi">
+                                    <size key="itemSize" width="390" height="250"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Kck-73-lWV">
-                                        <rect key="frame" x="0.0" y="42.5" width="180" height="230"/>
+                                        <rect key="frame" x="0.0" y="32.5" width="390" height="250"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="plg-hn-9RN">
-                                            <rect key="frame" x="0.0" y="0.0" width="180" height="230"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="250"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="ugS-qd-0M6">
-                                <rect key="frame" x="145" y="726.5" width="124" height="26"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="ugS-qd-0M6">
+                                <rect key="frame" x="124" y="726.5" width="166" height="26"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -198,7 +198,7 @@
                             <constraint firstItem="LWb-lo-unT" firstAttribute="top" secondItem="Bzu-y1-Mge" secondAttribute="bottom" multiplier="1.01" id="Pfg-FK-8BA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NDd-fJ-B5F" secondAttribute="trailing" constant="10" id="Vca-RA-rRz"/>
                             <constraint firstItem="Lql-VM-M8A" firstAttribute="top" secondItem="jVV-WG-jn6" secondAttribute="bottom" multiplier="1.4" id="X5Z-yu-7gj"/>
-                            <constraint firstItem="ugS-qd-0M6" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.3" id="YEK-aP-ffH"/>
+                            <constraint firstItem="ugS-qd-0M6" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.4" id="YEK-aP-ffH"/>
                             <constraint firstItem="Bzu-y1-Mge" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.25" id="Ysn-wf-DWQ"/>
                             <constraint firstItem="Bzu-y1-Mge" firstAttribute="top" secondItem="NDd-fJ-B5F" secondAttribute="bottom" multiplier="1.03" id="crq-sC-swW"/>
                             <constraint firstItem="Lql-VM-M8A" firstAttribute="height" secondItem="jVV-WG-jn6" secondAttribute="height" id="fFR-PL-XsZ"/>
@@ -212,6 +212,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="LWb-lo-unT" id="igf-lY-PTn"/>
+                        <outlet property="pageControl" destination="ugS-qd-0M6" id="Ck9-IA-b6S"/>
                         <outlet property="searchButton" destination="NxP-KA-E4Q" id="ZPt-oa-hCV"/>
                         <outlet property="searchDirection" destination="HTk-qW-Ym6" id="59K-IX-eIy"/>
                         <outlet property="userLocation" destination="kZP-pM-huI" id="FLo-FK-Qc3"/>

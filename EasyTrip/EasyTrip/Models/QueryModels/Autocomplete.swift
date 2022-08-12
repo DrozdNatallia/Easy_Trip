@@ -29,8 +29,6 @@ struct Autocomplete: Codable {
         case mainAirportName = "main_airport_name"
     }
 }
-
-// MARK: - Coordinates
 struct Coordinates: Codable {
     let lon, lat: Double?
 }
