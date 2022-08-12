@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The app wants to use your location</string>
 	<key>API_KEY</key>
 	<string>3f4cc4a2c7e931bcd04d42a0850f84da</string>
 	<key>UIApplicationSceneManifest</key>
