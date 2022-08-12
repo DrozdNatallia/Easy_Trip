@@ -78,7 +78,6 @@ class HomeViewController: UIViewController {
         alamofireProvaider.getNameCityByCode(code: code) { result in
             switch result {
             case .success(let value):
-                print("value: \(value)")
                 // некоторых городов нет в базе, в этом случае  направления будут стандартные
                 guard !value.isEmpty else {
                     completion (isName ? "SanFrancisco" : "SFO")
@@ -98,7 +97,12 @@ class HomeViewController: UIViewController {
             guard let self = self else { return }
             switch result {
             case .success(let value):
-                guard let date = value.data else {return}
+                guard let date = value.data, !date.isEmpty else {
+                    guard let image = UIImage(named: "error2.jpeg") else { return }
+                    self.popularCity.addNewImage(image: image)
+                    self.popularCity.addNewName(name: "Sorry! Directions not found.")
+                    self.collectionView.reloadData()
+                    return}
                 for flight in date.values {
                     // код страны прибытия
                     guard let destination = flight.destination else {return}
