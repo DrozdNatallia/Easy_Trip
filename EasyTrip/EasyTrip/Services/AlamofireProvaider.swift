@@ -16,7 +16,7 @@ class AlamofireProvaider: RestAPIProviderProtocol {
         }
     }
     func getNameCityByCode(code: String, completion: @escaping (Result<[Autocomplete], Error>) -> Void) {
-        let params = addParams(queryItems: ["locale" : "en", "types" : "city" , "term" : code])
+        let params = addParams(queryItems: ["locale" : "en", "types[]" : "city" , "term" : code])
         AF.request(Constants.autocompleteURL, method: .get, parameters: params).responseDecodable(of: [Autocomplete].self) { response in
             switch response.result {
             case .success(let result):
@@ -39,7 +39,7 @@ class AlamofireProvaider: RestAPIProviderProtocol {
     }
     // получение популярных полетов
     func getPopularFlights(country: String, completion: @escaping (Result<PopularFlight, Error>) -> Void) {
-        let params = addParams(queryItems: ["origin" : country, "currency" : "usd", "limit" : "5"])
+        let params = addParams(queryItems: ["origin": country, "currency" : "usd", "limit" : "5"])
         AF.request(Constants.getPopularFlightsURL, method: .get, parameters: params).responseDecodable(of: PopularFlight.self) { response in
             switch response.result {
             case .success(let result):
