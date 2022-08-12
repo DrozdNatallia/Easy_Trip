@@ -18,10 +18,15 @@ struct PopulareCityDate {
     mutating func addNewImage(image: UIImage) {
         arrayImageCity.append(image)
     }
+    mutating func removePopularcityDate() {
+        arrayImageCity.removeAll()
+        arrayNameCity.removeAll()
+    }
     func getarrayNameCity() -> [String] {
         return arrayNameCity
     }
     func getarrayImageCity() -> [UIImage] {
         return arrayImageCity
     }
+
 }

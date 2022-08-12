@@ -53,5 +53,6 @@ extension HomeViewController: CLLocationManagerDelegate {
                 }
             }
         }
+        coreManager.stopUpdatingLocation()
     }
 }

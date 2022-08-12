@@ -15,6 +15,8 @@ class HomeViewController: UIViewController {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         return manager
     }()
+    @IBOutlet weak var searchDirection: UITextField!
+    @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var userLocation: UILabel!
     var alamofireProvaider = AlamofireProvaider()
     @IBOutlet weak var collectionView: UICollectionView!
@@ -30,7 +32,7 @@ class HomeViewController: UIViewController {
         
         coreManager.delegate = self
         coreManager.requestWhenInUseAuthorization()
-        // функции нужны для теста, потом уберу 
+        // функции нужны для теста, потом уберу
         //getPopularFlights(localCodeCity: "MOW" )
         // getHotelsByCityName()
         // getFlightInfo()
@@ -38,6 +40,15 @@ class HomeViewController: UIViewController {
         
     }
     // получение картинки по URL
+    @IBAction func onSearchButton(_ sender: Any) {
+        self.popularCity.removePopularcityDate()
+        guard let nameDirection = searchDirection.text else {return}
+        getNamePopularCityByCode(code: nameDirection, isName: false) { code in
+            self.getPopularFlights(localCodeCity: code)
+        }
+    }
+    
+    
     func getImagebyURL(url: String) -> UIImage {
         if let url = URL(string: url) {
             do {
@@ -56,8 +67,10 @@ class HomeViewController: UIViewController {
         alamofireProvaider.getNameCityByCode(code: code) { result in
             switch result {
             case .success(let value):
+                print("value: \(value)")
                 // некоторых городов нет в базе, в этом случае направления будут стандартные
-                guard !value.isEmpty else { completion (isName ? "SFO" : "SanFrancisco")
+                guard !value.isEmpty else {
+                    completion (isName ? "SanFrancisco" : "SFO")
                     return
                 }
                 guard let name = value.first?.name, let code = value.first?.code else { return }
@@ -69,7 +82,7 @@ class HomeViewController: UIViewController {
     }
     
     // получение популярных направлений, в параметре передаем код города геолокации
-     func getPopularFlights(localCodeCity: String) {
+    func getPopularFlights(localCodeCity: String) {
         alamofireProvaider.getPopularFlights(country: localCodeCity) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -92,56 +105,57 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    
-    // получение отелей по имени города
-    fileprivate func getHotelsByCityName() {
-        alamofireProvaider.getHoltelsByCityName(name: "moscow") { result in
-            switch result {
-            case .success(let value):
-                guard let val = value.results, let hotels = val.hotels else {return}
-                for hotel in hotels {
-                    // название отеля
-                    print(hotel.fullName)
-                    // по id, можно получить фото отеля
-                    print("id: \(hotel.id)")
-                }
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-   // получение инфы о полетах
-    fileprivate func getFlightInfo() {
-        alamofireProvaider.getFlightsInfo(origin: "MOW", date: "2202-11", destination: "BCN")  { result in
-            switch result {
-            case .success(let value):
-                guard let val = value.data else {return}
-                for flight in val.values {
-                    // все билеты по указанному направлению за месяц, можно ограничить
-                    print("price: \(flight.price)")
-                    print("дата возвращения: \(flight.returnAt)")
-                    print("дата вылета: \(flight.departureAt)")
-                    print("номер рейса: \(flight.flightNumber)")
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-   // получение инфы об экскурсиях
-    fileprivate func getExcursionInfo() {
-        alamofireProvaider.getExcursionInfo(codeCity: "LON") { result in
-            switch result {
-            case .success(let value):
-                guard let val = value.data else {return}
-                for exc in val {
-                    // название экскурсий
-                    print(exc.content)
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
+    /*
+     // получение отелей по имени города
+     fileprivate func getHotelsByCityName() {
+     alamofireProvaider.getHoltelsByCityName(name: "moscow") { result in
+     switch result {
+     case .success(let value):
+     guard let val = value.results, let hotels = val.hotels else {return}
+     for hotel in hotels {
+     // название отеля
+     print(hotel.fullName)
+     // по id, можно получить фото отеля
+     print("id: \(hotel.id)")
+     }
+     
+     case .failure(let error):
+     print(error.localizedDescription)
+     }
+     }
+     }
+     // получение инфы о полетах
+     fileprivate func getFlightInfo() {
+     alamofireProvaider.getFlightsInfo(origin: "MOW", date: "2202-11", destination: "BCN")  { result in
+     switch result {
+     case .success(let value):
+     guard let val = value.data else {return}
+     for flight in val.values {
+     // все билеты по указанному направлению за месяц, можно ограничить
+     print("price: \(flight.price)")
+     print("дата возвращения: \(flight.returnAt)")
+     print("дата вылета: \(flight.departureAt)")
+     print("номер рейса: \(flight.flightNumber)")
+     }
+     case .failure(let error):
+     print(error.localizedDescription)
+     }
+     }
+     }
+     // получение инфы об экскурсиях
+     fileprivate func getExcursionInfo() {
+     alamofireProvaider.getExcursionInfo(codeCity: "LON") { result in
+     switch result {
+     case .success(let value):
+     guard let val = value.data else {return}
+     for exc in val {
+     // название экскурсий
+     print(exc.content)
+     }
+     case .failure(let error):
+     print(error.localizedDescription)
+     }
+     }
+     }
+     */
 }
