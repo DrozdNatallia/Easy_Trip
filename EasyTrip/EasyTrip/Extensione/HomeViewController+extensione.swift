@@ -12,13 +12,12 @@ import CoreLocation
 //MARK: CollectionView
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        popularCity.getarrayNameCity().count
+        popularCity.arrayNameCity.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularFlightsCollectionViewCell.key, for: indexPath) as? PopularFlightsCollectionViewCell {
-            cell.namePopularCity.text = popularCity.getarrayNameCity()[indexPath.row]
-            cell.imagePopularCity.image = popularCity.getarrayImageCity()[indexPath.row]
+            cell.namePopularCity.text = popularCity.arrayNameCity[indexPath.row]
+            cell.imagePopularCity.image = popularCity.arrayImageCity[indexPath.row]
             return cell
         }
         return UICollectionViewCell()
@@ -26,7 +25,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 //MARK: CLLOcation
-
 extension HomeViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         if manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse {
@@ -34,7 +32,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         } else if manager.authorizationStatus == .restricted || manager.authorizationStatus == .denied {
             // если отказано в получении геолокации, то будет лондон, возможно потом буду передавать город из личного кабинета
             self.userLocation.text = "LONDON"
-            self.getPopularFlights(localCodeCity: "LON")
+            presenter.getPopularFlights(nameDirection: "LON")
         }
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -45,12 +43,10 @@ extension HomeViewController: CLLocationManagerDelegate {
                 print("Unable to Reverse Geocode Location (\(error))")
             }
             if let placemarks = placemarks, let placemark = placemarks.first, let locality = placemark.locality {
-                // функция вызывается 3 раза так как стоит kCLLocationAccuracyBest, чтоб запрос тоже не вызывался 3 раза присваиваю значение, только если его не было. Обновляется при каждом запуске приложения, больше Геолокация не нужна
+                // функция вызывается 3 раза так как стоит kCLLocationAccuracyBest, чтоб запрос тоже не вызывался 3 раза присваиваю значение, только если его не было. Обновляется при каждом запуске приложения, больше Геолокация не нужна. Другого способа пока не придумала
                 if self.userLocation.text == "" {
                     self.userLocation.text = locality
-                    self.getNamePopularCityByCode(code: locality, isName: false) { result in
-                        self.getPopularFlights(localCodeCity: result)
-                    }
+                    self.presenter.getNamePopularCityByCode(code: locality, isName: false)
                 }
             }
         }
