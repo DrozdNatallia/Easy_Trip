@@ -9,7 +9,8 @@ import UIKit
 import Alamofire
 import CoreLocation
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, HomeViewProtocol {
+    
     // точечки для скрола картинок
     @IBOutlet weak var pageControl: UIPageControl!
     // менеджер corelocation
@@ -18,109 +19,61 @@ class HomeViewController: UIViewController {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         return manager
     }()
-    // техтовое поле для поиска направлений
+    // текстовое поле для поиска направлений
     @IBOutlet weak var searchDirection: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     // лэйбл для локации
     @IBOutlet weak var userLocation: UILabel!
-    var alamofireProvaider = AlamofireProvaider()
-    
     @IBOutlet weak var collectionView: UICollectionView!
     // экземпляр в котором хранятся массивы с картинками и именами популярных направлений
     var popularCity: PopulareCityDate!
-    
+    var presenter: HomeViewPresenterProtocol!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "PopularFlightsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: PopularFlightsCollectionViewCell.key)
         // экземпляр класса в котором хранится массив имен популярных городов, и картинок
-        popularCity = PopulareCityDate()
-        
+        popularCity = PopulareCityDate(arrayNameCity: [], arrayImageCity: [])
         coreManager.delegate = self
         coreManager.requestWhenInUseAuthorization()
-        // функции нужны для теста, потом уберу
-        //getPopularFlights(localCodeCity: "MOW" )
-        // getHotelsByCityName()
-        // getFlightInfo()
-        // getExcursionInfo()
         
     }
     // функция для работы pageControl
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-            pageControl.currentPage = Int(targetContentOffset.pointee.x / view.frame.width)
-        }
+        pageControl.currentPage = Int(targetContentOffset.pointee.x / view.frame.width)
+    }
     // поиск по заданному направлению
     @IBAction func onSearchButton(_ sender: Any) {
-        // чистим массивы имеющихся картинок и имен
-        self.popularCity.removePopularcityDate()
         guard let nameDirection = searchDirection.text else {return}
-        getNamePopularCityByCode(code: nameDirection, isName: false) { code in
-            self.getPopularFlights(localCodeCity: code)
-        }
+        // функция конвертирует полное имя в IATA - код
+        presenter.getNamePopularCityByCode(code: nameDirection, isName: false)
     }
-    // получение картинки по URL
-    func getImagebyURL(url: String) -> UIImage {
-        if let url = URL(string: url) {
-            do {
-                let data = try Data(contentsOf: url)
-                guard let icon = UIImage(data: data) else {return UIImage()}
-                return icon
-            } catch _ {
-                print("error")
-            }
-        }
-        return UIImage()
+    // Добавляет картинки в массив, для дальнейшего добавления в качестве фона ячеек коллекции
+    func setImageCity(image: [UIImage]) {
+        self.popularCity.arrayImageCity = image
     }
-    
     // Получение имени города по коду/ код города по имени
-    func getNamePopularCityByCode(code: String, isName: Bool, completion: @escaping (String) -> Void){
-        alamofireProvaider.getNameCityByCode(code: code) { result in
-            switch result {
-            case .success(let value):
-                // некоторых городов нет в базе, в этом случае  направления будут стандартные
-                guard !value.isEmpty else {
-                    completion (isName ? "SanFrancisco" : "SFO")
-                    return
-                }
-                guard let name = value.first?.name, let code = value.first?.code else { return }
-                completion(isName ? name : code)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+    func getNamePopularCityByCode(city: [String], isName: Bool){
+        //если получили полное имя(т.к. может быть код), то добавдяем в массив и обновляем таблицу
+        if isName {
+            self.popularCity.arrayNameCity = city
+            self.collectionView.reloadData()
+        } else {
+            // если получен код, то вызываем функцию для получения популярных полетов
+            guard let city = city.first else { return }
+            presenter.getPopularFlights(nameDirection: city)
         }
+    }
+    // получение популярных направлений, в параметре передаем код города геолокации
+    func getPopularFlights(code: String) {
+        // получаем код, потом конвертим в полное имя
+        presenter.getNamePopularCityByCode(code: code, isName: true)
     }
     
-    // получение популярных направлений, в параметре передаем код города геолокации
-    func getPopularFlights(localCodeCity: String) {
-        alamofireProvaider.getPopularFlights(country: localCodeCity) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let value):
-                guard let date = value.data, !date.isEmpty else {
-                    guard let image = UIImage(named: "error2.jpeg") else { return }
-                    self.popularCity.addNewImage(image: image)
-                    self.popularCity.addNewName(name: "Sorry! Directions not found.")
-                    self.collectionView.reloadData()
-                    return}
-                for flight in date.values {
-                    // код страны прибытия
-                    guard let destination = flight.destination else {return}
-                    let size = Int(self.view.frame.width)
-                    let url = Constants.getImageCityByURL + "\(size)x250/" + "\(destination).jpg"
-                    // добавляем массив картинок
-                    self.popularCity.addNewImage(image: self.getImagebyURL(url: url))
-                    self.getNamePopularCityByCode(code: destination, isName: true) { result in
-                        // добавляем массив имен
-                        self.popularCity.addNewName(name: result)
-                        self.collectionView.reloadData()
-                    }
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
+
+    // Эти функции нужны, пока закоменчены, т.к. пока не реализованы
     /*
      // получение отелей по имени города
      fileprivate func getHotelsByCityName() {
