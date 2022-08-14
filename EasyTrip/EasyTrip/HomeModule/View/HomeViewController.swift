@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 import CoreLocation
-
+// Попыталась переделать паттерн, не факт, что правильно, но как есть. Возможно, немного смесь получилась
 class HomeViewController: UIViewController, HomeViewProtocol {
     
     // точечки для скрола картинок
@@ -55,7 +55,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         self.popularCity.arrayImageCity = image
     }
     // Получение имени города по коду/ код города по имени
-    func getNamePopularCityByCode(city: [String], isName: Bool){
+    func setNamePopularCityByCode(city: [String], isName: Bool){
         //если получили полное имя(т.к. может быть код), то добавдяем в массив и обновляем таблицу
         if isName {
             self.popularCity.arrayNameCity = city
@@ -67,7 +67,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         }
     }
     // получение популярных направлений, в параметре передаем код города геолокации
-    func getPopularFlights(code: String) {
+    func setPopularFlights(code: String) {
         // получаем код, потом конвертим в полное имя
         presenter.getNamePopularCityByCode(code: code, isName: true)
     }

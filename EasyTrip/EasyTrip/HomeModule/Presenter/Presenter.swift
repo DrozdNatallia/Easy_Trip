@@ -44,13 +44,13 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
                 guard !value.isEmpty else {
                     self.popularCityInfo.arrayNameCity.append(isName ? "SanFrancisco" : "SFO")
                     // передаем массив имен
-                    self.view?.getNamePopularCityByCode(city: self.popularCityInfo.arrayNameCity, isName: isName)
+                    self.view?.setNamePopularCityByCode(city: self.popularCityInfo.arrayNameCity, isName: isName)
                     return
                 }
                 guard let name = value.first?.name, let code = value.first?.code else { return }
                 // если код/имя страны найдено, то добавдяем значение которое нам надо в массив
                 self.popularCityInfo.arrayNameCity.append(isName ? name : code)
-                self.view?.getNamePopularCityByCode(city: self.popularCityInfo.arrayNameCity, isName: isName)
+                self.view?.setNamePopularCityByCode(city: self.popularCityInfo.arrayNameCity, isName: isName)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -72,7 +72,7 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
                     self.popularCityInfo.arrayImageCity.append(image)
                     self.view?.setImageCity(image: self.popularCityInfo.arrayImageCity)
                     self.popularCityInfo.arrayNameCity.append("Sorry! Directions not found.")
-                    self.view?.getNamePopularCityByCode(city: self.popularCityInfo.arrayNameCity, isName: true)
+                    self.view?.setNamePopularCityByCode(city: self.popularCityInfo.arrayNameCity, isName: true)
                     return}
                 for flight in date.values {
                     // код страны прибытия
@@ -81,7 +81,7 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
                     let url = Constants.getImageCityByURL + "\(width)x250/" + "\(destination).jpg"
                     self.getImagebyURL(url: url)
                     // полученный код передаем во VC
-                    self.view?.getPopularFlights(code: destination)
+                    self.view?.setPopularFlights(code: destination)
                 }
             case .failure(let error):
                 print(error.localizedDescription)
