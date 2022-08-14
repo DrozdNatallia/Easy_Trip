@@ -12,4 +12,7 @@ protocol HomeViewPresenterProtocol {
     func getImagebyURL(url: String)
     func getNamePopularCityByCode(code: String, isName: Bool)
     func getPopularFlights(nameDirection: String)
+    func getArrayNameCity() -> [String]
+    func getArrayImageCity() -> [UIImage]
+    func clearArrays()
 }

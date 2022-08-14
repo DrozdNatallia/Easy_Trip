@@ -26,7 +26,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     @IBOutlet weak var userLocation: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     // экземпляр в котором хранятся массивы с картинками и именами популярных направлений
-    var popularCity: PopulareCityDate!
     var presenter: HomeViewPresenterProtocol!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,42 +34,44 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "PopularFlightsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: PopularFlightsCollectionViewCell.key)
         // экземпляр класса в котором хранится массив имен популярных городов, и картинок
-        popularCity = PopulareCityDate(arrayNameCity: [], arrayImageCity: [])
         coreManager.delegate = self
         coreManager.requestWhenInUseAuthorization()
         
     }
     // функция для работы pageControl
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+      func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         pageControl.currentPage = Int(targetContentOffset.pointee.x / view.frame.width)
     }
     // поиск по заданному направлению
     @IBAction func onSearchButton(_ sender: Any) {
+        presenter.clearArrays()
         guard let nameDirection = searchDirection.text else {return}
         // функция конвертирует полное имя в IATA - код
         presenter.getNamePopularCityByCode(code: nameDirection, isName: false)
     }
-    // Добавляет картинки в массив, для дальнейшего добавления в качестве фона ячеек коллекции
-    func setImageCity(image: [UIImage]) {
-        self.popularCity.arrayImageCity = image
-    }
+    
     // Получение имени города по коду/ код города по имени
-    func setNamePopularCityByCode(city: [String], isName: Bool){
+    func setPopularFlights(city: String, isName: Bool){
         //если получили полное имя(т.к. может быть код), то добавдяем в массив и обновляем таблицу
         if isName {
-            self.popularCity.arrayNameCity = city
             self.collectionView.reloadData()
         } else {
             // если получен код, то вызываем функцию для получения популярных полетов
-            guard let city = city.first else { return }
             presenter.getPopularFlights(nameDirection: city)
         }
     }
-    // получение популярных направлений, в параметре передаем код города геолокации
-    func setPopularFlights(code: String) {
-        // получаем код, потом конвертим в полное имя
-        presenter.getNamePopularCityByCode(code: code, isName: true)
-    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
     // Эти функции нужны, пока закоменчены, т.к. пока не реализованы

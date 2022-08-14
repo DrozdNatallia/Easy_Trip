@@ -17,8 +17,9 @@ class HomeBuilderClass: Builder {
         
         if  let viewContoller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
             let size = Int(viewContoller.view.frame.width)
+            let provaider = AlamofireProvaider()
             let info = PopulareCityDate(arrayNameCity: [], arrayImageCity: [], sizeImage: size)
-            let presenter = HomeViewPresenter(view: viewContoller, info: info)
+            let presenter = HomeViewPresenter(view: viewContoller, info: info, provaider: provaider)
             viewContoller.presenter = presenter
             return viewContoller
         }
