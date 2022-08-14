@@ -12,12 +12,12 @@ import CoreLocation
 //MARK: CollectionView
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        popularCity.arrayNameCity.count
+        presenter.getArrayNameCity().count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularFlightsCollectionViewCell.key, for: indexPath) as? PopularFlightsCollectionViewCell {
-            cell.namePopularCity.text = popularCity.arrayNameCity[indexPath.row]
-            cell.imagePopularCity.image = popularCity.arrayImageCity[indexPath.row]
+            cell.namePopularCity.text = presenter.getArrayNameCity()[indexPath.row]
+            cell.imagePopularCity.image = presenter.getArrayImageCity()[indexPath.row]
             return cell
         }
         return UICollectionViewCell()
@@ -36,7 +36,8 @@ extension HomeViewController: CLLocationManagerDelegate {
         }
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation = locations.last! as CLLocation
+        guard let locations = locations.last else { return }
+        let userLocation = locations as CLLocation
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(userLocation) { (placemarks, error) in
             if let error = error {

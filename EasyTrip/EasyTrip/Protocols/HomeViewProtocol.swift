@@ -9,7 +9,5 @@ import Foundation
 import UIKit
 
 protocol HomeViewProtocol: AnyObject {
-    func setImageCity(image: [UIImage])
-    func setNamePopularCityByCode(city: [String], isName: Bool)
-    func setPopularFlights(code: String)
+    func setPopularFlights(city: String, isName: Bool)
 }
