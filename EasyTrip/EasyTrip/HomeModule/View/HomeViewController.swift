@@ -42,6 +42,10 @@ class HomeViewController: UIViewController, HomeViewProtocol {
       func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         pageControl.currentPage = Int(targetContentOffset.pointee.x / view.frame.width)
     }
+    @IBAction func onFlightsButton(_ sender: Any) {
+        let vc = FlightsViewController(nibName: "FlightsViewController", bundle: nil)
+        present(vc, animated: true)
+    }
     // поиск по заданному направлению
     @IBAction func onSearchButton(_ sender: Any) {
         presenter.clearArrays()

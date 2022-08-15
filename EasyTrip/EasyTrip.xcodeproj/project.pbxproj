@@ -32,6 +32,10 @@
 		CCEBA1C328A7FB71009C4917 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1C228A7FB71009C4917 /* ModuleBuilder.swift */; };
 		CCEBA1CA28A844E5009C4917 /* HomeViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1C928A844E5009C4917 /* HomeViewProtocol.swift */; };
 		CCEBA1CC28A84537009C4917 /* HomeViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1CB28A84537009C4917 /* HomeViewPresenterProtocol.swift */; };
+		CCF87B8028A9195C00929FA9 /* FlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF87B7E28A9195C00929FA9 /* FlightsViewController.swift */; };
+		CCF87B8128A9195C00929FA9 /* FlightsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCF87B7F28A9195C00929FA9 /* FlightsViewController.xib */; };
+		CCF87B8528A987D700929FA9 /* FlightsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF87B8328A987D700929FA9 /* FlightsViewCell.swift */; };
+		CCF87B8628A987D700929FA9 /* FlightsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCF87B8428A987D700929FA9 /* FlightsViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +63,10 @@
 		CCEBA1C228A7FB71009C4917 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		CCEBA1C928A844E5009C4917 /* HomeViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewProtocol.swift; sourceTree = "<group>"; };
 		CCEBA1CB28A84537009C4917 /* HomeViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewPresenterProtocol.swift; sourceTree = "<group>"; };
+		CCF87B7E28A9195C00929FA9 /* FlightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsViewController.swift; sourceTree = "<group>"; };
+		CCF87B7F28A9195C00929FA9 /* FlightsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlightsViewController.xib; sourceTree = "<group>"; };
+		CCF87B8328A987D700929FA9 /* FlightsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsViewCell.swift; sourceTree = "<group>"; };
+		CCF87B8428A987D700929FA9 /* FlightsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlightsViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +105,7 @@
 				CC64157D28A2563A0052050E /* AppDelegate.swift */,
 				CC64157F28A2563A0052050E /* SceneDelegate.swift */,
 				CC64159B28A2CFE60052050E /* Constants.swift */,
+				CCF87B8228A9196700929FA9 /* FlightsViewController */,
 				CCEBA1C828A84455009C4917 /* HomeModule */,
 				CCCF4B7928A3F4E20041ED9E /* Extensione */,
 				CC6415A328A2DEF70052050E /* Services */,
@@ -149,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				CCCF4B6E28A3D4330041ED9E /* CollectionCells */,
+				CCF87B8728A987E300929FA9 /* TableCells */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -225,6 +235,32 @@
 			path = HomeModule;
 			sourceTree = "<group>";
 		};
+		CCF87B8228A9196700929FA9 /* FlightsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CCF87B7E28A9195C00929FA9 /* FlightsViewController.swift */,
+				CCF87B7F28A9195C00929FA9 /* FlightsViewController.xib */,
+			);
+			path = FlightsViewController;
+			sourceTree = "<group>";
+		};
+		CCF87B8728A987E300929FA9 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				CCF87B8828A987F300929FA9 /* FlifgtsViewCell */,
+			);
+			path = TableCells;
+			sourceTree = "<group>";
+		};
+		CCF87B8828A987F300929FA9 /* FlifgtsViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CCF87B8328A987D700929FA9 /* FlightsViewCell.swift */,
+				CCF87B8428A987D700929FA9 /* FlightsViewCell.xib */,
+			);
+			path = FlifgtsViewCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -293,7 +329,9 @@
 			files = (
 				CCCF4B7328A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib in Resources */,
 				CC64158A28A2563C0052050E /* LaunchScreen.storyboard in Resources */,
+				CCF87B8628A987D700929FA9 /* FlightsViewCell.xib in Resources */,
 				CC64158728A2563C0052050E /* Assets.xcassets in Resources */,
+				CCF87B8128A9195C00929FA9 /* FlightsViewController.xib in Resources */,
 				CC64158528A2563A0052050E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCF87B8528A987D700929FA9 /* FlightsViewCell.swift in Sources */,
 				CCEBA1CC28A84537009C4917 /* HomeViewPresenterProtocol.swift in Sources */,
 				CC6415A628A2E74E0052050E /* FlightsInfo.swift in Sources */,
 				CC64159A28A28BE80052050E /* PopularFlights.swift in Sources */,
@@ -322,6 +361,7 @@
 				CC64158028A2563A0052050E /* SceneDelegate.swift in Sources */,
 				CC64159828A27BE60052050E /* AlamofireProvaider.swift in Sources */,
 				CCEBA1CA28A844E5009C4917 /* HomeViewProtocol.swift in Sources */,
+				CCF87B8028A9195C00929FA9 /* FlightsViewController.swift in Sources */,
 				CC64159C28A2CFE60052050E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
