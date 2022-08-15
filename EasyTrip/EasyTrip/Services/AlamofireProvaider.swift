@@ -15,10 +15,8 @@ class AlamofireProvaider: RestAPIProviderProtocol {
             Bundle.main.infoDictionary?["API_KEY"] as? String
         }
     }
-    
     func getNameCityByCode(code: String, completion: @escaping (Result<[Autocomplete], Error>) -> Void) {
         let params = addParams(queryItems: ["locale" : "en", "types" : "city" , "term" : code])
-        
         AF.request(Constants.autocompleteURL, method: .get, parameters: params).responseDecodable(of: [Autocomplete].self) { response in
             switch response.result {
             case .success(let result):
@@ -42,7 +40,6 @@ class AlamofireProvaider: RestAPIProviderProtocol {
     // получение популярных полетов
     func getPopularFlights(country: String, completion: @escaping (Result<PopularFlight, Error>) -> Void) {
         let params = addParams(queryItems: ["origin" : country, "currency" : "usd", "limit" : "5"])
-        
         AF.request(Constants.getPopularFlightsURL, method: .get, parameters: params).responseDecodable(of: PopularFlight.self) { response in
             switch response.result {
             case .success(let result):
@@ -65,10 +62,8 @@ class AlamofireProvaider: RestAPIProviderProtocol {
         }
     }
     
-    
     func getFlightsInfo(origin: String, date: String, destination: String, completion: @escaping (Result<FligthsInfo, Error>) -> Void) {
         let params = addParams(queryItems: ["origin" : origin, "currency" : "usd", "destination" : destination, "date" : date, "calendar_type" : "departure_date"])
-        
         AF.request(Constants.getFlightsInfo, method: .get, parameters: params).responseDecodable(of: FligthsInfo.self) { response in
             switch response.result {
             case .success(let result):
@@ -78,7 +73,6 @@ class AlamofireProvaider: RestAPIProviderProtocol {
             }
         }
     }
-    
     
     func getExcursionInfo(codeCity: String, completion: @escaping (Result<ExcursionInfo, Error>) -> Void) {
         let params = addParams(queryItems: ["code" : codeCity, "limit" : "5", "language" : "RU"])

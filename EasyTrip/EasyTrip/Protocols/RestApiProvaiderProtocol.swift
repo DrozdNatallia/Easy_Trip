@@ -15,6 +15,5 @@ protocol RestAPIProviderProtocol {
     func getFlightsInfo(origin: String, date: String, destination: String, completion: @escaping (Result<FligthsInfo, Error>) -> Void)
     func getExcursionInfo(codeCity: String, completion: @escaping (Result<ExcursionInfo, Error>) -> Void)
     func getNameCityByCode(code: String, completion: @escaping (Result<[Autocomplete], Error>) -> Void)
-    
 }
 

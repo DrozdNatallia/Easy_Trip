@@ -12,12 +12,10 @@ struct HotelsData: Codable {
     let results: Results?
     let status: String?
 }
-
 struct Results: Codable {
     let locations: [LocationElement]?
     let hotels: [Hotel]?
 }
-
 struct Hotel: Codable {
     let score: Int?
     let fullName, locationName: String?
@@ -34,12 +32,10 @@ struct Hotel: Codable {
     }
 }
 
-// MARK: - HotelLocation
 struct HotelLocation: Codable {
     let lon, lat: Double?
 }
 
-// MARK: - LocationElement
 struct LocationElement: Codable {
     let score: Int?
     let hotelsCount, fullName, countryName, countryCode: String?
@@ -54,7 +50,6 @@ struct LocationElement: Codable {
     }
 }
 
-// MARK: - LocationLocation
 struct LocationLocation: Codable {
     let lon, lat: String?
 }
