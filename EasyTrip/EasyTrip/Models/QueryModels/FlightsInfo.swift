@@ -14,7 +14,6 @@ struct FligthsInfo: Codable {
     let currency: String?
 }
 
-// MARK: - Datum
 struct DataElements: Codable {
     let origin: String?
     let destination: String?

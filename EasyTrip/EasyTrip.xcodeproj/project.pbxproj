@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC0E3BD628A4493D00CD500C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CC0E3BD528A4493D00CD500C /* Alamofire */; };
+		CC0E3BE428A44E1C00CD500C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CC0E3BE328A44E1C00CD500C /* Alamofire */; };
 		CC64157E28A2563A0052050E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64157D28A2563A0052050E /* AppDelegate.swift */; };
 		CC64158028A2563A0052050E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64157F28A2563A0052050E /* SceneDelegate.swift */; };
-		CC64158228A2563A0052050E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64158128A2563A0052050E /* ViewController.swift */; };
+		CC64158228A2563A0052050E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64158128A2563A0052050E /* HomeViewController.swift */; };
 		CC64158528A2563A0052050E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC64158328A2563A0052050E /* Main.storyboard */; };
 		CC64158728A2563C0052050E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC64158628A2563C0052050E /* Assets.xcassets */; };
 		CC64158A28A2563C0052050E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC64158828A2563C0052050E /* LaunchScreen.storyboard */; };
@@ -22,17 +24,25 @@
 		CC6415A628A2E74E0052050E /* FlightsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A528A2E74E0052050E /* FlightsInfo.swift */; };
 		CC6415A828A2FE9E0052050E /* ExcursionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A728A2FE9E0052050E /* ExcursionInfo.swift */; };
 		CC6415AA28A310950052050E /* Autocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A928A310950052050E /* Autocomplete.swift */; };
+		CCCF4B7228A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF4B7028A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift */; };
+		CCCF4B7328A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCCF4B7128A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib */; };
+		CCCF4B7628A3F40B0041ED9E /* PopularCityDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF4B7528A3F40B0041ED9E /* PopularCityDate.swift */; };
+		CCCF4B7828A3F4C30041ED9E /* HomeViewController+extensione.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF4B7728A3F4C20041ED9E /* HomeViewController+extensione.swift */; };
+		CCEBA1C128A7EBB1009C4917 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1C028A7EBB0009C4917 /* Presenter.swift */; };
+		CCEBA1C328A7FB71009C4917 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1C228A7FB71009C4917 /* ModuleBuilder.swift */; };
+		CCEBA1CA28A844E5009C4917 /* HomeViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1C928A844E5009C4917 /* HomeViewProtocol.swift */; };
+		CCEBA1CC28A84537009C4917 /* HomeViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1CB28A84537009C4917 /* HomeViewPresenterProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC0E3BE028A44DFE00CD500C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC64157A28A2563A0052050E /* EasyTrip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyTrip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC64157D28A2563A0052050E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC64157F28A2563A0052050E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CC64158128A2563A0052050E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CC64158128A2563A0052050E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CC64158428A2563A0052050E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CC64158628A2563C0052050E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC64158928A2563C0052050E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CC64158B28A2563C0052050E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC64159728A27BE60052050E /* AlamofireProvaider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireProvaider.swift; sourceTree = "<group>"; };
 		CC64159928A28BE80052050E /* PopularFlights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularFlights.swift; sourceTree = "<group>"; };
 		CC64159B28A2CFE60052050E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -41,6 +51,14 @@
 		CC6415A528A2E74E0052050E /* FlightsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsInfo.swift; sourceTree = "<group>"; };
 		CC6415A728A2FE9E0052050E /* ExcursionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcursionInfo.swift; sourceTree = "<group>"; };
 		CC6415A928A310950052050E /* Autocomplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autocomplete.swift; sourceTree = "<group>"; };
+		CCCF4B7028A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularFlightsCollectionViewCell.swift; sourceTree = "<group>"; };
+		CCCF4B7128A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularFlightsCollectionViewCell.xib; sourceTree = "<group>"; };
+		CCCF4B7528A3F40B0041ED9E /* PopularCityDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCityDate.swift; sourceTree = "<group>"; };
+		CCCF4B7728A3F4C20041ED9E /* HomeViewController+extensione.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+extensione.swift"; sourceTree = "<group>"; };
+		CCEBA1C028A7EBB0009C4917 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		CCEBA1C228A7FB71009C4917 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		CCEBA1C928A844E5009C4917 /* HomeViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewProtocol.swift; sourceTree = "<group>"; };
+		CCEBA1CB28A84537009C4917 /* HomeViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewPresenterProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +66,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC0E3BE428A44E1C00CD500C /* Alamofire in Frameworks */,
 				CC64159628A27B680052050E /* Alamofire in Frameworks */,
+				CC0E3BD628A4493D00CD500C /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,14 +97,16 @@
 				CC64157D28A2563A0052050E /* AppDelegate.swift */,
 				CC64157F28A2563A0052050E /* SceneDelegate.swift */,
 				CC64159B28A2CFE60052050E /* Constants.swift */,
-				CC6415A228A2DE9B0052050E /* ViewControllers */,
+				CCEBA1C828A84455009C4917 /* HomeModule */,
+				CCCF4B7928A3F4E20041ED9E /* Extensione */,
 				CC6415A328A2DEF70052050E /* Services */,
 				CC6415A428A2DF040052050E /* Protocols */,
 				CC6415A128A2DE870052050E /* Models */,
 				CC64158328A2563A0052050E /* Main.storyboard */,
+				CCCF4B6D28A3D4210041ED9E /* Cells */,
 				CC64158628A2563C0052050E /* Assets.xcassets */,
 				CC64158828A2563C0052050E /* LaunchScreen.storyboard */,
-				CC64158B28A2563C0052050E /* Info.plist */,
+				CC0E3BE028A44DFE00CD500C /* Info.plist */,
 			);
 			path = EasyTrip;
 			sourceTree = "<group>";
@@ -92,21 +114,17 @@
 		CC6415A128A2DE870052050E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CC6415A528A2E74E0052050E /* FlightsInfo.swift */,
-				CC64159928A28BE80052050E /* PopularFlights.swift */,
-				CC64159F28A2DDB30052050E /* HotelsData.swift */,
-				CC6415A728A2FE9E0052050E /* ExcursionInfo.swift */,
-				CC6415A928A310950052050E /* Autocomplete.swift */,
+				CCCF4B7428A3F3EE0041ED9E /* QueryModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		CC6415A228A2DE9B0052050E /* ViewControllers */ = {
+		CC6415A228A2DE9B0052050E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CC64158128A2563A0052050E /* ViewController.swift */,
+				CC64158128A2563A0052050E /* HomeViewController.swift */,
 			);
-			path = ViewControllers;
+			path = View;
 			sourceTree = "<group>";
 		};
 		CC6415A328A2DEF70052050E /* Services */ = {
@@ -121,8 +139,90 @@
 			isa = PBXGroup;
 			children = (
 				CC64159D28A2D0040052050E /* RestApiProvaiderProtocol.swift */,
+				CCEBA1C928A844E5009C4917 /* HomeViewProtocol.swift */,
+				CCEBA1CB28A84537009C4917 /* HomeViewPresenterProtocol.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		CCCF4B6D28A3D4210041ED9E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CCCF4B6E28A3D4330041ED9E /* CollectionCells */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		CCCF4B6E28A3D4330041ED9E /* CollectionCells */ = {
+			isa = PBXGroup;
+			children = (
+				CCCF4B6F28A3D4400041ED9E /* PopularFlightsCell */,
+			);
+			path = CollectionCells;
+			sourceTree = "<group>";
+		};
+		CCCF4B6F28A3D4400041ED9E /* PopularFlightsCell */ = {
+			isa = PBXGroup;
+			children = (
+				CCCF4B7028A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift */,
+				CCCF4B7128A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib */,
+			);
+			path = PopularFlightsCell;
+			sourceTree = "<group>";
+		};
+		CCCF4B7428A3F3EE0041ED9E /* QueryModels */ = {
+			isa = PBXGroup;
+			children = (
+				CC6415A528A2E74E0052050E /* FlightsInfo.swift */,
+				CC64159928A28BE80052050E /* PopularFlights.swift */,
+				CC64159F28A2DDB30052050E /* HotelsData.swift */,
+				CC6415A728A2FE9E0052050E /* ExcursionInfo.swift */,
+				CC6415A928A310950052050E /* Autocomplete.swift */,
+			);
+			path = QueryModels;
+			sourceTree = "<group>";
+		};
+		CCCF4B7928A3F4E20041ED9E /* Extensione */ = {
+			isa = PBXGroup;
+			children = (
+				CCCF4B7728A3F4C20041ED9E /* HomeViewController+extensione.swift */,
+			);
+			path = Extensione;
+			sourceTree = "<group>";
+		};
+		CCEBA1C428A843D8009C4917 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CCEBA1C028A7EBB0009C4917 /* Presenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		CCEBA1C528A84409009C4917 /* ModuleBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				CCEBA1C228A7FB71009C4917 /* ModuleBuilder.swift */,
+			);
+			path = ModuleBuilder;
+			sourceTree = "<group>";
+		};
+		CCEBA1C628A8441F009C4917 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CCCF4B7528A3F40B0041ED9E /* PopularCityDate.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CCEBA1C828A84455009C4917 /* HomeModule */ = {
+			isa = PBXGroup;
+			children = (
+				CCEBA1C628A8441F009C4917 /* Model */,
+				CC6415A228A2DE9B0052050E /* View */,
+				CCEBA1C428A843D8009C4917 /* Presenter */,
+				CCEBA1C528A84409009C4917 /* ModuleBuilder */,
+			);
+			path = HomeModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +243,8 @@
 			name = EasyTrip;
 			packageProductDependencies = (
 				CC64159528A27B680052050E /* Alamofire */,
+				CC0E3BD528A4493D00CD500C /* Alamofire */,
+				CC0E3BE328A44E1C00CD500C /* Alamofire */,
 			);
 			productName = EasyTrip;
 			productReference = CC64157A28A2563A0052050E /* EasyTrip.app */;
@@ -189,6 +291,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCCF4B7328A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib in Resources */,
 				CC64158A28A2563C0052050E /* LaunchScreen.storyboard in Resources */,
 				CC64158728A2563C0052050E /* Assets.xcassets in Resources */,
 				CC64158528A2563A0052050E /* Main.storyboard in Resources */,
@@ -202,16 +305,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCEBA1CC28A84537009C4917 /* HomeViewPresenterProtocol.swift in Sources */,
 				CC6415A628A2E74E0052050E /* FlightsInfo.swift in Sources */,
 				CC64159A28A28BE80052050E /* PopularFlights.swift in Sources */,
-				CC64158228A2563A0052050E /* ViewController.swift in Sources */,
+				CC64158228A2563A0052050E /* HomeViewController.swift in Sources */,
+				CCCF4B7828A3F4C30041ED9E /* HomeViewController+extensione.swift in Sources */,
 				CC64157E28A2563A0052050E /* AppDelegate.swift in Sources */,
+				CCCF4B7228A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift in Sources */,
 				CC64159E28A2D0040052050E /* RestApiProvaiderProtocol.swift in Sources */,
 				CC6415AA28A310950052050E /* Autocomplete.swift in Sources */,
+				CCCF4B7628A3F40B0041ED9E /* PopularCityDate.swift in Sources */,
+				CCEBA1C128A7EBB1009C4917 /* Presenter.swift in Sources */,
 				CC6415A028A2DDB30052050E /* HotelsData.swift in Sources */,
 				CC6415A828A2FE9E0052050E /* ExcursionInfo.swift in Sources */,
+				CCEBA1C328A7FB71009C4917 /* ModuleBuilder.swift in Sources */,
 				CC64158028A2563A0052050E /* SceneDelegate.swift in Sources */,
 				CC64159828A27BE60052050E /* AlamofireProvaider.swift in Sources */,
+				CCEBA1CA28A844E5009C4917 /* HomeViewProtocol.swift in Sources */,
 				CC64159C28A2CFE60052050E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +398,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -342,6 +453,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -359,8 +471,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G6WVNFWBQ8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EasyTrip/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app wants to use your location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -371,7 +485,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.TMSi32.EasyTrip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TMSi32.EasyTrip.myApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -386,8 +500,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G6WVNFWBQ8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EasyTrip/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app wants to use your location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -398,7 +514,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.TMSi32.EasyTrip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TMSi32.EasyTrip.myApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -441,6 +557,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CC0E3BD528A4493D00CD500C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC64159428A27B680052050E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		CC0E3BE328A44E1C00CD500C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC64159428A27B680052050E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		CC64159528A27B680052050E /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CC64159428A27B680052050E /* XCRemoteSwiftPackageReference "Alamofire" */;

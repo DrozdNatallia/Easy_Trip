@@ -12,8 +12,6 @@ struct ExcursionInfo: Codable {
     let data: [ExcursionDate]?
     let success: Bool?
 }
-
-
 struct ExcursionDate: Codable {
     let excursionID, price: Int?
     let currency, content, excursionType, activityType: String?
