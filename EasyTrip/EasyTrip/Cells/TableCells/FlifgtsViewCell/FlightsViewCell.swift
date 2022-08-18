@@ -15,6 +15,7 @@ class FlightsViewCell: UITableViewCell {
     @IBOutlet weak var destination: UILabel!
     @IBOutlet weak var returnAt: UILabel!
     @IBOutlet weak var transfer: UILabel!
+    @IBOutlet weak var iconAirlines: UIImageView!
     @IBOutlet weak var timeInFlight: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
