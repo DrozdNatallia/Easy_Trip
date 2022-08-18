@@ -180,6 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				CC64159D28A2D0040052050E /* RestApiProvaiderProtocol.swift */,
+				CCEBA1C928A844E5009C4917 /* HomeViewProtocol.swift */,
+				CCEBA1CB28A84537009C4917 /* HomeViewPresenterProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
