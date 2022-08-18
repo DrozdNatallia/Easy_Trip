@@ -10,26 +10,29 @@ import UIKit
 
 struct FligthsInfo: Codable {
     let success: Bool?
-    let data: [String: DataElements]?
+    let data: [DateElements]?
     let currency: String?
 }
 
-struct DataElements: Codable {
-    let origin: String?
-    let destination: String?
+
+struct DateElements: Codable {
+    let origin, destination, originAirport, destinationAirport: String?
     let price: Int?
-    let airline: String?
-    let flightNumber: Int?
+    let airline, flightNumber: String?
     let departureAt, returnAt: String?
-    let transfers: Int?
-    let expiresAt: String?
+    let transfers, returnTransfers, duration: Int?
+    let link: String?
 
     enum CodingKeys: String, CodingKey {
-        case origin, destination, price, airline
+        case origin, destination
+        case originAirport = "origin_airport"
+        case destinationAirport = "destination_airport"
+        case price, airline
         case flightNumber = "flight_number"
         case departureAt = "departure_at"
         case returnAt = "return_at"
         case transfers
-        case expiresAt = "expires_at"
+        case returnTransfers = "return_transfers"
+        case duration, link
     }
 }
