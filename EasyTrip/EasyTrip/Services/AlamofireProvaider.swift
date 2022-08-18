@@ -61,9 +61,9 @@ class AlamofireProvaider: RestAPIProviderProtocol {
             }
         }
     }
-    
+
     func getFlightsInfo(origin: String, date: String, destination: String, completion: @escaping (Result<FligthsInfo, Error>) -> Void) {
-        let params = addParams(queryItems: ["origin" : origin, "currency" : "usd", "destination" : destination, "date" : date, "calendar_type" : "departure_date"])
+        let params = addParams(queryItems: ["origin" : origin, "destination" : destination, "currency" : "usd",  "departure_at" : date, "sorting" : "price", "direct" : "true", "limit" : "10"])
         AF.request(Constants.getFlightsInfo, method: .get, parameters: params).responseDecodable(of: FligthsInfo.self) { response in
             switch response.result {
             case .success(let result):
