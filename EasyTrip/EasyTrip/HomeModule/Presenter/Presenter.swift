@@ -9,6 +9,15 @@ import Foundation
 import UIKit
 import Alamofire
 
+protocol HomeViewPresenterProtocol {
+    func getImagebyURL(url: String)
+    func getNamePopularCityByCode(code: String, isName: Bool)
+    func getPopularFlights(nameDirection: String)
+    func getArrayNameCity() -> [String]
+    func getArrayImageCity() -> [UIImage]
+    func clearArrays()
+}
+
 final class HomeViewPresenter: HomeViewPresenterProtocol {
     private weak var view: HomeViewProtocol?
     private var popularCityInfo: PopulareCityDate
@@ -51,11 +60,7 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
             case .success(let value):
                 // некоторых городов нет в базе, в этом случае  направления будут стандартные
                 guard !value.isEmpty else {
-                    if isName {
-                        self.popularCityInfo.arrayNameCity.append("SanFrancisco")
-                    } else {
-                        self.view?.setPopularFlights(city: "SFO", isName: isName)
-                    }
+                    self.view?.setPopularFlights(city: "None", isName: false)
                     return
                 }
                 guard let name = value.first?.name, let code = value.first?.code else { return }
