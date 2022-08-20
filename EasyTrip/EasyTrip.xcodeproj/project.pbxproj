@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CC0E3BD628A4493D00CD500C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CC0E3BD528A4493D00CD500C /* Alamofire */; };
 		CC0E3BE428A44E1C00CD500C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CC0E3BE328A44E1C00CD500C /* Alamofire */; };
+		CC2BD03728AE23FB0031769A /* FlightsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BD03628AE23FB0031769A /* FlightsPresenter.swift */; };
+		CC2BD03928AE24440031769A /* InfoFlights.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BD03828AE24440031769A /* InfoFlights.swift */; };
 		CC64157E28A2563A0052050E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64157D28A2563A0052050E /* AppDelegate.swift */; };
 		CC64158028A2563A0052050E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64157F28A2563A0052050E /* SceneDelegate.swift */; };
 		CC64158228A2563A0052050E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64158128A2563A0052050E /* HomeViewController.swift */; };
@@ -27,15 +29,18 @@
 		CCCF4B7228A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF4B7028A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift */; };
 		CCCF4B7328A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCCF4B7128A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib */; };
 		CCCF4B7628A3F40B0041ED9E /* PopularCityDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF4B7528A3F40B0041ED9E /* PopularCityDate.swift */; };
-		CCCF4B7828A3F4C30041ED9E /* HomeViewController+extensione.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF4B7728A3F4C20041ED9E /* HomeViewController+extensione.swift */; };
 		CCEBA1C128A7EBB1009C4917 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1C028A7EBB0009C4917 /* Presenter.swift */; };
 		CCEBA1C328A7FB71009C4917 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1C228A7FB71009C4917 /* ModuleBuilder.swift */; };
-		CCEBA1CA28A844E5009C4917 /* HomeViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1C928A844E5009C4917 /* HomeViewProtocol.swift */; };
-		CCEBA1CC28A84537009C4917 /* HomeViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1CB28A84537009C4917 /* HomeViewPresenterProtocol.swift */; };
+		CCF87B8028A9195C00929FA9 /* FlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF87B7E28A9195C00929FA9 /* FlightsViewController.swift */; };
+		CCF87B8128A9195C00929FA9 /* FlightsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCF87B7F28A9195C00929FA9 /* FlightsViewController.xib */; };
+		CCF87B8528A987D700929FA9 /* FlightsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF87B8328A987D700929FA9 /* FlightsViewCell.swift */; };
+		CCF87B8628A987D700929FA9 /* FlightsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCF87B8428A987D700929FA9 /* FlightsViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CC0E3BE028A44DFE00CD500C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC2BD03628AE23FB0031769A /* FlightsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightsPresenter.swift; sourceTree = "<group>"; };
+		CC2BD03828AE24440031769A /* InfoFlights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoFlights.swift; sourceTree = "<group>"; };
 		CC64157A28A2563A0052050E /* EasyTrip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyTrip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC64157D28A2563A0052050E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC64157F28A2563A0052050E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,11 +59,12 @@
 		CCCF4B7028A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularFlightsCollectionViewCell.swift; sourceTree = "<group>"; };
 		CCCF4B7128A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularFlightsCollectionViewCell.xib; sourceTree = "<group>"; };
 		CCCF4B7528A3F40B0041ED9E /* PopularCityDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCityDate.swift; sourceTree = "<group>"; };
-		CCCF4B7728A3F4C20041ED9E /* HomeViewController+extensione.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+extensione.swift"; sourceTree = "<group>"; };
 		CCEBA1C028A7EBB0009C4917 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		CCEBA1C228A7FB71009C4917 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
-		CCEBA1C928A844E5009C4917 /* HomeViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewProtocol.swift; sourceTree = "<group>"; };
-		CCEBA1CB28A84537009C4917 /* HomeViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewPresenterProtocol.swift; sourceTree = "<group>"; };
+		CCF87B7E28A9195C00929FA9 /* FlightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsViewController.swift; sourceTree = "<group>"; };
+		CCF87B7F28A9195C00929FA9 /* FlightsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlightsViewController.xib; sourceTree = "<group>"; };
+		CCF87B8328A987D700929FA9 /* FlightsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsViewCell.swift; sourceTree = "<group>"; };
+		CCF87B8428A987D700929FA9 /* FlightsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlightsViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CC2BD03428AE23C20031769A /* FlightsModule */ = {
+			isa = PBXGroup;
+			children = (
+				CC2BD03B28AE24620031769A /* View */,
+				CC2BD03528AE23CF0031769A /* Presenter */,
+				CC2BD03A28AE24500031769A /* Model */,
+			);
+			path = FlightsModule;
+			sourceTree = "<group>";
+		};
+		CC2BD03528AE23CF0031769A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CC2BD03628AE23FB0031769A /* FlightsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		CC2BD03A28AE24500031769A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CC2BD03828AE24440031769A /* InfoFlights.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CC2BD03B28AE24620031769A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CCF87B8228A9196700929FA9 /* FlightsViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CC64157128A256390052050E = {
 			isa = PBXGroup;
 			children = (
@@ -98,7 +138,8 @@
 				CC64157F28A2563A0052050E /* SceneDelegate.swift */,
 				CC64159B28A2CFE60052050E /* Constants.swift */,
 				CCEBA1C828A84455009C4917 /* HomeModule */,
-				CCCF4B7928A3F4E20041ED9E /* Extensione */,
+				CC2BD03428AE23C20031769A /* FlightsModule */,
+				CCEBA1C528A84409009C4917 /* ModuleBuilder */,
 				CC6415A328A2DEF70052050E /* Services */,
 				CC6415A428A2DF040052050E /* Protocols */,
 				CC6415A128A2DE870052050E /* Models */,
@@ -149,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				CCCF4B6E28A3D4330041ED9E /* CollectionCells */,
+				CCF87B8728A987E300929FA9 /* TableCells */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -182,14 +224,6 @@
 			path = QueryModels;
 			sourceTree = "<group>";
 		};
-		CCCF4B7928A3F4E20041ED9E /* Extensione */ = {
-			isa = PBXGroup;
-			children = (
-				CCCF4B7728A3F4C20041ED9E /* HomeViewController+extensione.swift */,
-			);
-			path = Extensione;
-			sourceTree = "<group>";
-		};
 		CCEBA1C428A843D8009C4917 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,9 +254,34 @@
 				CCEBA1C628A8441F009C4917 /* Model */,
 				CC6415A228A2DE9B0052050E /* View */,
 				CCEBA1C428A843D8009C4917 /* Presenter */,
-				CCEBA1C528A84409009C4917 /* ModuleBuilder */,
 			);
 			path = HomeModule;
+			sourceTree = "<group>";
+		};
+		CCF87B8228A9196700929FA9 /* FlightsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CCF87B7E28A9195C00929FA9 /* FlightsViewController.swift */,
+				CCF87B7F28A9195C00929FA9 /* FlightsViewController.xib */,
+			);
+			path = FlightsViewController;
+			sourceTree = "<group>";
+		};
+		CCF87B8728A987E300929FA9 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				CCF87B8828A987F300929FA9 /* FlifgtsViewCell */,
+			);
+			path = TableCells;
+			sourceTree = "<group>";
+		};
+		CCF87B8828A987F300929FA9 /* FlifgtsViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CCF87B8328A987D700929FA9 /* FlightsViewCell.swift */,
+				CCF87B8428A987D700929FA9 /* FlightsViewCell.xib */,
+			);
+			path = FlifgtsViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,7 +352,9 @@
 			files = (
 				CCCF4B7328A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib in Resources */,
 				CC64158A28A2563C0052050E /* LaunchScreen.storyboard in Resources */,
+				CCF87B8628A987D700929FA9 /* FlightsViewCell.xib in Resources */,
 				CC64158728A2563C0052050E /* Assets.xcassets in Resources */,
+				CCF87B8128A9195C00929FA9 /* FlightsViewController.xib in Resources */,
 				CC64158528A2563A0052050E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,11 +366,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCEBA1CC28A84537009C4917 /* HomeViewPresenterProtocol.swift in Sources */,
+				CCF87B8528A987D700929FA9 /* FlightsViewCell.swift in Sources */,
 				CC6415A628A2E74E0052050E /* FlightsInfo.swift in Sources */,
 				CC64159A28A28BE80052050E /* PopularFlights.swift in Sources */,
 				CC64158228A2563A0052050E /* HomeViewController.swift in Sources */,
-				CCCF4B7828A3F4C30041ED9E /* HomeViewController+extensione.swift in Sources */,
+				CC2BD03928AE24440031769A /* InfoFlights.swift in Sources */,
 				CC64157E28A2563A0052050E /* AppDelegate.swift in Sources */,
 				CCCF4B7228A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift in Sources */,
 				CC64159E28A2D0040052050E /* RestApiProvaiderProtocol.swift in Sources */,
@@ -318,10 +379,11 @@
 				CCEBA1C128A7EBB1009C4917 /* Presenter.swift in Sources */,
 				CC6415A028A2DDB30052050E /* HotelsData.swift in Sources */,
 				CC6415A828A2FE9E0052050E /* ExcursionInfo.swift in Sources */,
+				CC2BD03728AE23FB0031769A /* FlightsPresenter.swift in Sources */,
 				CCEBA1C328A7FB71009C4917 /* ModuleBuilder.swift in Sources */,
 				CC64158028A2563A0052050E /* SceneDelegate.swift in Sources */,
 				CC64159828A27BE60052050E /* AlamofireProvaider.swift in Sources */,
-				CCEBA1CA28A844E5009C4917 /* HomeViewProtocol.swift in Sources */,
+				CCF87B8028A9195C00929FA9 /* FlightsViewController.swift in Sources */,
 				CC64159C28A2CFE60052050E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
