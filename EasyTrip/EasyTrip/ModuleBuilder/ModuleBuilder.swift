@@ -11,6 +11,7 @@ import UIKit
 protocol Builder {
     static func createModel() -> UIViewController
     static func createFlightsModule() -> UIViewController
+    static func createHotelsModule() -> UIViewController
 }
 
 class HomeBuilderClass: Builder {
@@ -32,6 +33,15 @@ class HomeBuilderClass: Builder {
         let provaider = AlamofireProvaider()
         let info = InfoFlight()
         let presenter = FlightsViewPresenter(view: vc, info: info, provaider: provaider)
+        vc.presenter = presenter
+        return vc
+    }
+    
+    static func createHotelsModule() -> UIViewController {
+        let vc = HotelsViewController(nibName: "HotelsViewController", bundle: nil)
+        let provaider = AlamofireProvaider()
+        let info = InfoHotel()
+        let presenter = HotelsViewPresenter(view: vc, info: info, provaider: provaider)
         vc.presenter = presenter
         return vc
     }
