@@ -19,7 +19,7 @@ class HomeBuilderClass: Builder {
         if  let viewContoller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
             let size = Int(viewContoller.view.frame.width)
             let provaider = AlamofireProvaider()
-            let info = PopulareCityDate(arrayNameCity: [], arrayImageCity: [], sizeImage: size)
+            let info = PopulareCityDate(size: size)
             let presenter = HomeViewPresenter(view: viewContoller, info: info, provaider: provaider)
             viewContoller.presenter = presenter
             return viewContoller
@@ -30,7 +30,7 @@ class HomeBuilderClass: Builder {
     static func createFlightsModule() -> UIViewController {
         let vc = FlightsViewController(nibName: "FlightsViewController", bundle: nil)
         let provaider = AlamofireProvaider()
-        let info = InfoFlight(arrayPrice: [], arrayDepart: [], arrayArrive: [], arrayTransfer: [], arrayOrigin: [], arrayDestination: [], arrayDuration: [], iconAirlines: [])
+        let info = InfoFlight()
         let presenter = FlightsViewPresenter(view: vc, info: info, provaider: provaider)
         vc.presenter = presenter
         return vc
