@@ -49,10 +49,9 @@ class AlamofireProvaider: RestAPIProviderProtocol {
             }
         }
     }
-    
-    func getHoltelsByCityName(name: String, completion: @escaping (Result<HotelsData, Error>) -> Void) {
-        let params = addParams(queryItems: ["query" : "moscow", "lang" : "ru", "lookFor" : "both", "limit" : "5"])
-        AF.request(Constants.getHotelsByNameCity, method: .get, parameters: params).responseDecodable(of: HotelsData.self) { response in
+    func getHoltelsByCityName(name: String, chekIn: String, checkOut: String, adults: Int, completion: @escaping (Result<[HotelsData], Error>) -> Void) {
+        let params = addParams(queryItems: ["location" : name, "lang" : "ru", "currency" : "usd", "limit" : "10", "checkIn" : chekIn, "checkOut" : checkOut, "adults" : "\(adults)"])
+        AF.request(Constants.getHotelsByNameCity, method: .get, parameters: params).responseDecodable(of: [HotelsData].self) { response in
             switch response.result {
             case .success(let result):
                 completion(.success(result))
