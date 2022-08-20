@@ -123,6 +123,9 @@
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Hotels"/>
+                                        <connections>
+                                            <action selector="onHotelsButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aVW-ol-yHE"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cm-ke-xyv">
                                         <rect key="frame" x="327.5" y="0.0" width="66.5" height="31"/>
