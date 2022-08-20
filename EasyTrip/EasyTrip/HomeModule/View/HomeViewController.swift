@@ -46,6 +46,12 @@ class HomeViewController: UIViewController, HomeViewProtocol {
       func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         pageControl.currentPage = Int(targetContentOffset.pointee.x / view.frame.width)
     }
+    @IBAction func onHotelsButton(_ sender: Any) {
+        let vc = HomeBuilderClass.createHotelsModule()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+        
+    }
     @IBAction func onFlightsButton(_ sender: Any) {
         let vc = HomeBuilderClass.createFlightsModule()
         
@@ -73,57 +79,9 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     // Эти функции нужны, пока закоменчены, т.к. пока не реализованы
     /*
-     // получение отелей по имени города
-     fileprivate func getHotelsByCityName() {
-     alamofireProvaider.getHoltelsByCityName(name: "moscow") { result in
-     switch result {
-     case .success(let value):
-     guard let val = value.results, let hotels = val.hotels else {return}
-     for hotel in hotels {
-     // название отеля
-     print(hotel.fullName)
-     // по id, можно получить фото отеля
-     print("id: \(hotel.id)")
-     }
-     
-     case .failure(let error):
-     print(error.localizedDescription)
-     }
-     }
-     }
-     // получение инфы о полетах
-     fileprivate func getFlightInfo() {
-     alamofireProvaider.getFlightsInfo(origin: "MOW", date: "2202-11", destination: "BCN")  { result in
-     switch result {
-     case .success(let value):
-     guard let val = value.data else {return}
-     for flight in val.values {
-     // все билеты по указанному направлению за месяц, можно ограничить
-     print("price: \(flight.price)")
-     print("дата возвращения: \(flight.returnAt)")
-     print("дата вылета: \(flight.departureAt)")
-     print("номер рейса: \(flight.flightNumber)")
-     }
-     case .failure(let error):
-     print(error.localizedDescription)
-     }
-     }
-     }
      // получение инфы об экскурсиях
      fileprivate func getExcursionInfo() {
      alamofireProvaider.getExcursionInfo(codeCity: "LON") { result in
