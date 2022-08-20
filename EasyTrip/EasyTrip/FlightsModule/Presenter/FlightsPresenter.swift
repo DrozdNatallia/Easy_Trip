@@ -78,13 +78,15 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
     func getFlightsInfo(originName: String, destinationName: String, date: String) {
         alamofireProvaider.getFlightsInfo(origin: originName, date: date, destination: destinationName) { result in
             switch result {
+                
             case .success(let value):
+                print(value)
                 guard let val = value.data else {return}
                 for flight in val {
                     guard let price = flight.price, let depart = flight.departureAt, let transfer = flight.transfers, let origin = flight.origin, let destination = flight.destination, let duration = flight.duration, let icon = flight.airline else { return }
                     
                     self.infoFlights.arrayPrice.append(price)
-                    self.infoFlights.arrayDepart.append(depart)
+                   self.infoFlights.arrayDepart.append(depart)
                     // self.infoFlights.arrayArrive.append(arrive)
                     self.infoFlights.arrayTransfer.append(transfer)
                     self.infoFlights.arrayOrigin.append(origin)

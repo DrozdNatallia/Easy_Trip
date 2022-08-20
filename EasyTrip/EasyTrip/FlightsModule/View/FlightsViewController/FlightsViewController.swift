@@ -7,6 +7,14 @@
 
 import UIKit
 
+extension Date {
+    func convertToTimeZone(initTimeZone: TimeZone, timeZone: TimeZone) -> Date {
+        let delta = TimeInterval(timeZone.secondsFromGMT(for: self) - initTimeZone.secondsFromGMT(for: self))
+        return addingTimeInterval(delta)
+    }
+}
+
+
 protocol FlightsViewProtocol: AnyObject {
     func setInfoFlights()
 }
@@ -25,9 +33,8 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: "FlightsViewCell", bundle: nil), forCellReuseIdentifier: FlightsViewCell.key)
-        
     }
-    // переделать через async Await
+    // переделать через async Await, позже переделаю
     @IBAction func onSearchButton(_ sender: Any) {
         let date = DateFormatter()
         date.dateFormat = "yyyy-MM-dd"
@@ -66,24 +73,21 @@ extension FlightsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: FlightsViewCell.key) as? FlightsViewCell {
             
-//            let isoDate = "\(presenter.getArrayInfo(type: .depart)[indexPath.section])"
-//            print (isoDate)
-//            let isoDateFormatter = ISO8601DateFormatter()
-//            isoDateFormatter.timeZone = .init(abbreviation: "UTC")
-//            // isoDateFormatter.formatOptions = .withFullTime
-//            let date = isoDateFormatter.date(from: isoDate)
-//            print(isoDateFormatter.string(from: date!))
-//            print(date)
-//            var dateе = DateFormatter()
-//            dateе.dateFormat = "HH:mm"
-//            dateе.timeZone = .init(abbreviation: "UTC")
-//            print(dateе.date(from: isoDate))
-//            print(dateе.string(from: date!))
+            // пока оставлю, вернусь позже к этому, все равно работает не правильно(
+            if let isoDate = presenter.getArrayInfo(type: .depart)[indexPath.section] as? Date {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "HH:mm"
+                dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+                cell.departAt.text = dateFormatter.string(from: isoDate)
+                
+            }
+            //            let dateFormatter = ISO8601DateFormatter()
+            //            let date = dateFormatter.date(from:isoDate)?.convertToTimeZone(initTimeZone: TimeZone(secondsFromGMT: 0) ?? .current, timeZone: TimeZone.current)
+            //            print(date)
             
             cell.iconAirlines.image = presenter.getImage()[indexPath.section]
             cell.price.text = "\(presenter.getArrayInfo(type: .price)[indexPath.section]) $"
             cell.transfer.text = "пересадок: \(presenter.getArrayInfo(type: .transfer)[indexPath.section])"
-            cell.departAt.text = "\(presenter.getArrayInfo(type: .depart)[indexPath.section])"
             cell.origin.text = "\(presenter.getArrayInfo(type: .origin)[indexPath.section])"
             cell.destination.text = "\(presenter.getArrayInfo(type: .destination)[indexPath.section])"
             cell.timeInFlight.text = "\(presenter.getArrayInfo(type: .duration)[indexPath.section])"

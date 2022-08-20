@@ -19,7 +19,7 @@ enum TypeDate {
 }
 struct InfoFlight {
     var arrayPrice: [Int]
-    var arrayDepart: [String]
+    var arrayDepart: [Date]
     var arrayArrive: [String]
     var arrayTransfer: [Int]
     var arrayOrigin: [String]
