@@ -8,10 +8,12 @@
 import UIKit
 protocol HotelsViewProtocol: AnyObject {
     func updateCollectionView()
+    func setLocation(location: String)
     
 }
 class HotelsViewController: UIViewController, HotelsViewProtocol {
 
+    @IBOutlet weak var userLocation: UILabel!
     @IBOutlet weak var personCount: UITextField!
     @IBOutlet weak var checkIn: UIDatePicker!
     @IBOutlet weak var checkOut: UIDatePicker!
@@ -23,11 +25,15 @@ class HotelsViewController: UIViewController, HotelsViewProtocol {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UINib(nibName: "HotelsCell", bundle: nil), forCellWithReuseIdentifier: HotelsCell.key)
+        presenter.getLocation()
 
     }
 
     @IBAction func onCloseButton(_ sender: Any) {
         dismiss(animated: true)
+    }
+    func setLocation(location: String) {
+        userLocation.text = location
     }
     
     @IBAction func onSearchButton(_ sender: Any) {

@@ -7,12 +7,13 @@
 
 import UIKit
 protocol FlightsViewPresenterProtocol: AnyObject {
-    init(view: FlightsViewProtocol, info: InfoFlight, provaider: RestAPIProviderProtocol)
+    init(view: FlightsViewProtocol, info: InfoFlight, provaider: RestAPIProviderProtocol, router: RouterProtocol, location: String)
     func getFlightsInfo(originName: String, destinationName: String, date: String)
     func getArrayInfo(type: TypeDate) -> [Any]
     func getCodeCityByName(code: String, completion: @escaping (String) -> Void)
     func getImage() -> [UIImage]
     func getIconbyURL(url: String)
+    func getLocation()
 }
 
 
@@ -20,12 +21,21 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
     private weak var view: FlightsViewProtocol?
     private var infoFlights: InfoFlight
     private var alamofireProvaider: RestAPIProviderProtocol!
+    var router: RouterProtocol?
+    var location: String?
     
-    required init(view: FlightsViewProtocol, info: InfoFlight, provaider: RestAPIProviderProtocol) {
+    required init(view: FlightsViewProtocol, info: InfoFlight, provaider: RestAPIProviderProtocol, router: RouterProtocol, location: String) {
         self.view = view
         self.infoFlights = info
         self.alamofireProvaider = provaider
+        self.router = router
+        self.location = location
     }
+    func getLocation(){
+        guard let location = location else { return }
+        view?.setLocation(location: location)
+    }
+    
     func getImage() -> [UIImage] {
         return infoFlights.iconAirlines
     }

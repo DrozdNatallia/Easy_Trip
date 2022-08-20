@@ -15,6 +15,7 @@ protocol HotelsViewPresenterProtocol: AnyObject {
     func getPhotoByURL(url: String)
     func getArrayImages() -> [UIImage]
     func clearArray()
+    func getLocation()
 }
 
 
@@ -23,11 +24,20 @@ class HotelsViewPresenter: HotelsViewPresenterProtocol {
     private weak var view: HotelsViewProtocol?
     private var infoHotels: InfoHotel
     private var alamofireProvaider: RestAPIProviderProtocol!
+    var router: RouterProtocol?
+    var location: String?
     
-    required init(view: HotelsViewProtocol, info: InfoHotel, provaider: RestAPIProviderProtocol) {
+    required init(view: HotelsViewProtocol, info: InfoHotel, provaider: RestAPIProviderProtocol, location: String, router: RouterProtocol) {
         self.view = view
         self.infoHotels = info
         self.alamofireProvaider = provaider
+        self.router = router
+        self.location = location
+    }
+    
+    func getLocation() {
+        guard let location = location else { return }
+        view?.setLocation(location: location)
     }
     
     func clearArray() {

@@ -14,9 +14,9 @@ extension Date {
     }
 }
 
-
 protocol FlightsViewProtocol: AnyObject {
     func setInfoFlights()
+    func setLocation(location: String)
 }
 
 class FlightsViewController: UIViewController, FlightsViewProtocol {
@@ -33,6 +33,8 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: "FlightsViewCell", bundle: nil), forCellReuseIdentifier: FlightsViewCell.key)
+        
+        presenter.getLocation()
     }
     // переделать через async Await, позже переделаю
     @IBAction func onSearchButton(_ sender: Any) {
@@ -51,8 +53,8 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
         }
     }
     
-    @IBAction func onCloseButton(_ sender: Any) {
-        dismiss(animated: true)
+    func setLocation(location: String) {
+        self.userLocation.text = location
     }
     
     func setInfoFlights() {

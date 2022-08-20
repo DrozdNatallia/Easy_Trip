@@ -16,18 +16,30 @@ protocol HomeViewPresenterProtocol {
     func getArrayNameCity() -> [String]
     func getArrayImageCity() -> [UIImage]
     func clearArrays()
+    func tapOnButton(location: String)
+    func tapOnButtonHotels(location: String)
 }
 
 final class HomeViewPresenter: HomeViewPresenterProtocol {
     private weak var view: HomeViewProtocol?
     private var popularCityInfo: PopulareCityDate
+    var router: RouterProtocol?
     private var alamofireProvaider: RestAPIProviderProtocol!
     
-    required init(view: HomeViewProtocol, info: PopulareCityDate, provaider: RestAPIProviderProtocol) {
+    required init(view: HomeViewProtocol, info: PopulareCityDate, provaider: RestAPIProviderProtocol, router: RouterProtocol) {
         self.view = view
         self.popularCityInfo = info
         self.alamofireProvaider = provaider
+        self.router = router
     }
+    
+    func tapOnButton(location: String) {
+        router?.showFlightsModule(location: location )
+    }
+    func tapOnButtonHotels(location: String) {
+        router?.showHotelsModule(location: location)
+    }
+    
     func getArrayNameCity() -> [String] {
         return popularCityInfo.arrayNameCity
     }

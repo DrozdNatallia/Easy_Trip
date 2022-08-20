@@ -47,19 +47,15 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         pageControl.currentPage = Int(targetContentOffset.pointee.x / view.frame.width)
     }
     @IBAction func onHotelsButton(_ sender: Any) {
-        let vc = HomeBuilderClass.createHotelsModule()
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
-        
+        guard let location = userLocation.text else { return }
+        presenter.tapOnButtonHotels(location: location)
     }
+    
     @IBAction func onFlightsButton(_ sender: Any) {
-        let vc = HomeBuilderClass.createFlightsModule()
-        
-        vc.modalPresentationStyle = .fullScreen
-        
-      //  navigationController?.pushViewController(vc, animated: true)
-        present(vc, animated: true)
+        guard let location = userLocation.text else { return }
+        presenter.tapOnButton(location: location)
     }
+    
     // поиск по заданному направлению
     @IBAction func onSearchButton(_ sender: Any) {
         presenter.clearArrays()
@@ -124,6 +120,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         } else if manager.authorizationStatus == .restricted || manager.authorizationStatus == .denied {
             // если отказано в получении геолокации, то будет лондон, возможно потом буду передавать город из личного кабинета
             self.userLocation.text = "LONDON"
+            
             presenter.getPopularFlights(nameDirection: "LON")
         }
     }

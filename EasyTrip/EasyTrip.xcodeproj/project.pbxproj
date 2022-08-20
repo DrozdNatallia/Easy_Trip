@@ -17,6 +17,7 @@
 		CC5AB88828B1039200A0260C /* HotelsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC5AB88628B1039200A0260C /* HotelsCell.xib */; };
 		CC5AB88B28B1133B00A0260C /* HotelsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5AB88A28B1133B00A0260C /* HotelsPresenter.swift */; };
 		CC5AB89028B15F2600A0260C /* InfoHotel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5AB88F28B15F2600A0260C /* InfoHotel.swift */; };
+		CC5AB89328B1717C00A0260C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5AB89228B1717C00A0260C /* Router.swift */; };
 		CC64157E28A2563A0052050E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64157D28A2563A0052050E /* AppDelegate.swift */; };
 		CC64158028A2563A0052050E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64157F28A2563A0052050E /* SceneDelegate.swift */; };
 		CC64158228A2563A0052050E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64158128A2563A0052050E /* HomeViewController.swift */; };
@@ -53,6 +54,7 @@
 		CC5AB88628B1039200A0260C /* HotelsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelsCell.xib; sourceTree = "<group>"; };
 		CC5AB88A28B1133B00A0260C /* HotelsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsPresenter.swift; sourceTree = "<group>"; };
 		CC5AB88F28B15F2600A0260C /* InfoHotel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoHotel.swift; sourceTree = "<group>"; };
+		CC5AB89228B1717C00A0260C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		CC64157A28A2563A0052050E /* EasyTrip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyTrip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC64157D28A2563A0052050E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC64157F28A2563A0052050E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				CC64157D28A2563A0052050E /* AppDelegate.swift */,
 				CC64157F28A2563A0052050E /* SceneDelegate.swift */,
 				CC64159B28A2CFE60052050E /* Constants.swift */,
+				CC5AB89228B1717C00A0260C /* Router.swift */,
 				CCEBA1C828A84455009C4917 /* HomeModule */,
 				CC2BD03428AE23C20031769A /* FlightsModule */,
 				CC5AB88E28B15F0600A0260C /* HotelsModule */,
@@ -440,6 +443,7 @@
 				CC6415A028A2DDB30052050E /* HotelsData.swift in Sources */,
 				CC6415A828A2FE9E0052050E /* ExcursionInfo.swift in Sources */,
 				CC2BD03728AE23FB0031769A /* FlightsPresenter.swift in Sources */,
+				CC5AB89328B1717C00A0260C /* Router.swift in Sources */,
 				CCEBA1C328A7FB71009C4917 /* ModuleBuilder.swift in Sources */,
 				CC64158028A2563A0052050E /* SceneDelegate.swift in Sources */,
 				CC64159828A27BE60052050E /* AlamofireProvaider.swift in Sources */,
