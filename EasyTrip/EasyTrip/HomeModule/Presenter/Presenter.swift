@@ -93,8 +93,9 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
                     return}
                 for flight in date.values {
                     // код страны прибытия
-                    guard let destination = flight.destination, let width = self.popularCityInfo.sizeImage else { return }
+                    guard let destination = flight.destination else { return }
                     // картинки по url получаем
+                    let width = self.popularCityInfo.sizeImage
                     let url = Constants.getImageCityByURL + "\(width)x250/" + "\(destination).jpg"
                     self.getImagebyURL(url: url)
                     // вызываем функцию и полученный код передаем
