@@ -68,6 +68,9 @@
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Explore"/>
+                            <connections>
+                                <action selector="onExploreButton:" destination="-1" eventType="touchUpInside" id="85m-p6-S2U"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wia-Ni-u2n">
                             <rect key="frame" x="115.5" y="0.0" width="67.5" height="47"/>
@@ -82,6 +85,9 @@
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Hotels"/>
+                            <connections>
+                                <action selector="onHotelsButton:" destination="-1" eventType="touchUpInside" id="IaW-lb-h9Z"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kzv-gm-oWH">
                             <rect key="frame" x="334.5" y="0.0" width="59.5" height="47"/>

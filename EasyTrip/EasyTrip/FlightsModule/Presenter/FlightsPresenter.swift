@@ -14,6 +14,8 @@ protocol FlightsViewPresenterProtocol: AnyObject {
     func getImage() -> [UIImage]
     func getIconbyURL(url: String)
     func getLocation()
+    func tapOnButtonHotels(location: String)
+    func tapOnButtonExplore()
 }
 
 
@@ -31,6 +33,15 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
         self.router = router
         self.location = location
     }
+
+    func tapOnButtonHotels(location: String) {
+        router?.showHotelsModule(location: location)
+    }
+    
+    func tapOnButtonExplore() {
+        router?.popToRoot()
+    }
+    
     func getLocation(){
         guard let location = location else { return }
         view?.setLocation(location: location)
