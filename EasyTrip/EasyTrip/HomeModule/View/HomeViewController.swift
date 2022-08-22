@@ -120,7 +120,6 @@ extension HomeViewController: CLLocationManagerDelegate {
         } else if manager.authorizationStatus == .restricted || manager.authorizationStatus == .denied {
             // если отказано в получении геолокации, то будет лондон, возможно потом буду передавать город из личного кабинета
             self.userLocation.text = "LONDON"
-            
             presenter.getPopularFlights(nameDirection: "LON")
         }
     }
@@ -132,12 +131,10 @@ extension HomeViewController: CLLocationManagerDelegate {
             if let error = error {
                 print("Unable to Reverse Geocode Location (\(error))")
             }
-            if let placemarks = placemarks, let placemark = placemarks.first, let locality = placemark.locality {
+            if let placemarks = placemarks, let placemark = placemarks.first, let locality = placemark.locality, self.userLocation.text == "" {
                 // функция вызывается 3 раза так как стоит kCLLocationAccuracyBest, чтоб запрос тоже не вызывался 3 раза присваиваю значение, только если его не было. Обновляется при каждом запуске приложения, больше Геолокация не нужна. Другого способа пока не придумала
-                if self.userLocation.text == "" {
                     self.userLocation.text = locality
                     self.presenter.getNamePopularCityByCode(code: locality, isName: false)
-                }
             }
         }
         coreManager.stopUpdatingLocation()
