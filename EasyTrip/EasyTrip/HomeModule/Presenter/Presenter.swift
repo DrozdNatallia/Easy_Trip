@@ -16,18 +16,30 @@ protocol HomeViewPresenterProtocol {
     func getArrayNameCity() -> [String]
     func getArrayImageCity() -> [UIImage]
     func clearArrays()
+    func tapOnButton(location: String)
+    func tapOnButtonHotels(location: String)
 }
 
 final class HomeViewPresenter: HomeViewPresenterProtocol {
     private weak var view: HomeViewProtocol?
     private var popularCityInfo: PopulareCityDate
+    private var router: RouterProtocol?
     private var alamofireProvaider: RestAPIProviderProtocol!
     
-    required init(view: HomeViewProtocol, info: PopulareCityDate, provaider: RestAPIProviderProtocol) {
+    required init(view: HomeViewProtocol, info: PopulareCityDate, provaider: RestAPIProviderProtocol, router: RouterProtocol) {
         self.view = view
         self.popularCityInfo = info
         self.alamofireProvaider = provaider
+        self.router = router
     }
+    
+    func tapOnButton(location: String) {
+        router?.showFlightsModule(location: location )
+    }
+    func tapOnButtonHotels(location: String) {
+        router?.showHotelsModule(location: location)
+    }
+    
     func getArrayNameCity() -> [String] {
         return popularCityInfo.arrayNameCity
     }
@@ -47,8 +59,8 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
                 let data = try Data(contentsOf: url)
                 guard let icon = UIImage(data: data) else {return}
                 self.popularCityInfo.arrayImageCity.append(icon)
-            } catch _ {
-                print("error")
+            } catch let error {
+                print(error.localizedDescription)
             }
         }
     }
@@ -93,8 +105,9 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
                     return}
                 for flight in date.values {
                     // код страны прибытия
-                    guard let destination = flight.destination, let width = self.popularCityInfo.sizeImage else { return }
+                    guard let destination = flight.destination else { return }
                     // картинки по url получаем
+                    let width = self.popularCityInfo.sizeImage
                     let url = Constants.getImageCityByURL + "\(width)x250/" + "\(destination).jpg"
                     self.getImagebyURL(url: url)
                     // вызываем функцию и полученный код передаем

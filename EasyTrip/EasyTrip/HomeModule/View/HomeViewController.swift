@@ -46,14 +46,16 @@ class HomeViewController: UIViewController, HomeViewProtocol {
       func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         pageControl.currentPage = Int(targetContentOffset.pointee.x / view.frame.width)
     }
-    @IBAction func onFlightsButton(_ sender: Any) {
-        let vc = HomeBuilderClass.createFlightsModule()
-        
-        vc.modalPresentationStyle = .fullScreen
-        
-      //  navigationController?.pushViewController(vc, animated: true)
-        present(vc, animated: true)
+    @IBAction func onHotelsButton(_ sender: Any) {
+        guard let location = userLocation.text else { return }
+        presenter.tapOnButtonHotels(location: location)
     }
+    
+    @IBAction func onFlightsButton(_ sender: Any) {
+        guard let location = userLocation.text else { return }
+        presenter.tapOnButton(location: location)
+    }
+    
     // поиск по заданному направлению
     @IBAction func onSearchButton(_ sender: Any) {
         presenter.clearArrays()
@@ -73,57 +75,9 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     // Эти функции нужны, пока закоменчены, т.к. пока не реализованы
     /*
-     // получение отелей по имени города
-     fileprivate func getHotelsByCityName() {
-     alamofireProvaider.getHoltelsByCityName(name: "moscow") { result in
-     switch result {
-     case .success(let value):
-     guard let val = value.results, let hotels = val.hotels else {return}
-     for hotel in hotels {
-     // название отеля
-     print(hotel.fullName)
-     // по id, можно получить фото отеля
-     print("id: \(hotel.id)")
-     }
-     
-     case .failure(let error):
-     print(error.localizedDescription)
-     }
-     }
-     }
-     // получение инфы о полетах
-     fileprivate func getFlightInfo() {
-     alamofireProvaider.getFlightsInfo(origin: "MOW", date: "2202-11", destination: "BCN")  { result in
-     switch result {
-     case .success(let value):
-     guard let val = value.data else {return}
-     for flight in val.values {
-     // все билеты по указанному направлению за месяц, можно ограничить
-     print("price: \(flight.price)")
-     print("дата возвращения: \(flight.returnAt)")
-     print("дата вылета: \(flight.departureAt)")
-     print("номер рейса: \(flight.flightNumber)")
-     }
-     case .failure(let error):
-     print(error.localizedDescription)
-     }
-     }
-     }
      // получение инфы об экскурсиях
      fileprivate func getExcursionInfo() {
      alamofireProvaider.getExcursionInfo(codeCity: "LON") { result in
@@ -177,12 +131,10 @@ extension HomeViewController: CLLocationManagerDelegate {
             if let error = error {
                 print("Unable to Reverse Geocode Location (\(error))")
             }
-            if let placemarks = placemarks, let placemark = placemarks.first, let locality = placemark.locality {
+            if let placemarks = placemarks, let placemark = placemarks.first, let locality = placemark.locality, self.userLocation.text == "" {
                 // функция вызывается 3 раза так как стоит kCLLocationAccuracyBest, чтоб запрос тоже не вызывался 3 раза присваиваю значение, только если его не было. Обновляется при каждом запуске приложения, больше Геолокация не нужна. Другого способа пока не придумала
-                if self.userLocation.text == "" {
                     self.userLocation.text = locality
                     self.presenter.getNamePopularCityByCode(code: locality, isName: false)
-                }
             }
         }
         coreManager.stopUpdatingLocation()

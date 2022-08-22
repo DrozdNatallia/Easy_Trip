@@ -10,9 +10,10 @@ import UIKit
 struct Constants {
     static var baseURL = "https://api.travelpayouts.com/"
     // получение URL популярных направлений полета по данныи aviasales
-    static var getHotelsByNameCity = "https://engine.hotellook.com/api/v2/lookup.json"
+    static var getHotelsByNameCity = "https://engine.hotellook.com/api/v2/cache.json"
     static var autocompleteURL = "https://autocomplete.travelpayouts.com/places2"
     static var getImageCityByURL = "https://photo.hotellook.com/static/cities/"
+    static var getPhotoHotels = "https://photo.hotellook.com/image_v2/crop/h"
     static var getIconAirline = "https://pics.avs.io/120/35/"
     static var getPopularFlightsURL: String {
         return baseURL.appending("v1/city-directions")

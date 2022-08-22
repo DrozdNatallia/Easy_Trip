@@ -26,4 +26,15 @@ struct InfoFlight {
     var arrayDestination: [String]
     var arrayDuration: [Int]
     var iconAirlines: [UIImage]
+    
+    init(price: [Int] = [], depart: [Date] = [], arrive: [String] = [], transfer: [Int] = [], origin: [String] = [], destination: [String] = [], duration: [Int] = [], iconAirlines: [UIImage] = []) {
+        self.arrayPrice = price
+        self.arrayDepart = depart
+        self.iconAirlines = iconAirlines
+        self.arrayArrive = arrive
+        self.arrayDestination = destination
+        self.arrayTransfer = transfer
+        self.arrayOrigin = origin
+        self.arrayDuration = duration
+    }
 }

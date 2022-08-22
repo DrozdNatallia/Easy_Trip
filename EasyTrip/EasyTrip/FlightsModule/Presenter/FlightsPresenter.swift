@@ -7,12 +7,15 @@
 
 import UIKit
 protocol FlightsViewPresenterProtocol: AnyObject {
-    init(view: FlightsViewProtocol, info: InfoFlight, provaider: RestAPIProviderProtocol)
+    init(view: FlightsViewProtocol, info: InfoFlight, provaider: RestAPIProviderProtocol, router: RouterProtocol, location: String)
     func getFlightsInfo(originName: String, destinationName: String, date: String)
     func getArrayInfo(type: TypeDate) -> [Any]
     func getCodeCityByName(code: String, completion: @escaping (String) -> Void)
     func getImage() -> [UIImage]
     func getIconbyURL(url: String)
+    func getLocation()
+    func tapOnButtonHotels(location: String)
+    func tapOnButtonExplore()
 }
 
 
@@ -20,12 +23,30 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
     private weak var view: FlightsViewProtocol?
     private var infoFlights: InfoFlight
     private var alamofireProvaider: RestAPIProviderProtocol!
+    private var router: RouterProtocol?
+    private var location: String?
     
-    required init(view: FlightsViewProtocol, info: InfoFlight, provaider: RestAPIProviderProtocol) {
+    required init(view: FlightsViewProtocol, info: InfoFlight, provaider: RestAPIProviderProtocol, router: RouterProtocol, location: String) {
         self.view = view
         self.infoFlights = info
         self.alamofireProvaider = provaider
+        self.router = router
+        self.location = location
     }
+
+    func tapOnButtonHotels(location: String) {
+        router?.showHotelsModule(location: location)
+    }
+    
+    func tapOnButtonExplore() {
+        router?.popToRoot()
+    }
+    
+    func getLocation(){
+        guard let location = location else { return }
+        view?.setLocation(location: location)
+    }
+    
     func getImage() -> [UIImage] {
         return infoFlights.iconAirlines
     }
@@ -57,8 +78,8 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
                 let data = try Data(contentsOf: url)
                 guard let icon = UIImage(data: data) else {return}
                 self.infoFlights.iconAirlines.append(icon)
-            } catch _ {
-                print("error")
+            } catch let error {
+                print(error.localizedDescription)
             }
         }
     }
