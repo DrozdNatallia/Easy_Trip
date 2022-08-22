@@ -21,8 +21,8 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
     private weak var view: FlightsViewProtocol?
     private var infoFlights: InfoFlight
     private var alamofireProvaider: RestAPIProviderProtocol!
-    var router: RouterProtocol?
-    var location: String?
+    private var router: RouterProtocol?
+    private var location: String?
     
     required init(view: FlightsViewProtocol, info: InfoFlight, provaider: RestAPIProviderProtocol, router: RouterProtocol, location: String) {
         self.view = view

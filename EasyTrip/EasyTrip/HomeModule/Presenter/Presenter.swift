@@ -23,7 +23,7 @@ protocol HomeViewPresenterProtocol {
 final class HomeViewPresenter: HomeViewPresenterProtocol {
     private weak var view: HomeViewProtocol?
     private var popularCityInfo: PopulareCityDate
-    var router: RouterProtocol?
+    private var router: RouterProtocol?
     private var alamofireProvaider: RestAPIProviderProtocol!
     
     required init(view: HomeViewProtocol, info: PopulareCityDate, provaider: RestAPIProviderProtocol, router: RouterProtocol) {

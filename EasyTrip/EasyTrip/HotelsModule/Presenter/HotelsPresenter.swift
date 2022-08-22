@@ -24,8 +24,8 @@ class HotelsViewPresenter: HotelsViewPresenterProtocol {
     private weak var view: HotelsViewProtocol?
     private var infoHotels: InfoHotel
     private var alamofireProvaider: RestAPIProviderProtocol!
-    var router: RouterProtocol?
-    var location: String?
+    private var router: RouterProtocol?
+    private var location: String?
     
     required init(view: HotelsViewProtocol, info: InfoHotel, provaider: RestAPIProviderProtocol, location: String, router: RouterProtocol) {
         self.view = view
