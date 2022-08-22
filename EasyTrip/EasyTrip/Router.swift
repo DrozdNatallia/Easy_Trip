@@ -43,7 +43,7 @@ class Router: RouterProtocol {
     
     func showHotelsModule(location: String) {
         if let navigationController = navigationController {
-            guard let hotelsViewController = assemblyBuilder?.createFlightsModule(location: location, router: self) else { return }
+            guard let hotelsViewController = assemblyBuilder?.createHotelsModule(location: location, router: self) else { return }
             navigationController.pushViewController(hotelsViewController, animated: true)
         }
     }

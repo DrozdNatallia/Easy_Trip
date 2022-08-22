@@ -26,12 +26,8 @@ class HotelsViewController: UIViewController, HotelsViewProtocol {
         collectionView.delegate = self
         collectionView.register(UINib(nibName: "HotelsCell", bundle: nil), forCellWithReuseIdentifier: HotelsCell.key)
         presenter.getLocation()
-
     }
-
-    @IBAction func onCloseButton(_ sender: Any) {
-        dismiss(animated: true)
-    }
+    
     func setLocation(location: String) {
         userLocation.text = location
     }
@@ -51,15 +47,11 @@ class HotelsViewController: UIViewController, HotelsViewProtocol {
     }
 }
 
-
-
-
-
 extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         presenter.getArrayNameHotel().count
     }
-    
+    // не получается закинуть ячкейки в презетнер (
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HotelsCell.key, for: indexPath) as? HotelsCell {
             cell.nameHotel.text = presenter.getArrayNameHotel()[indexPath.row]
