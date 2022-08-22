@@ -78,8 +78,8 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
                 let data = try Data(contentsOf: url)
                 guard let icon = UIImage(data: data) else {return}
                 self.infoFlights.iconAirlines.append(icon)
-            } catch _ {
-                print("error")
+            } catch let error {
+                print(error.localizedDescription)
             }
         }
     }

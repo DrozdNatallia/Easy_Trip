@@ -57,8 +57,8 @@ class HotelsViewPresenter: HotelsViewPresenterProtocol {
                 let data = try Data(contentsOf: url)
                 guard let icon = UIImage(data: data) else {return}
                 self.infoHotels.arrayImages.append(icon)
-            } catch _ {
-                print("error")
+            } catch let error {
+                print(error.localizedDescription)
             }
         }
     }

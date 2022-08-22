@@ -59,8 +59,8 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
                 let data = try Data(contentsOf: url)
                 guard let icon = UIImage(data: data) else {return}
                 self.popularCityInfo.arrayImageCity.append(icon)
-            } catch _ {
-                print("error")
+            } catch let error {
+                print(error.localizedDescription)
             }
         }
     }
