@@ -36,12 +36,18 @@
 		CCCF4B7228A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF4B7028A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift */; };
 		CCCF4B7328A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCCF4B7128A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib */; };
 		CCCF4B7628A3F40B0041ED9E /* PopularCityDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF4B7528A3F40B0041ED9E /* PopularCityDate.swift */; };
+		CCD1010E28B3813F004D67F0 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD1010C28B3813E004D67F0 /* PlacesViewController.swift */; };
+		CCD1010F28B3813F004D67F0 /* PlacesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCD1010D28B3813F004D67F0 /* PlacesViewController.xib */; };
+		CCD1011728B4094B004D67F0 /* PlacesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD1011528B4094B004D67F0 /* PlacesViewCell.swift */; };
+		CCD1011828B4094B004D67F0 /* PlacesViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCD1011628B4094B004D67F0 /* PlacesViewCell.xib */; };
 		CCEBA1C128A7EBB1009C4917 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1C028A7EBB0009C4917 /* Presenter.swift */; };
 		CCEBA1C328A7FB71009C4917 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1C228A7FB71009C4917 /* ModuleBuilder.swift */; };
 		CCF87B8028A9195C00929FA9 /* FlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF87B7E28A9195C00929FA9 /* FlightsViewController.swift */; };
 		CCF87B8128A9195C00929FA9 /* FlightsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCF87B7F28A9195C00929FA9 /* FlightsViewController.xib */; };
 		CCF87B8528A987D700929FA9 /* FlightsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF87B8328A987D700929FA9 /* FlightsViewCell.swift */; };
 		CCF87B8628A987D700929FA9 /* FlightsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCF87B8428A987D700929FA9 /* FlightsViewCell.xib */; };
+		CCFA56EF28B4C57000B778C4 /* PlacesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFA56EE28B4C57000B778C4 /* PlacesPresenter.swift */; };
+		CCFA56F428B4D72C00B778C4 /* InfoExcursion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFA56F328B4D72C00B778C4 /* InfoExcursion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,12 +79,18 @@
 		CCCF4B7028A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularFlightsCollectionViewCell.swift; sourceTree = "<group>"; };
 		CCCF4B7128A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularFlightsCollectionViewCell.xib; sourceTree = "<group>"; };
 		CCCF4B7528A3F40B0041ED9E /* PopularCityDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCityDate.swift; sourceTree = "<group>"; };
+		CCD1010C28B3813E004D67F0 /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
+		CCD1010D28B3813F004D67F0 /* PlacesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlacesViewController.xib; sourceTree = "<group>"; };
+		CCD1011528B4094B004D67F0 /* PlacesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewCell.swift; sourceTree = "<group>"; };
+		CCD1011628B4094B004D67F0 /* PlacesViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlacesViewCell.xib; sourceTree = "<group>"; };
 		CCEBA1C028A7EBB0009C4917 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		CCEBA1C228A7FB71009C4917 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		CCF87B7E28A9195C00929FA9 /* FlightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsViewController.swift; sourceTree = "<group>"; };
 		CCF87B7F28A9195C00929FA9 /* FlightsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlightsViewController.xib; sourceTree = "<group>"; };
 		CCF87B8328A987D700929FA9 /* FlightsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsViewCell.swift; sourceTree = "<group>"; };
 		CCF87B8428A987D700929FA9 /* FlightsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlightsViewCell.xib; sourceTree = "<group>"; };
+		CCFA56EE28B4C57000B778C4 /* PlacesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesPresenter.swift; sourceTree = "<group>"; };
+		CCFA56F328B4D72C00B778C4 /* InfoExcursion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoExcursion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +211,7 @@
 				CCEBA1C828A84455009C4917 /* HomeModule */,
 				CC2BD03428AE23C20031769A /* FlightsModule */,
 				CC5AB88E28B15F0600A0260C /* HotelsModule */,
+				CCFA56F228B4D70B00B778C4 /* PlacesModule */,
 				CCEBA1C528A84409009C4917 /* ModuleBuilder */,
 				CC6415A328A2DEF70052050E /* Services */,
 				CC6415A428A2DF040052050E /* Protocols */,
@@ -283,6 +296,15 @@
 			path = QueryModels;
 			sourceTree = "<group>";
 		};
+		CCD1011928B40954004D67F0 /* PlacesViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CCD1011528B4094B004D67F0 /* PlacesViewCell.swift */,
+				CCD1011628B4094B004D67F0 /* PlacesViewCell.xib */,
+			);
+			path = PlacesViewCell;
+			sourceTree = "<group>";
+		};
 		CCEBA1C428A843D8009C4917 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				CCF87B8828A987F300929FA9 /* FlifgtsViewCell */,
+				CCD1011928B40954004D67F0 /* PlacesViewCell */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -341,6 +364,41 @@
 				CCF87B8428A987D700929FA9 /* FlightsViewCell.xib */,
 			);
 			path = FlifgtsViewCell;
+			sourceTree = "<group>";
+		};
+		CCFA56F028B4D6F200B778C4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CCD1010C28B3813E004D67F0 /* PlacesViewController.swift */,
+				CCD1010D28B3813F004D67F0 /* PlacesViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CCFA56F128B4D6FC00B778C4 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CCFA56EE28B4C57000B778C4 /* PlacesPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		CCFA56F228B4D70B00B778C4 /* PlacesModule */ = {
+			isa = PBXGroup;
+			children = (
+				CCFA56F128B4D6FC00B778C4 /* Presenter */,
+				CCFA56F028B4D6F200B778C4 /* View */,
+				CCFA56F528B4D73300B778C4 /* Model */,
+			);
+			path = PlacesModule;
+			sourceTree = "<group>";
+		};
+		CCFA56F528B4D73300B778C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CCFA56F328B4D72C00B778C4 /* InfoExcursion.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,6 +473,8 @@
 				CCF87B8628A987D700929FA9 /* FlightsViewCell.xib in Resources */,
 				CC64158728A2563C0052050E /* Assets.xcassets in Resources */,
 				CCF87B8128A9195C00929FA9 /* FlightsViewController.xib in Resources */,
+				CCD1011828B4094B004D67F0 /* PlacesViewCell.xib in Resources */,
+				CCD1010F28B3813F004D67F0 /* PlacesViewController.xib in Resources */,
 				CC5AB88828B1039200A0260C /* HotelsCell.xib in Resources */,
 				CC64158528A2563A0052050E /* Main.storyboard in Resources */,
 			);
@@ -427,6 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCD1011728B4094B004D67F0 /* PlacesViewCell.swift in Sources */,
 				CCF87B8528A987D700929FA9 /* FlightsViewCell.swift in Sources */,
 				CC6415A628A2E74E0052050E /* FlightsInfo.swift in Sources */,
 				CC64159A28A28BE80052050E /* PopularFlights.swift in Sources */,
@@ -434,10 +495,13 @@
 				CC64158228A2563A0052050E /* HomeViewController.swift in Sources */,
 				CC2BD03928AE24440031769A /* InfoFlights.swift in Sources */,
 				CC64157E28A2563A0052050E /* AppDelegate.swift in Sources */,
+				CCD1010E28B3813F004D67F0 /* PlacesViewController.swift in Sources */,
 				CCCF4B7228A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift in Sources */,
+				CCFA56EF28B4C57000B778C4 /* PlacesPresenter.swift in Sources */,
 				CC64159E28A2D0040052050E /* RestApiProvaiderProtocol.swift in Sources */,
 				CC6415AA28A310950052050E /* Autocomplete.swift in Sources */,
 				CCCF4B7628A3F40B0041ED9E /* PopularCityDate.swift in Sources */,
+				CCFA56F428B4D72C00B778C4 /* InfoExcursion.swift in Sources */,
 				CCEBA1C128A7EBB1009C4917 /* Presenter.swift in Sources */,
 				CC5AB88728B1039200A0260C /* HotelsCell.swift in Sources */,
 				CC6415A028A2DDB30052050E /* HotelsData.swift in Sources */,
