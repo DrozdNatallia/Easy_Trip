@@ -32,6 +32,18 @@ class HotelsViewController: UIViewController, HotelsViewProtocol {
         userLocation.text = location
     }
     
+    @IBAction func onExploreButton(_ sender: Any) {
+        presenter.tapOnButtonExplore()
+    }
+    
+    @IBAction func onFlightsButton(_ sender: Any) {
+        guard let location = userLocation.text else { return }
+        presenter.tapOnButtonFlights(location: location)
+    }
+    @IBAction func onPlaceButton(_ sender: Any) {
+        guard let location = userLocation.text else { return }
+        presenter.tapOnButtonPlaces(location: location)
+    }
     @IBAction func onSearchButton(_ sender: Any) {
         presenter.clearArray()
         let date = DateFormatter()

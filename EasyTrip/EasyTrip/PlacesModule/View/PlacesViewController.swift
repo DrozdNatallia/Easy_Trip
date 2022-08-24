@@ -10,7 +10,7 @@ import UIKit
 protocol PlacesViewProtocol: AnyObject {
     func updateTableView()
     func setInfoExc(code: String)
-   
+    func setLocation(location: String)
 }
 
 class PlacesViewController: UIViewController, PlacesViewProtocol {
@@ -30,16 +30,23 @@ class PlacesViewController: UIViewController, PlacesViewProtocol {
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: "PlacesViewCell", bundle: nil), forCellReuseIdentifier: PlacesViewCell.key)
+        presenter.getLocation()
     }
-
+    func setLocation(location: String) {
+        userLocation.text = location
+    }
+    
     @IBAction func onExploreButton(_ sender: Any) {
+        presenter.tapOnButtonExplore()
     }
     
     @IBAction func onFlightsButton(_ sender: Any) {
+        guard let location = userLocation.text else { return }
+        presenter.tapOnButtonFlights(location: location)
     }
     @IBAction func onHotelsButton(_ sender: Any) {
-    }
-    @IBAction func onPlacesButton(_ sender: Any) {
+        guard let location = userLocation.text else { return }
+        presenter.tapOnButtonHotels(location: location)
     }
     
     @IBAction func onSearchButton(_ sender: Any) {

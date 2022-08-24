@@ -15,6 +15,10 @@ protocol PlacesViewPresenterProtocol {
     func getArrayImage() -> [UIImage]
     func getPhotoByURL(url: String)
     func clearArray()
+    func tapOnButtonHotels(location: String)
+    func tapOnButtonFlights(location: String)
+    func tapOnButtonExplore()
+    func getLocation()
 }
 
 final class PlacesViewPresenter: PlacesViewPresenterProtocol {
@@ -32,12 +36,20 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
         self.location = location
     }
     
-//    func tapOnButton(location: String) {
-//        router?.showFlightsModule(location: location )
-//    }
-//    func tapOnButtonHotels(location: String) {
-//        router?.showHotelsModule(location: location)
-//    }
+    func tapOnButtonHotels(location: String) {
+        router?.showHotelsModule(location: location)
+    }
+    func tapOnButtonFlights(location: String) {
+        router?.showFlightsModule(location: location)
+    }
+    func tapOnButtonExplore() {
+        router?.popToRoot()
+    }
+    
+    func getLocation() {
+        guard let location = location else { return }
+        view?.setLocation(location: location)
+    }
     func clearArray() {
         self.excursionInfo.price.removeAll()
         self.excursionInfo.nameExcursion.removeAll()
