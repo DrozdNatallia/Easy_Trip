@@ -76,8 +76,8 @@ class AlamofireProvaider: RestAPIProviderProtocol {
         }
     }
     
-    func getExcursionInfo(codeCity: String, completion: @escaping (Result<ExcursionInfo, Error>) -> Void) {
-        let params = addParams(queryItems: ["code" : codeCity, "limit" : "5", "language" : "RU"])
+    func getExcursionInfo(codeCity: String, start: String, end: String, adults: String, child: String, completion: @escaping (Result<ExcursionInfo, Error>) -> Void) {
+        let params = addParams(queryItems: ["code" : codeCity, "limit" : "5", "language" : "RU", "from_date" : start, "to_date" : end, "adults_count" : adults, "children_count" : child, "currency" : "usd"])
         
         AF.request(Constants.getExcursionInfoURL, method: .get, parameters: params).responseDecodable(of: ExcursionInfo.self) { response in
             switch response.result {

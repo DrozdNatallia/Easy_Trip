@@ -9,7 +9,8 @@ import UIKit
 
 protocol PlacesViewProtocol: AnyObject {
     func updateTableView()
-
+    func setInfoExc(code: String)
+   
 }
 
 class PlacesViewController: UIViewController, PlacesViewProtocol {
@@ -29,7 +30,6 @@ class PlacesViewController: UIViewController, PlacesViewProtocol {
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: "PlacesViewCell", bundle: nil), forCellReuseIdentifier: PlacesViewCell.key)
-
     }
 
     @IBAction func onExploreButton(_ sender: Any) {
@@ -43,8 +43,18 @@ class PlacesViewController: UIViewController, PlacesViewProtocol {
     }
     
     @IBAction func onSearchButton(_ sender: Any) {
-        presenter.getExcursionInfo(code: "LON")
+        presenter.clearArray()
+        guard let name = nameCityArea.text else { return }
+        presenter.getCodeByNameCity(code: name)
     }
+  
+    func setInfoExc(code: String){
+        guard let adults = countAdults.text, let children = countChild.text else {
+            return
+        }
+        presenter.getExcursionInfo(code: code, start: startDate.date, end: endDate.date, adults: adults, child: children)
+    }
+    
     func updateTableView() {
         tableView.reloadData()
     }
@@ -52,14 +62,18 @@ class PlacesViewController: UIViewController, PlacesViewProtocol {
 
 
 extension PlacesViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        presenter.getArrayNameExc().count
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter.getArrayPrice().count
+        1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: PlacesViewCell.key) as? PlacesViewCell {
-            cell.nameExcursion.text = presenter.getArrayNameExc()[indexPath.row]
-            cell.price.text = presenter.getArrayPrice()[indexPath.row].description
+            cell.excursionImage.image = presenter.getArrayImage()[indexPath.section]
+            cell.nameExcursion.text = presenter.getArrayNameExc()[indexPath.section]
+            cell.price.text = presenter.getArrayPrice()[indexPath.section].description
             return cell
         }
         return UITableViewCell()
