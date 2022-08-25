@@ -84,11 +84,9 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
     
     func convertDateToString(date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let firstElement = dateFormatter.string(from: date)
-        dateFormatter.dateFormat = "HH:mm"
-        let secondElement = dateFormatter.string(from: date)
-        return "\(firstElement)T\(secondElement)"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
+        let stringDate = dateFormatter.string(from: date)
+        return stringDate
     }
     
     func getPhotoByURL(url: String) {
@@ -121,8 +119,6 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
                     self.getPhotoByURL(url: url)
                     self.excursionInfo.nameExcursion.append(nameExc)
                     self.excursionInfo.price.append(Int(price))
-                    print(self.excursionInfo.price)
-                    print(self.excursionInfo.nameExcursion)
                     self.view?.updateTableView()
                 }
             case .failure(let error):
