@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		CC0E3BD628A4493D00CD500C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CC0E3BD528A4493D00CD500C /* Alamofire */; };
 		CC0E3BE428A44E1C00CD500C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CC0E3BE328A44E1C00CD500C /* Alamofire */; };
+		CC1F054728B776820051091A /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1F054528B776820051091A /* FavouritesViewController.swift */; };
+		CC1F054828B776820051091A /* FavouritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1F054628B776820051091A /* FavouritesViewController.xib */; };
+		CC1F054B28B77C610051091A /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1F054928B77C610051091A /* PersonalViewController.swift */; };
+		CC1F054C28B77C610051091A /* PersonalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1F054A28B77C610051091A /* PersonalViewController.xib */; };
+		CC1F054F28B7EE2E0051091A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = CC1F054E28B7EE2E0051091A /* Realm */; };
+		CC1F055128B7EE2E0051091A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CC1F055028B7EE2E0051091A /* RealmSwift */; };
 		CC2BD03728AE23FB0031769A /* FlightsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BD03628AE23FB0031769A /* FlightsPresenter.swift */; };
 		CC2BD03928AE24440031769A /* InfoFlights.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BD03828AE24440031769A /* InfoFlights.swift */; };
 		CC5AB88328B0DCA900A0260C /* HotelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5AB88128B0DCA900A0260C /* HotelsViewController.swift */; };
@@ -52,6 +58,10 @@
 
 /* Begin PBXFileReference section */
 		CC0E3BE028A44DFE00CD500C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC1F054528B776820051091A /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		CC1F054628B776820051091A /* FavouritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouritesViewController.xib; sourceTree = "<group>"; };
+		CC1F054928B77C610051091A /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
+		CC1F054A28B77C610051091A /* PersonalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalViewController.xib; sourceTree = "<group>"; };
 		CC2BD03628AE23FB0031769A /* FlightsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightsPresenter.swift; sourceTree = "<group>"; };
 		CC2BD03828AE24440031769A /* InfoFlights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoFlights.swift; sourceTree = "<group>"; };
 		CC5AB88128B0DCA900A0260C /* HotelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +110,8 @@
 			files = (
 				CC0E3BE428A44E1C00CD500C /* Alamofire in Frameworks */,
 				CC64159628A27B680052050E /* Alamofire in Frameworks */,
+				CC1F054F28B7EE2E0051091A /* Realm in Frameworks */,
+				CC1F055128B7EE2E0051091A /* RealmSwift in Frameworks */,
 				CC0E3BD628A4493D00CD500C /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,6 +219,10 @@
 				CC64157D28A2563A0052050E /* AppDelegate.swift */,
 				CC64157F28A2563A0052050E /* SceneDelegate.swift */,
 				CC64159B28A2CFE60052050E /* Constants.swift */,
+				CC1F054928B77C610051091A /* PersonalViewController.swift */,
+				CC1F054A28B77C610051091A /* PersonalViewController.xib */,
+				CC1F054528B776820051091A /* FavouritesViewController.swift */,
+				CC1F054628B776820051091A /* FavouritesViewController.xib */,
 				CC5AB89228B1717C00A0260C /* Router.swift */,
 				CCEBA1C828A84455009C4917 /* HomeModule */,
 				CC2BD03428AE23C20031769A /* FlightsModule */,
@@ -421,6 +437,8 @@
 				CC64159528A27B680052050E /* Alamofire */,
 				CC0E3BD528A4493D00CD500C /* Alamofire */,
 				CC0E3BE328A44E1C00CD500C /* Alamofire */,
+				CC1F054E28B7EE2E0051091A /* Realm */,
+				CC1F055028B7EE2E0051091A /* RealmSwift */,
 			);
 			productName = EasyTrip;
 			productReference = CC64157A28A2563A0052050E /* EasyTrip.app */;
@@ -452,6 +470,7 @@
 			mainGroup = CC64157128A256390052050E;
 			packageReferences = (
 				CC64159428A27B680052050E /* XCRemoteSwiftPackageReference "Alamofire" */,
+				CC1F054D28B7EE2E0051091A /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = CC64157B28A2563A0052050E /* Products */;
 			projectDirPath = "";
@@ -471,11 +490,13 @@
 				CC64158A28A2563C0052050E /* LaunchScreen.storyboard in Resources */,
 				CC5AB88428B0DCA900A0260C /* HotelsViewController.xib in Resources */,
 				CCF87B8628A987D700929FA9 /* FlightsViewCell.xib in Resources */,
+				CC1F054828B776820051091A /* FavouritesViewController.xib in Resources */,
 				CC64158728A2563C0052050E /* Assets.xcassets in Resources */,
 				CCF87B8128A9195C00929FA9 /* FlightsViewController.xib in Resources */,
 				CCD1011828B4094B004D67F0 /* PlacesViewCell.xib in Resources */,
 				CCD1010F28B3813F004D67F0 /* PlacesViewController.xib in Resources */,
 				CC5AB88828B1039200A0260C /* HotelsCell.xib in Resources */,
+				CC1F054C28B77C610051091A /* PersonalViewController.xib in Resources */,
 				CC64158528A2563A0052050E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,10 +519,12 @@
 				CCD1010E28B3813F004D67F0 /* PlacesViewController.swift in Sources */,
 				CCCF4B7228A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift in Sources */,
 				CCFA56EF28B4C57000B778C4 /* PlacesPresenter.swift in Sources */,
+				CC1F054728B776820051091A /* FavouritesViewController.swift in Sources */,
 				CC64159E28A2D0040052050E /* RestApiProvaiderProtocol.swift in Sources */,
 				CC6415AA28A310950052050E /* Autocomplete.swift in Sources */,
 				CCCF4B7628A3F40B0041ED9E /* PopularCityDate.swift in Sources */,
 				CCFA56F428B4D72C00B778C4 /* InfoExcursion.swift in Sources */,
+				CC1F054B28B77C610051091A /* PersonalViewController.swift in Sources */,
 				CCEBA1C128A7EBB1009C4917 /* Presenter.swift in Sources */,
 				CC5AB88728B1039200A0260C /* HotelsCell.swift in Sources */,
 				CC6415A028A2DDB30052050E /* HotelsData.swift in Sources */,
@@ -738,6 +761,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CC1F054D28B7EE2E0051091A /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.28.6;
+			};
+		};
 		CC64159428A27B680052050E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -758,6 +789,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CC64159428A27B680052050E /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		CC1F054E28B7EE2E0051091A /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC1F054D28B7EE2E0051091A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		CC1F055028B7EE2E0051091A /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC1F054D28B7EE2E0051091A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		CC64159528A27B680052050E /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

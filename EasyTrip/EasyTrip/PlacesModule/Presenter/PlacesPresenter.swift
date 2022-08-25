@@ -111,7 +111,6 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
                 guard let val = value.data, !val.isEmpty else {
                     self.excursionInfo.nameExcursion.append("Sorry! Not found")
                     self.excursionInfo.price.append(0)
-                    
                     return }
                 for exc in val {
                     guard let nameExc = exc.content, let price = exc.price, let url = exc.photo else { return }

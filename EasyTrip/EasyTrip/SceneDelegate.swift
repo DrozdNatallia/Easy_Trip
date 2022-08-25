@@ -16,10 +16,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         if let window = window {
             let navigationController = UINavigationController()
+            let tabBar = UITabBarController()
             let assemblyBuilder = HomeBuilderClass()
-            let router = Router(navigationController: navigationController, assemblyBuilder: assemblyBuilder)
+            let router = Router(navigationController: navigationController, assemblyBuilder: assemblyBuilder, tabBar: tabBar)
             router.initialViewController()
-            window.rootViewController = navigationController
+            router.initFavouritesViewControllers()
+            router.initPersonalViewControllers()
+            router.initialTabBArController()
+            window.rootViewController = tabBar
+            navigationController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "circle"), tag: 0)
             window.makeKeyAndVisible()
         }
     }

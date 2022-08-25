@@ -9,30 +9,59 @@ import UIKit
 
 protocol RouterMain {
     var navigationController: UINavigationController? { get set }
+    var tabBarController: UITabBarController? {get set}
     var assemblyBuilder: AsselderBuildProtocol? { get set }
 }
 
 protocol RouterProtocol: RouterMain {
     func initialViewController()
+    func initialTabBArController()
     func showFlightsModule(location: String)
     func showHotelsModule(location: String)
     func showPlacesModule(location: String)
     func popToRoot()
+    func initFavouritesViewControllers()
+    func initPersonalViewControllers()
 }
 
 class Router: RouterProtocol {
+    var tabBarController: UITabBarController?
     var navigationController: UINavigationController?
     var assemblyBuilder: AsselderBuildProtocol?
+    var controllers: [UIViewController]
     
-    init(navigationController: UINavigationController, assemblyBuilder: AsselderBuildProtocol) {
+    init(navigationController: UINavigationController, assemblyBuilder: AsselderBuildProtocol, tabBar: UITabBarController, controllers: [UIViewController] = []) {
+        self .tabBarController = tabBar
         self.navigationController = navigationController
         self.assemblyBuilder = assemblyBuilder
+        self.controllers = controllers
     }
     
     func initialViewController() {
         if let navigationController = navigationController {
             guard let homeViewController = assemblyBuilder?.createModel(router: self) else { return }
             navigationController.viewControllers = [homeViewController]
+            controllers.append(navigationController)
+        }
+
+    }
+    func initFavouritesViewControllers() {
+        let vc = FavouritesViewController(nibName: "FavouritesViewController", bundle: nil)
+        
+        vc.tabBarItem = UITabBarItem(title: "Favourites", image: UIImage(systemName: "circle"), tag: 1)
+        
+        controllers.append(vc)
+    }
+    
+    func initPersonalViewControllers() {
+        let vc = PersonalViewController(nibName: "PersonalViewController", bundle: nil)
+        vc.tabBarItem = UITabBarItem(title: "Perconal account", image: UIImage(systemName: "circle"), tag: 2)
+        controllers.append(vc)
+    }
+    
+    func initialTabBArController() {
+        if let tabBarController = tabBarController {
+            tabBarController.setViewControllers(controllers, animated: true)
         }
     }
     
