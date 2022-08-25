@@ -16,6 +16,7 @@ protocol RouterProtocol: RouterMain {
     func initialViewController()
     func showFlightsModule(location: String)
     func showHotelsModule(location: String)
+    func showPlacesModule(location: String)
     func popToRoot()
 }
 
@@ -46,6 +47,13 @@ class Router: RouterProtocol {
         if let navigationController = navigationController {
             guard let hotelsViewController = assemblyBuilder?.createHotelsModule(location: location, router: self) else { return }
             navigationController.pushViewController(hotelsViewController, animated: true)
+        }
+    }
+    
+    func showPlacesModule(location: String) {
+        if let navigationController = navigationController {
+            guard let placesViewController = assemblyBuilder?.createPlacesModule(location: location, router: self) else { return }
+            navigationController.pushViewController(placesViewController, animated: true)
         }
     }
     func popToRoot(){

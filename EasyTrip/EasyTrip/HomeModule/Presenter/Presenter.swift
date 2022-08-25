@@ -18,6 +18,7 @@ protocol HomeViewPresenterProtocol {
     func clearArrays()
     func tapOnButton(location: String)
     func tapOnButtonHotels(location: String)
+    func tapOnButtonPlaces(location: String)
 }
 
 final class HomeViewPresenter: HomeViewPresenterProtocol {
@@ -38,6 +39,10 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
     }
     func tapOnButtonHotels(location: String) {
         router?.showHotelsModule(location: location)
+    }
+    
+    func tapOnButtonPlaces(location: String) {
+        router?.showPlacesModule(location: location)
     }
     
     func getArrayNameCity() -> [String] {

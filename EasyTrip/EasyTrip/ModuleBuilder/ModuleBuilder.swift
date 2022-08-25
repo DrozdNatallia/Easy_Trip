@@ -12,6 +12,7 @@ protocol AsselderBuildProtocol {
     func createModel(router: RouterProtocol) -> UIViewController
     func createFlightsModule(location: String, router: RouterProtocol) -> UIViewController
     func createHotelsModule(location: String, router: RouterProtocol) -> UIViewController
+    func createPlacesModule(location: String, router: RouterProtocol) -> UIViewController
 }
 
 class HomeBuilderClass: AsselderBuildProtocol {
@@ -41,6 +42,15 @@ class HomeBuilderClass: AsselderBuildProtocol {
         let provaider = AlamofireProvaider()
         let info = InfoHotel()
         let presenter = HotelsViewPresenter(view: vc, info: info, provaider: provaider, location: location, router : router)
+        vc.presenter = presenter
+        return vc
+    }
+    
+    func createPlacesModule(location: String, router: RouterProtocol ) -> UIViewController {
+        let vc = PlacesViewController(nibName: "PlacesViewController", bundle: nil)
+        let provaider = AlamofireProvaider()
+        let info = InfoExcursion()
+        let presenter = PlacesViewPresenter(view: vc, info: info, provaider: provaider, router: router, location: location)
         vc.presenter = presenter
         return vc
     }

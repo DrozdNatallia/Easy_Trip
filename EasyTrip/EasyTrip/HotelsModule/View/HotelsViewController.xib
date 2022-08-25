@@ -59,12 +59,18 @@
                             <color key="tintColor" systemColor="labelColor"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Explore"/>
+                            <connections>
+                                <action selector="onExploreButton:" destination="-1" eventType="touchUpInside" id="S3v-Pj-VDg"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e65-Ox-TmT">
                             <rect key="frame" x="113" y="0.0" width="67.5" height="47"/>
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Flights"/>
+                            <connections>
+                                <action selector="onFlightsButton:" destination="-1" eventType="touchUpInside" id="LHy-AV-cHa"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9Z-0I-viF">
                             <rect key="frame" x="221" y="0.0" width="66" height="47"/>
@@ -77,6 +83,9 @@
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Places"/>
+                            <connections>
+                                <action selector="onPlaceButton:" destination="-1" eventType="touchUpInside" id="xbD-7J-9Ub"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>
@@ -128,6 +137,7 @@
                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="cR1-0e-xcM">
                                     <rect key="frame" x="268" y="0.0" width="126" height="89.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <locale key="locale" localeIdentifier="ru"/>
                                 </datePicker>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

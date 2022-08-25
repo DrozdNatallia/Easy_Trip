@@ -15,6 +15,7 @@ protocol FlightsViewPresenterProtocol: AnyObject {
     func getIconbyURL(url: String)
     func getLocation()
     func tapOnButtonHotels(location: String)
+    func tapOnButtonPlaces(location: String)
     func tapOnButtonExplore()
 }
 
@@ -36,6 +37,10 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
 
     func tapOnButtonHotels(location: String) {
         router?.showHotelsModule(location: location)
+    }
+    
+    func tapOnButtonPlaces(location: String) {
+        router?.showPlacesModule(location: location)
     }
     
     func tapOnButtonExplore() {

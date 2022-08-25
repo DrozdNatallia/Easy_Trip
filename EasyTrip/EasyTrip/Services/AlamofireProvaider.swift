@@ -50,7 +50,7 @@ class AlamofireProvaider: RestAPIProviderProtocol {
         }
     }
     func getHoltelsByCityName(name: String, chekIn: String, checkOut: String, adults: Int, completion: @escaping (Result<[HotelsData], Error>) -> Void) {
-        let params = addParams(queryItems: ["location" : name, "lang" : "ru", "currency" : "usd", "limit" : "10", "checkIn" : chekIn, "checkOut" : checkOut, "adults" : "\(adults)"])
+        let params = addParams(queryItems: ["location" : name, "lang" : "en", "currency" : "usd", "limit" : "10", "checkIn" : chekIn, "checkOut" : checkOut, "adults" : "\(adults)"])
         AF.request(Constants.getHotelsByNameCity, method: .get, parameters: params).responseDecodable(of: [HotelsData].self) { response in
             switch response.result {
             case .success(let result):
@@ -76,8 +76,8 @@ class AlamofireProvaider: RestAPIProviderProtocol {
         }
     }
     
-    func getExcursionInfo(codeCity: String, completion: @escaping (Result<ExcursionInfo, Error>) -> Void) {
-        let params = addParams(queryItems: ["code" : codeCity, "limit" : "5", "language" : "RU"])
+    func getExcursionInfo(codeCity: String, start: String, end: String, adults: String, child: String, completion: @escaping (Result<ExcursionInfo, Error>) -> Void) {
+        let params = addParams(queryItems: ["code" : codeCity, "limit" : "5", "language" : "RU", "from_date" : start, "to_date" : end, "adults_count" : adults, "children_count" : child, "currency" : "usd"])
         
         AF.request(Constants.getExcursionInfoURL, method: .get, parameters: params).responseDecodable(of: ExcursionInfo.self) { response in
             switch response.result {

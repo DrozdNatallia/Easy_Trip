@@ -13,7 +13,8 @@ struct ExcursionInfo: Codable {
     let success: Bool?
 }
 struct ExcursionDate: Codable {
-    let excursionID, price: Int?
+    let excursionID: Int?
+    let price: Double?
     let currency, content, excursionType, activityType: String?
     let cityIata, countryIata: String?
     let link: String?

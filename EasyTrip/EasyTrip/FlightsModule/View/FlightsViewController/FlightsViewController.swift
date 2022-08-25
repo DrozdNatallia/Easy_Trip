@@ -56,12 +56,17 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
     @IBAction func onExploreButton(_ sender: Any) {
         presenter.tapOnButtonExplore()
     }
+    
     func setLocation(location: String) {
         self.userLocation.text = location
     }
     
     func setInfoFlights() {
         tableView.reloadData()
+    }
+    @IBAction func onPlaceButton(_ sender: Any) {
+        guard let location = userLocation.text else { return }
+        presenter.tapOnButtonPlaces(location: location)
     }
     
     @IBAction func onHotelsButton(_ sender: Any) {

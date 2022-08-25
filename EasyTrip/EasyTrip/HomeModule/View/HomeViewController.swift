@@ -51,6 +51,10 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         presenter.tapOnButtonHotels(location: location)
     }
     
+    @IBAction func onPlacesButton(_ sender: Any) {
+        guard let location = userLocation.text else { return }
+        presenter.tapOnButtonPlaces(location: location)
+    }
     @IBAction func onFlightsButton(_ sender: Any) {
         guard let location = userLocation.text else { return }
         presenter.tapOnButton(location: location)
@@ -74,26 +78,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
             presenter.getPopularFlights(nameDirection: city)
         }
     }
-    
-
-    // Эти функции нужны, пока закоменчены, т.к. пока не реализованы
-    /*
-     // получение инфы об экскурсиях
-     fileprivate func getExcursionInfo() {
-     alamofireProvaider.getExcursionInfo(codeCity: "LON") { result in
-     switch result {
-     case .success(let value):
-     guard let val = value.data else {return}
-     for exc in val {
-     // название экскурсий
-     print(exc.content)
-     }
-     case .failure(let error):
-     print(error.localizedDescription)
-     }
-     }
-     }
-     */
 }
 
 
