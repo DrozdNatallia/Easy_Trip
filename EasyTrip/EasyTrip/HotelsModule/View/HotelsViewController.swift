@@ -68,6 +68,7 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HotelsCell.key, for: indexPath) as? HotelsCell {
             cell.nameHotel.text = presenter.getArrayNameHotel()[indexPath.row]
             cell.imageView.image = presenter.getArrayImages()[indexPath.row]
+            cell.url = presenter.getArrayUrl()[indexPath.row]
             return cell
         }
        return UICollectionViewCell()
