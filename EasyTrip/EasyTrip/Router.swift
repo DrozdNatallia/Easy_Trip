@@ -46,16 +46,15 @@ class Router: RouterProtocol {
 
     }
     func initFavouritesViewControllers() {
-        let vc = FavouritesViewController(nibName: "FavouritesViewController", bundle: nil)
-        
-        vc.tabBarItem = UITabBarItem(title: "Favourites", image: UIImage(systemName: "circle"), tag: 1)
-        
-        controllers.append(vc)
+        guard let favouritesViewController = assemblyBuilder?.createFavouritesModule(router: self) else { return }
+      //  let vc = FavouritesViewController(nibName: "FavouritesViewController", bundle: nil)
+        favouritesViewController.tabBarItem = UITabBarItem(title: "Favourites", image: UIImage(systemName: "star"), tag: 1)
+        controllers.append(favouritesViewController)
     }
     
     func initPersonalViewControllers() {
         let vc = PersonalViewController(nibName: "PersonalViewController", bundle: nil)
-        vc.tabBarItem = UITabBarItem(title: "Perconal account", image: UIImage(systemName: "circle"), tag: 2)
+        vc.tabBarItem = UITabBarItem(title: "Perconal account", image: UIImage(systemName: "person"), tag: 2)
         controllers.append(vc)
     }
     

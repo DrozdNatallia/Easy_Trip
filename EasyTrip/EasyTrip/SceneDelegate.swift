@@ -24,7 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             router.initPersonalViewControllers()
             router.initialTabBArController()
             window.rootViewController = tabBar
-            navigationController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "circle"), tag: 0)
+            navigationController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
+            tabBar.tabBar.backgroundColor = .white
             window.makeKeyAndVisible()
         }
     }
