@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavouritesViewController" customModule="EasyTrip" customModuleProvider="target">
             <connections>
                 <outlet property="tableView" destination="fHj-Ss-ldb" id="OzI-Jj-uiq"/>
+                <outlet property="typeFavourites" destination="Zb9-nq-maD" id="P3w-kQ-lGY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -32,6 +33,9 @@
                         <segment title="Places"/>
                     </segments>
                     <color key="selectedSegmentTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <action selector="onSegmentControl:" destination="-1" eventType="valueChanged" id="SnE-su-OS7"/>
+                    </connections>
                 </segmentedControl>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fHj-Ss-ldb">
                     <rect key="frame" x="20" y="214" width="374" height="582"/>

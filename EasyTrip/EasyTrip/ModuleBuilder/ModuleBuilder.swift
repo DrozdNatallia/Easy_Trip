@@ -59,7 +59,7 @@ class HomeBuilderClass: AsselderBuildProtocol {
     func createFavouritesModule(router: RouterProtocol ) -> UIViewController {
         let vc = FavouritesViewController(nibName: "FavouritesViewController", bundle: nil)
         let provaider = FirebaseManager()
-        let info = Hotels()
+        let info = Favourites()
         let presenter = FavouritesViewPresenter(view: vc, info: info, provaider: provaider, router: router)
         vc.presenter = presenter
         return vc

@@ -81,6 +81,7 @@ extension PlacesViewController: UITableViewDelegate, UITableViewDataSource {
             cell.excursionImage.image = presenter.getArrayImage()[indexPath.section]
             cell.nameExcursion.text = presenter.getArrayNameExc()[indexPath.section]
             cell.price.text = presenter.getArrayPrice()[indexPath.section].description
+            cell.url = presenter.getArrayUrl()[indexPath.section]
             return cell
         }
         return UITableViewCell()
