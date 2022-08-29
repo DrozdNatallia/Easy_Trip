@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-struct Hotels  {
-    var nameHotel: [String]
-    var imageHotel: [UIImage]
+struct Favourites  {
+    var name: [String]
+    var image: [UIImage]
     
     init(name: [String] = [], image: [UIImage] = []) {
-        self.nameHotel = name
-        self.imageHotel = image
+        self.name = name
+        self.image = image
     }
 }
 
