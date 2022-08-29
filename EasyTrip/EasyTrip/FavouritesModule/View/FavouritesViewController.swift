@@ -12,8 +12,8 @@ protocol FavouritesViewProtocol: AnyObject {
     
 }
     class FavouritesViewController: UIViewController, FavouritesViewProtocol {
-    var firebaseProvaider: FirebaseProtocol!
-    var hotels = Hotels()
+        @IBOutlet weak var typeFavourites: UISegmentedControl!
+        var firebaseProvaider: FirebaseProtocol!
     var presenter: FavouritesViewPresenterProtocol!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -22,9 +22,17 @@ protocol FavouritesViewProtocol: AnyObject {
         tableView.dataSource = self
 
         tableView.register(UINib(nibName: "FavouritesViewCell", bundle: nil), forCellReuseIdentifier: FavouritesViewCell.key)
-        
         presenter.getAllDocument(collection: "favouritesHotels")
     }
+        @IBAction func onSegmentControl(_ sender: Any) {
+            presenter.clearArray()
+            if typeFavourites.selectedSegmentIndex == 0 {
+                presenter.getAllDocument(collection: "favouritesHotels")
+            } else {
+                presenter.getAllDocument(collection: "favouritesPlaces")
+            }
+
+        }
         
         func updateTable() {
             tableView.reloadData()
@@ -34,7 +42,7 @@ protocol FavouritesViewProtocol: AnyObject {
 extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        presenter.getArrayNameHotels().count
+        presenter.getArrayName().count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
@@ -42,7 +50,7 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: FavouritesViewCell.key) as? FavouritesViewCell {
-            cell.name.text = presenter.getArrayNameHotels()[indexPath.section]
+            cell.name.text = presenter.getArrayName()[indexPath.section]
             cell.favouritesImage.image = presenter.getArrayImage()[indexPath.section]
             return cell
         }
