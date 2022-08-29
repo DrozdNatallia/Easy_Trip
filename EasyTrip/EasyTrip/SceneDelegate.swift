@@ -26,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = tabBar
             navigationController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
             tabBar.tabBar.backgroundColor = .white
+            tabBar.tabBar.tintColor = .black
             window.makeKeyAndVisible()
         }
     }
