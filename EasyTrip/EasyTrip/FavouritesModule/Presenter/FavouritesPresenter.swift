@@ -45,7 +45,7 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
         favourites.name.removeAll()
     }
     
-
+// получение всех документов по имени коллекции
     func getAllDocument(collection: String) {
         firebaseProvaider.getAllDocuments(collection: collection) { list in
             for list in list {

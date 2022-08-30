@@ -26,7 +26,7 @@ static let key = "PlacesViewCell"
 
         // Configure the view for the selected state
     }
-    
+    // по нажатию на кнопку записыавем место в избранное. Ui пока не делала, еще буду менять
     @IBAction func onLikesButton(_ sender: Any) {
         guard let name = nameExcursion.text, let url = url else { return }
         firebase.writeDate(collectionName: "favouritesPlaces", docName: name, name: name, url: url)

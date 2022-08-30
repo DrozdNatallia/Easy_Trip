@@ -26,6 +26,7 @@ protocol FavouritesViewProtocol: AnyObject {
     }
         @IBAction func onSegmentControl(_ sender: Any) {
             presenter.clearArray()
+            // в зависимости от сегмент контрола, подгружаем избранное
             if typeFavourites.selectedSegmentIndex == 0 {
                 presenter.getAllDocument(collection: "favouritesHotels")
             } else {
@@ -49,6 +50,7 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // добавоение избранного в ячейки. Удаления пока нет,сделаю позже, не решила где именно будет реализовано
         if let cell = tableView.dequeueReusableCell(withIdentifier: FavouritesViewCell.key) as? FavouritesViewCell {
             cell.name.text = presenter.getArrayName()[indexPath.section]
             cell.favouritesImage.image = presenter.getArrayImage()[indexPath.section]

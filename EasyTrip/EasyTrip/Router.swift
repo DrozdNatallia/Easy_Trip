@@ -47,7 +47,6 @@ class Router: RouterProtocol {
     }
     func initFavouritesViewControllers() {
         guard let favouritesViewController = assemblyBuilder?.createFavouritesModule(router: self) else { return }
-      //  let vc = FavouritesViewController(nibName: "FavouritesViewController", bundle: nil)
         favouritesViewController.tabBarItem = UITabBarItem(title: "Favourites", image: UIImage(systemName: "star"), tag: 1)
         controllers.append(favouritesViewController)
     }

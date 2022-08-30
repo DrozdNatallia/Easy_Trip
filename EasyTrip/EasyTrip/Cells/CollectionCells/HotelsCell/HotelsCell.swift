@@ -18,7 +18,7 @@ class HotelsCell: UICollectionViewCell {
         super.awakeFromNib()
         provaider = FirebaseManager()
     }
-
+    // по нажатию на кнопку записыавем место в избранное. Ui пока не делала, еще буду менять
     @IBAction func onButton(_ sender: Any) {
         guard let name = nameHotel.text, let url = url else {
             return
