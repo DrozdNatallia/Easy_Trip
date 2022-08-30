@@ -52,6 +52,17 @@ class FirebaseManager: FirebaseProtocol {
             }
         }
     }
+    //удаление
+    func deleteDocument(collection: String, nameDoc: String) {
+        let db  = configureFB()
+        db.collection(collection).document(nameDoc).delete() { err in
+            if let err = err {
+                print(err.localizedDescription)
+            } else {
+                print("Document successfully removed!")
+            }
+        }
+    }
     // буду позже использовать
 //    func checkFavouritesList(collection: String, nameDoc: String) {
 //        let db = configureFB()

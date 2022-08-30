@@ -15,6 +15,8 @@ import FirebaseFirestore
 protocol FavouritesViewPresenterProtocol {
     func getAllDocument(collection: String)
     func getImagebyURLFavourites(url: String)
+    func deleteDocument(collection: String, name: String)
+    func deleteElementFromArray(num: Int)
     func getArrayName() -> [String]
     func getArrayImage() -> [UIImage]
     func clearArray()
@@ -45,6 +47,12 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
         favourites.name.removeAll()
     }
     
+    func deleteElementFromArray(num: Int) {
+        favourites.name.remove(at: num)
+        favourites.image.remove(at: num)
+    }
+    
+
 // получение всех документов по имени коллекции
     func getAllDocument(collection: String) {
         firebaseProvaider.getAllDocuments(collection: collection) { list in
@@ -69,6 +77,8 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
           }
     }
     
-    
+    func deleteDocument(collection: String, name: String){
+        firebaseProvaider.deleteDocument(collection: collection, nameDoc: name)
+    }
 }
 

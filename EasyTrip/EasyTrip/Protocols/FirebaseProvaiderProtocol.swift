@@ -15,5 +15,6 @@ import FirebaseFirestore
 protocol FirebaseProtocol {
     func getAllDocuments(collection: String, completion: @escaping ([FavouritesHotels?]) -> Void )
     func writeDate(collectionName: String, docName: String, name: String, url: String)
+    func deleteDocument(collection: String, nameDoc: String)
    // func checkFavouritesList(collection: String, nameDoc: String)
 }

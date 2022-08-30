@@ -22,6 +22,8 @@ protocol FavouritesViewProtocol: AnyObject {
         tableView.dataSource = self
 
         tableView.register(UINib(nibName: "FavouritesViewCell", bundle: nil), forCellReuseIdentifier: FavouritesViewCell.key)
+        
+        
         presenter.getAllDocument(collection: "favouritesHotels")
     }
         @IBAction func onSegmentControl(_ sender: Any) {
@@ -32,7 +34,6 @@ protocol FavouritesViewProtocol: AnyObject {
             } else {
                 presenter.getAllDocument(collection: "favouritesPlaces")
             }
-
         }
         
         func updateTable() {
@@ -57,5 +58,28 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let name = presenter.getArrayName()[indexPath.section]
+            print(name)
+            if typeFavourites.selectedSegmentIndex == 0 {
+                presenter.deleteDocument(collection: "favouritesHotels", name: name)
+            } else {
+                presenter.deleteDocument(collection: "favouritesPlaces", name: name)
+            }
+            presenter.deleteElementFromArray(num: indexPath.section)
+            let indexSet = IndexSet(arrayLiteral: indexPath.section)
+            tableView.deleteSections(indexSet, with: .fade)
+        }
     }
 }
