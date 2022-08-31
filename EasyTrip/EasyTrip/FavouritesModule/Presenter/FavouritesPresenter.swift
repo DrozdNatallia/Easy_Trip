@@ -55,12 +55,18 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
 
 // получение всех документов по имени коллекции
     func getAllDocument(collection: String) {
-        firebaseProvaider.getAllDocuments(collection: collection) { list in
-            for list in list {
-                guard let name = list?.name, let url = list?.url else { return }
-                self.favourites.name.append(name)
-                self.getImagebyURLFavourites(url: url)
-                self.view?.updateTable()
+        firebaseProvaider.getAllDocuments(collection: collection) { [weak self] list in
+            guard let self = self else { return }
+            DispatchQueue.global(qos: .userInteractive).async {
+                for list in list {
+                    guard let name = list?.name, let url = list?.url else { return }
+                    self.favourites.name.append(name)
+                    self.getImagebyURLFavourites(url: url)
+                    //self.view?.updateTable()
+                }
+                DispatchQueue.main.sync {
+                    self.view?.updateTable()
+                }
             }
         }
     }
