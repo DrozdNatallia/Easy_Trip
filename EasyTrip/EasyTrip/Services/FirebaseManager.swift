@@ -13,17 +13,17 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class FirebaseManager: FirebaseProtocol {
+    var db = Firestore.firestore()
+//    func configureFB() -> Firestore {
+//        var db: Firestore!
+//        let settings = FirestoreSettings()
+//        Firestore.firestore().settings = settings
+//        db = Firestore.firestore()
+//        return db
+//    }
     
-    private func configureFB() -> Firestore {
-        var db: Firestore!
-        let settings = FirestoreSettings()
-        Firestore.firestore().settings = settings
-        db = Firestore.firestore()
-        return db
-    }
     // получение всех документов
     func getAllDocuments(collection: String, completion: @escaping ([FavouritesHotels?]) -> Void ) {
-        let db = configureFB()
         db.collection(collection).getDocuments { querySnapshot, error in
             if let err = error {
                 print(err.localizedDescription)
@@ -31,7 +31,8 @@ class FirebaseManager: FirebaseProtocol {
             if let querySnapshot = querySnapshot {
                 var res: [FavouritesHotels?] = []
                 for document in querySnapshot.documents {
-                    let doc = FavouritesHotels(name: document.get("name") as! String, url: document.get("url") as! String)
+                    guard let name = document.get("name") as? String, let url = document.get("url") as? String else { return }
+                    let doc = FavouritesHotels(name: name, url: url)
                     res.append(doc)
                 }
                 completion(res)
@@ -40,7 +41,6 @@ class FirebaseManager: FirebaseProtocol {
     }
     // запись данных в базу
     func writeDate(collectionName: String, docName: String, name: String, url: String) {
-        let db = configureFB()
         db.collection(collectionName).document(docName).setData([
             "name": name,
             "url": url
@@ -54,7 +54,6 @@ class FirebaseManager: FirebaseProtocol {
     }
     //удаление
     func deleteDocument(collection: String, nameDoc: String) {
-        let db  = configureFB()
         db.collection(collection).document(nameDoc).delete() { err in
             if let err = err {
                 print(err.localizedDescription)
@@ -65,7 +64,6 @@ class FirebaseManager: FirebaseProtocol {
     }
     // буду позже использовать
 //    func checkFavouritesList(collection: String, nameDoc: String) {
-//        let db = configureFB()
 //        print(db.collection(collection).whereField("name", isEqualTo: nameDoc))
 //        db.collection(collection).whereField("name", isEqualTo: "Minsk")
 //            .getDocuments() { (querySnapshot, err) in

@@ -13,6 +13,7 @@ import FirebaseStorage
 import FirebaseFirestore
 
 protocol FirebaseProtocol {
+  //  func configureFB() -> Firestore
     func getAllDocuments(collection: String, completion: @escaping ([FavouritesHotels?]) -> Void )
     func writeDate(collectionName: String, docName: String, name: String, url: String)
     func deleteDocument(collection: String, nameDoc: String)
