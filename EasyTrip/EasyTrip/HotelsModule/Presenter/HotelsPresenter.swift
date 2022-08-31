@@ -89,7 +89,7 @@ class HotelsViewPresenter: HotelsViewPresenterProtocol {
                 for hotel in value {
                     guard let nameHotel = hotel.hotelName, let idHotel = hotel.hotelID else { return }
                     self.infoHotels.arrayNameHotel.append(nameHotel)
-                    let url = Constants.getPhotoHotels + "\(idHotel)_1/180/200.auto"
+                    let url = Constants.getPhotoHotels.appending("\(idHotel)_1/180/200.auto")
                     self.infoHotels.url.append(url)
                     self.getPhotoByURL(url: url)
                     self.view?.updateCollectionView()

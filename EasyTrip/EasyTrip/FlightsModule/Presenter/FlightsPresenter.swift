@@ -118,7 +118,7 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
                     self.infoFlights.arrayOrigin.append(origin)
                     self.infoFlights.arrayDestination.append(destination)
                     self.infoFlights.arrayDuration.append(duration)
-                    let urlIcon = Constants.getIconAirline + "\(icon)@2x.png"
+                    let urlIcon = Constants.getIconAirline.appending("\(icon)@2x.png")
                     self.getIconbyURL(url: urlIcon)
                     self.view?.setInfoFlights()
                 }
