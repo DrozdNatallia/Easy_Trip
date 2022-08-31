@@ -13,7 +13,6 @@ protocol FavouritesViewProtocol: AnyObject {
 }
     class FavouritesViewController: UIViewController, FavouritesViewProtocol {
         @IBOutlet weak var typeFavourites: UISegmentedControl!
-        var firebaseProvaider: FirebaseProtocol!
     var presenter: FavouritesViewPresenterProtocol!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
