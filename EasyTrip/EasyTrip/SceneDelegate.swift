@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
-
-
+    
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         if let window = window {
@@ -27,10 +28,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navigationController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
             tabBar.tabBar.backgroundColor = .white
             tabBar.tabBar.tintColor = .black
+            
+            Auth.auth().addStateDidChangeListener { auth, user in
+                if user == nil {
+                    router.showRegistration()
+                }
+            }
             window.makeKeyAndVisible()
         }
     }
-
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
