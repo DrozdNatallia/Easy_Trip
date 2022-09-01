@@ -17,5 +17,8 @@ protocol FirebaseProtocol {
     func getAllDocuments(collection: String, completion: @escaping ([FavouritesHotels?]) -> Void )
     func writeDate(collectionName: String, docName: String, name: String, url: String)
     func deleteDocument(collection: String, nameDoc: String)
+    func createUser(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void)
+    func signIn(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void)
+    func signOut()
    // func checkFavouritesList(collection: String, nameDoc: String)
 }

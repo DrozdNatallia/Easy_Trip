@@ -62,6 +62,27 @@ class FirebaseManager: FirebaseProtocol {
             }
         }
     }
+    
+    func createUser(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            completion(authResult, error)
+        }
+    }
+    
+    func signIn(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            completion(authResult, error)
+        }
+    }
+    
+    func signOut() {
+        let firebaseAuth = Auth.auth()
+    do {
+      try firebaseAuth.signOut()
+    } catch let signOutError as NSError {
+      print("Error signing out: %@", signOutError)
+    }
+    }
     // буду позже использовать
 //    func checkFavouritesList(collection: String, nameDoc: String) {
 //        print(db.collection(collection).whereField("name", isEqualTo: nameDoc))
