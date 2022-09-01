@@ -16,6 +16,7 @@ protocol RouterMain {
 protocol RouterProtocol: RouterMain {
     func initialViewController()
     func initialTabBArController()
+    func showRegistration()
     func showFlightsModule(location: String)
     func showHotelsModule(location: String)
     func showPlacesModule(location: String)
@@ -55,6 +56,15 @@ class Router: RouterProtocol {
         let vc = PersonalViewController(nibName: "PersonalViewController", bundle: nil)
         vc.tabBarItem = UITabBarItem(title: "Perconal account", image: UIImage(systemName: "person"), tag: 2)
         controllers.append(vc)
+    }
+    func showRegistration() {
+        if let navigationController = navigationController {
+            guard let authVc = assemblyBuilder?.createAuthModule(router: self) else {
+                return
+            }
+            authVc.modalPresentationStyle = .fullScreen
+            navigationController.present(authVc, animated: false)
+        }
     }
     
     func initialTabBArController() {
