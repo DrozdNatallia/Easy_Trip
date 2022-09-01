@@ -14,6 +14,7 @@ protocol AsselderBuildProtocol {
     func createHotelsModule(location: String, router: RouterProtocol) -> UIViewController
     func createPlacesModule(location: String, router: RouterProtocol) -> UIViewController
     func createFavouritesModule(router: RouterProtocol ) -> UIViewController
+    func createAuthModule(router: RouterProtocol) -> UIViewController
 }
 
 class HomeBuilderClass: AsselderBuildProtocol {
@@ -61,6 +62,13 @@ class HomeBuilderClass: AsselderBuildProtocol {
         let provaider = FirebaseManager()
         let info = Favourites()
         let presenter = FavouritesViewPresenter(view: vc, info: info, provaider: provaider, router: router)
+        vc.presenter = presenter
+        return vc
+    }
+    func createAuthModule(router: RouterProtocol) -> UIViewController {
+        let vc = AuthViewController(nibName: "AuthViewController", bundle: nil)
+        let provaider = FirebaseManager()
+        let presenter = AuthPresenter(view: vc, provaider: provaider, router: router)
         vc.presenter = presenter
         return vc
     }
