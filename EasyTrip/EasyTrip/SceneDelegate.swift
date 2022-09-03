@@ -20,6 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let tabBar = UITabBarController()
             let assemblyBuilder = HomeBuilderClass()
             let router = Router(navigationController: navigationController, assemblyBuilder: assemblyBuilder, tabBar: tabBar)
+            Auth.auth().addStateDidChangeListener { auth, user in
+                if user == nil {
+                    router.showRegistration()
+                }
+            }
             router.initialViewController()
             router.initFavouritesViewControllers()
             router.initPersonalViewControllers()
@@ -29,11 +34,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             tabBar.tabBar.backgroundColor = .white
             tabBar.tabBar.tintColor = .black
             
-            Auth.auth().addStateDidChangeListener { auth, user in
-                if user == nil {
-                    router.showRegistration()
-                }
-            }
+//            Auth.auth().addStateDidChangeListener { auth, user in
+//                if user == nil {
+//                    router.showRegistration()
+//                }
+//            }
             window.makeKeyAndVisible()
         }
     }

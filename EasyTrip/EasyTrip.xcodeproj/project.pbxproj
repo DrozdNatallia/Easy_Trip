@@ -39,6 +39,7 @@
 		CC6415A828A2FE9E0052050E /* ExcursionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A728A2FE9E0052050E /* ExcursionInfo.swift */; };
 		CC6415AA28A310950052050E /* Autocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A928A310950052050E /* Autocomplete.swift */; };
 		CC66635628C2C5E1003C33D1 /* PersonalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC66635528C2C5DF003C33D1 /* PersonalViewController.xib */; };
+		CC66635828C37251003C33D1 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC66635728C37251003C33D1 /* Users.swift */; };
 		CC76BA0F28C1662D006EDAAF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CC76BA0E28C1662D006EDAAF /* Alamofire */; };
 		CC76BA1F28C16A1B006EDAAF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CC76BA1E28C16A1B006EDAAF /* FirebaseAuth */; };
 		CC76BA2128C16A1B006EDAAF /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CC76BA2028C16A1B006EDAAF /* FirebaseDatabase */; };
@@ -105,6 +106,7 @@
 		CC6415A728A2FE9E0052050E /* ExcursionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcursionInfo.swift; sourceTree = "<group>"; };
 		CC6415A928A310950052050E /* Autocomplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autocomplete.swift; sourceTree = "<group>"; };
 		CC66635528C2C5DF003C33D1 /* PersonalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalViewController.xib; sourceTree = "<group>"; };
+		CC66635728C37251003C33D1 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		CC8B2C4528BB923E0060AEB2 /* FavouritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesPresenter.swift; sourceTree = "<group>"; };
 		CC8B2C4828BC178E0060AEB2 /* FirebaseProvaiderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvaiderProtocol.swift; sourceTree = "<group>"; };
 		CC8B2C4D28BC18360060AEB2 /* Hotels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hotels.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				CC1F057628B8E9B00051091A /* FavouritesHotels.swift */,
+				CC66635728C37251003C33D1 /* Users.swift */,
 			);
 			name = FirebaseModels;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				CC5AB89328B1717C00A0260C /* Router.swift in Sources */,
 				CCEBA1C328A7FB71009C4917 /* ModuleBuilder.swift in Sources */,
 				CC64158028A2563A0052050E /* SceneDelegate.swift in Sources */,
+				CC66635828C37251003C33D1 /* Users.swift in Sources */,
 				CC64159828A27BE60052050E /* AlamofireProvaider.swift in Sources */,
 				CC8B2C4628BB923E0060AEB2 /* FavouritesPresenter.swift in Sources */,
 				CC5AB89028B15F2600A0260C /* InfoHotel.swift in Sources */,

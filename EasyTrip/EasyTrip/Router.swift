@@ -53,9 +53,9 @@ class Router: RouterProtocol {
     }
     
     func initPersonalViewControllers() {
-        let vc = PersonalViewController(nibName: "PersonalViewController", bundle: nil)
-        vc.tabBarItem = UITabBarItem(title: "Perconal account", image: UIImage(systemName: "person"), tag: 2)
-        controllers.append(vc)
+        guard let personalVc = assemblyBuilder?.createPersonalModule(router: self) else { return }
+       personalVc.tabBarItem = UITabBarItem(title: "Perconal account", image: UIImage(systemName: "person"), tag: 2)
+        controllers.append(personalVc)
     }
     func showRegistration() {
         if let navigationController = navigationController {
