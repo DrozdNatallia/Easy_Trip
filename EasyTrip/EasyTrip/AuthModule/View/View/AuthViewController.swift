@@ -15,7 +15,8 @@ protocol AuthViewProtocol: AnyObject {
     func showAlertError(alert: UIAlertController)
     
 }
-class AuthViewController: UIViewController, AuthViewProtocol {
+class AuthViewController
+: UIViewController, AuthViewProtocol {
     @IBOutlet weak var questionLabel: UILabel!
     var signUp: Bool = true {
         willSet {
