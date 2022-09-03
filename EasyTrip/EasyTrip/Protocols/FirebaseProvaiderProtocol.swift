@@ -1,0 +1,24 @@
+//
+//  FirebaseProvaiderProtocol.swift
+//  EasyTrip
+//
+//  Created by Natalia Drozd on 29.08.22.
+//
+
+import Foundation
+import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseStorage
+import FirebaseFirestore
+
+protocol FirebaseProtocol {
+  //  func configureFB() -> Firestore
+    func getAllDocuments(collection: String, completion: @escaping ([FavouritesHotels?]) -> Void )
+    func writeDate(collectionName: String, docName: String, name: String, url: String)
+    func deleteDocument(collection: String, nameDoc: String)
+    func createUser(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void)
+    func signIn(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void)
+    func signOut()
+   // func checkFavouritesList(collection: String, nameDoc: String)
+}

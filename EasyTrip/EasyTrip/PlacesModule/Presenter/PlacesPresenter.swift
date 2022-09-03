@@ -14,6 +14,7 @@ protocol PlacesViewPresenterProtocol {
     func getArrayPrice() -> [Int]
     func getArrayImage() -> [UIImage]
     func getPhotoByURL(url: String)
+    func getArrayUrl() -> [String]
     func clearArray()
     func tapOnButtonHotels(location: String)
     func tapOnButtonFlights(location: String)
@@ -54,6 +55,7 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
         self.excursionInfo.price.removeAll()
         self.excursionInfo.nameExcursion.removeAll()
         self.excursionInfo.image.removeAll()
+        self.excursionInfo.url.removeAll()
     }
     func getArrayPrice() -> [Int] {
        return excursionInfo.price
@@ -63,6 +65,9 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
     }
     func getArrayImage() -> [UIImage] {
         return excursionInfo.image
+    }
+    func getArrayUrl() -> [String] {
+        return excursionInfo.url
     }
     func getCodeByNameCity(code: String) {
         alamofireProvaider.getNameCityByCode(code: code) { [weak self] result in
@@ -111,11 +116,11 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
                 guard let val = value.data, !val.isEmpty else {
                     self.excursionInfo.nameExcursion.append("Sorry! Not found")
                     self.excursionInfo.price.append(0)
-                    
                     return }
                 for exc in val {
                     guard let nameExc = exc.content, let price = exc.price, let url = exc.photo else { return }
                    // название экскурсий
+                    self.excursionInfo.url.append(url)
                     self.getPhotoByURL(url: url)
                     self.excursionInfo.nameExcursion.append(nameExc)
                     self.excursionInfo.price.append(Int(price))

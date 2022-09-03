@@ -11,9 +11,20 @@ class HotelsCell: UICollectionViewCell {
     static let key = "HotelsCell"
     @IBOutlet weak var nameHotel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var likesButton: UIButton!
+    var url: String!
+    var provaider: FirebaseProtocol!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        provaider = FirebaseManager()
     }
-
+    // по нажатию на кнопку записыавем место в избранное. Ui пока не делала, еще буду менять
+    @IBAction func onButton(_ sender: Any) {
+        guard let name = nameHotel.text, let url = url else {
+            return
+        }
+        provaider.writeDate(collectionName: "favouritesHotels", docName: name, name: name, url: url)
+    }
+    
+    
 }

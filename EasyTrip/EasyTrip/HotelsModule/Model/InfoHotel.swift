@@ -9,11 +9,13 @@ import Foundation
 import UIKit
 
 struct InfoHotel {
-    var arrayNameHotel: [String] = []
-    var arrayImages: [UIImage] = []
+    var arrayNameHotel: [String]
+    var arrayImages: [UIImage]
+    var url: [String]
     
-    init(name: [String] = [], image: [UIImage] = []) {
+    init(name: [String] = [], image: [UIImage] = [], url: [String] = []) {
         self.arrayImages = image
         self.arrayNameHotel = name
+        self.url = url
     }
 }

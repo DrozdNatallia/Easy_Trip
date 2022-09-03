@@ -14,6 +14,7 @@ protocol HotelsViewPresenterProtocol: AnyObject {
     func getArrayNameHotel() -> [String]
     func getPhotoByURL(url: String)
     func getArrayImages() -> [UIImage]
+    func getArrayUrl() -> [String]
     func clearArray()
     func getLocation()
     func tapOnButtonFlights(location: String)
@@ -53,6 +54,9 @@ class HotelsViewPresenter: HotelsViewPresenterProtocol {
     func getArrayImages() -> [UIImage] {
         infoHotels.arrayImages
     }
+    func getArrayUrl() -> [String] {
+        infoHotels.url
+    }
     
     func tapOnButtonPlaces(location: String) {
         router?.showPlacesModule(location: location)
@@ -85,7 +89,8 @@ class HotelsViewPresenter: HotelsViewPresenterProtocol {
                 for hotel in value {
                     guard let nameHotel = hotel.hotelName, let idHotel = hotel.hotelID else { return }
                     self.infoHotels.arrayNameHotel.append(nameHotel)
-                    let url = Constants.getPhotoHotels + "\(idHotel)_1/180/200.auto"
+                    let url = Constants.getPhotoHotels.appending("\(idHotel)_1/180/200.auto")
+                    self.infoHotels.url.append(url)
                     self.getPhotoByURL(url: url)
                     self.view?.updateCollectionView()
                 }

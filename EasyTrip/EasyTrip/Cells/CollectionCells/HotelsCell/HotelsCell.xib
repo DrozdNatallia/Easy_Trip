@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="180" height="200"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error2" translatesAutoresizingMaskIntoConstraints="NO" id="Dei-Gz-ccL">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dei-Gz-ccL">
                         <rect key="frame" x="0.0" y="0.0" width="180" height="200"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHd-CV-5k5">
@@ -26,6 +26,16 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzY-Dq-SFz">
+                        <rect key="frame" x="129.5" y="5" width="45.5" height="31"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                        <connections>
+                            <action selector="onButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Zba-4Y-wxi"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -36,17 +46,20 @@
                 <constraint firstAttribute="trailing" secondItem="Dei-Gz-ccL" secondAttribute="trailing" id="Vio-hr-yDF"/>
                 <constraint firstAttribute="bottom" secondItem="Dei-Gz-ccL" secondAttribute="bottom" id="W4i-6a-bFz"/>
                 <constraint firstItem="hHd-CV-5k5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Z9f-wn-63D"/>
+                <constraint firstAttribute="trailing" secondItem="qzY-Dq-SFz" secondAttribute="trailing" constant="5" id="a7O-2O-Hin"/>
+                <constraint firstItem="qzY-Dq-SFz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="iHx-hv-qUD"/>
                 <constraint firstItem="Dei-Gz-ccL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="jUv-E7-jTw"/>
             </constraints>
             <size key="customSize" width="108" height="103"/>
             <connections>
                 <outlet property="imageView" destination="Dei-Gz-ccL" id="36A-Ah-Izo"/>
+                <outlet property="likesButton" destination="qzY-Dq-SFz" id="uvq-Ov-n4T"/>
                 <outlet property="nameHotel" destination="hHd-CV-5k5" id="ipJ-nA-7bL"/>
             </connections>
             <point key="canvasLocation" x="179.71014492753625" y="84.709821428571431"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="error2" width="390" height="250"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
     </resources>
 </document>
