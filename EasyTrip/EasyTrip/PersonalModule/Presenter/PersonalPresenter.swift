@@ -13,7 +13,7 @@ protocol PersonalViewPresenterProtocol {
     func signOut()
     func deleteUser()
     func getIdCurrentUser()
-    func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL)
+    func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL, sex: Int, city: String)
     func fillField()
     func upload(id: String, image: UIImage, completion: @escaping (Result<URL, Error>) -> Void)
     
@@ -30,13 +30,14 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
         self.firebaseProvaider = provaider
         self.router = router
     }
+    
     func upload(id: String, image: UIImage, completion: @escaping (Result<URL, Error>) -> Void){
         firebaseProvaider.upload(id: id, image: image) { result in
             switch result {
             case .success(_):
                 completion(result)
-            case .failure(_):
-                print("ERROR")
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
@@ -46,10 +47,10 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
             guard let id = id else { return }
             self.firebaseProvaider.getInfoUser(collection: "User", userId: id) { user in
                 if let user = user {
-                    guard let name = user.name, let secondName = user.secondname, let patronicum = user.patronicum, let date = user.dateOfBirth, let url = user.url else { return }
+                    guard let name = user.name, let secondName = user.secondname, let patronicum = user.patronicum, let date = user.dateOfBirth, let url = user.url, let sex = user.sex, let city = user.city else { return }
                     self.firebaseProvaider.getIMageFromStorage(url: url) { [weak self] image in
                         guard let self = self else { return }
-                        self.view.fillTextField(name: name, secondName: secondName, patronicum: patronicum, date: date, image: image)
+                        self.view.fillTextField(name: name, secondName: secondName, patronicum: patronicum, date: date, image: image, sex: sex, city: city)
                     }
                 }
             }
@@ -73,7 +74,7 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
         }
     }
     
-    func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL) {
-        firebaseProvaider.writeUser(collectionName: collectionName, docName: docName, name: name, secondName: secondName, patronumic: patronumic, date: date, url: url)
+    func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL, sex: Int, city: String) {
+        firebaseProvaider.writeUser(collectionName: collectionName, docName: docName, name: name, secondName: secondName, patronumic: patronumic, date: date, url: url, sex: sex, city: city)
     }
 }

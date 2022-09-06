@@ -11,8 +11,8 @@ struct Users {
     var name: String?
     var secondname: String?
     var patronicum: String?
-  //  var city: String?
- //   var sex: String?
+    var city: String?
+    var sex: Int?
     var dateOfBirth: String?
     var url: String?
     

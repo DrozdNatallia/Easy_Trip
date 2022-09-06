@@ -50,8 +50,9 @@
             secondNameUser.text = secondName
             patronymicUser.text = patronicum
             iconImageView.image = image
+            chooseSexUser.selectRow(sex, inComponent: 0, animated: true)
+            
         }
-        
         
         @IBAction func onDeleteAccountButton(_ sender: Any) {
             presenter.deleteUser()
@@ -70,17 +71,20 @@
         }
         
         func writeUser(id: String) {
-            guard let name = nameUser.text, let secondName = secondNameUser.text, let patronymic = patronymicUser.text, let image = iconImageView.image else {
+            let row = chooseSexUser.selectedRow(inComponent: 0)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd-MM-yyyy"
+            let dayBitrh = dateFormatter.string(from: dateBirth.date)
+            
+            guard let name = nameUser.text, let secondName = secondNameUser.text, let patronymic = patronymicUser.text, let image = iconImageView.image, let city = nameCityTextField.text else {
                 return
             }
-            let dateFormatter = DateFormatter()
-            let strDate = dateFormatter.string(from: dateBirth.date)
             presenter.upload(id: id, image: image) { result in
                 switch result {
                 case .success(let url):
-                    self.presenter.writeUser(collectionName: "User", docName: id, name: name, secondName: secondName, patronumic: patronymic, date: strDate, url: url)
-                case .failure(_):
-                    print("ERROR")
+                    self.presenter.writeUser(collectionName: "User", docName: id, name: name, secondName: secondName, patronumic: patronymic, date: dayBitrh, url: url, sex: row, city: city)
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
             }
         }
@@ -106,3 +110,26 @@
             }
         }
     }
+
+extension PersonalViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let pickerDate = ["female", "male"]
+        return pickerDate[row]
+    }
+
+}
+
+extension PersonalViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
