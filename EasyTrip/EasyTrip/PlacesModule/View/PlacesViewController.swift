@@ -15,6 +15,8 @@ protocol PlacesViewProtocol: AnyObject {
 
 class PlacesViewController: UIViewController, PlacesViewProtocol {
 
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    @IBOutlet weak var blur: UIVisualEffectView!
     @IBOutlet weak var endDate: UIDatePicker!
 
     @IBOutlet weak var countChild: UITextField!
@@ -53,6 +55,8 @@ class PlacesViewController: UIViewController, PlacesViewProtocol {
     }
     
     @IBAction func onSearchButton(_ sender: Any) {
+        activity.startAnimating()
+        blur.isHidden = false
         presenter.clearArray()
         guard let name = nameCityArea.text else { return }
         presenter.getCodeByNameCity(code: name)
@@ -66,6 +70,8 @@ class PlacesViewController: UIViewController, PlacesViewProtocol {
     }
     
     func updateTableView() {
+        activity.stopAnimating()
+        blur.isHidden = true
         tableView.reloadData()
     }
 }

@@ -13,6 +13,8 @@ protocol HotelsViewProtocol: AnyObject {
 }
 class HotelsViewController: UIViewController, HotelsViewProtocol {
 
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    @IBOutlet weak var blur: UIVisualEffectView!
     @IBOutlet weak var userLocation: UILabel!
     @IBOutlet weak var personCount: UITextField!
     @IBOutlet weak var checkIn: UIDatePicker!
@@ -48,6 +50,8 @@ class HotelsViewController: UIViewController, HotelsViewProtocol {
         presenter.tapOnButtonPlaces(location: location)
     }
     @IBAction func onSearchButton(_ sender: Any) {
+        blur.isHidden = false
+        activity.startAnimating()
         presenter.clearArray()
         let date = DateFormatter()
         date.dateFormat = "yyyy-MM-dd"
@@ -58,6 +62,8 @@ class HotelsViewController: UIViewController, HotelsViewProtocol {
     }
 
     func updateCollectionView() {
+        blur.isHidden = true
+        activity.stopAnimating()
         self.collectionView.reloadData()
     }
 }

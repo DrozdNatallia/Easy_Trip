@@ -10,10 +10,13 @@
     protocol PersonalViewProtocol: AnyObject {
         func writeUser(id: String)
         func fillTextField(name: String?, secondName: String?, patronicum: String?, date: String?, image: UIImage?, sex: Int?, city: String?)
+        func stopAnimating()
         
     }
     class PersonalViewController: UIViewController, PersonalViewProtocol {
         var presenter: PersonalViewPresenterProtocol!
+        @IBOutlet weak var activity: UIActivityIndicatorView!
+        @IBOutlet weak var blur: UIVisualEffectView!
         @IBOutlet weak var cityUser: UITextField!
         @IBOutlet weak var dateBirth: UIDatePicker!
         @IBOutlet weak var chooseSexUser: UIPickerView!
@@ -32,10 +35,17 @@
             patronymicUser.delegate = self
             nameUser.delegate = self
             secondNameUser.delegate = self
+            blur.isHidden = false
+            activity.startAnimating()
             presenter.fillField()
         }
         @IBAction func onSignOutButton(_ sender: Any) {
             presenter.signOut()
+        }
+        
+        func stopAnimating() {
+            blur.isHidden = true
+            activity.stopAnimating()
         }
         func fillTextField(name: String?, secondName: String?, patronicum: String?, date: String?, image: UIImage?, sex: Int?, city: String?) {
             guard let name = name, let secondName = secondName, let patronicum = patronicum, let date = date, let image = image, let sex = sex, let city = city else { return }

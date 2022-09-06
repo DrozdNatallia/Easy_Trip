@@ -71,7 +71,10 @@ class FirebaseManager: FirebaseProtocol {
                 print(error.localizedDescription)
             }
             if let document = document {
-                guard let name = document.get("name") as? String, let secondName = document.get("secondName") as? String, let patronicum = document.get("patronumic") as? String, let date = document.get("dateOfBirth") as? String, let url = document.get("urlImage") as? String, let sex = document.get("sex") as? Int, let city = document.get("city") as? String else { return }
+                guard let name = document.get("name") as? String, let secondName = document.get("secondName") as? String, let patronicum = document.get("patronumic") as? String, let date = document.get("dateOfBirth") as? String, let url = document.get("urlImage") as? String, let sex = document.get("sex") as? Int, let city = document.get("city") as? String else {
+                    let doc = Users()
+                    completion(doc)
+                    return }
                 let doc = Users(name: name, secondname: secondName, patronicum: patronicum, city: city, sex: sex, dateOfBirth: date, url: url)
                 completion(doc)
             }

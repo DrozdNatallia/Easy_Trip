@@ -12,8 +12,10 @@ protocol FavouritesViewProtocol: AnyObject {
     
 }
     class FavouritesViewController: UIViewController, FavouritesViewProtocol {
+        @IBOutlet weak var activity: UIActivityIndicatorView!
         @IBOutlet weak var typeFavourites: UISegmentedControl!
-    var presenter: FavouritesViewPresenterProtocol!
+        @IBOutlet weak var blur: UIVisualEffectView!
+        var presenter: FavouritesViewPresenterProtocol!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,11 +24,13 @@ protocol FavouritesViewProtocol: AnyObject {
 
         tableView.register(UINib(nibName: "FavouritesViewCell", bundle: nil), forCellReuseIdentifier: FavouritesViewCell.key)
         
-        
+        activity.startAnimating()
         presenter.getAllDocument(collection: "favouritesHotels")
     }
         @IBAction func onSegmentControl(_ sender: Any) {
             presenter.clearArray()
+            blur.isHidden = false
+            activity.startAnimating()
             // в зависимости от сегмент контрола, подгружаем избранное
             if typeFavourites.selectedSegmentIndex == 0 {
                 presenter.getAllDocument(collection: "favouritesHotels")
@@ -36,6 +40,8 @@ protocol FavouritesViewProtocol: AnyObject {
         }
         
         func updateTable() {
+            blur.isHidden = true
+            activity.stopAnimating()
             tableView.reloadData()
         }
 }

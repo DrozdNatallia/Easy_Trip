@@ -20,6 +20,8 @@ protocol FlightsViewProtocol: AnyObject {
 }
 
 class FlightsViewController: UIViewController, FlightsViewProtocol {
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    @IBOutlet weak var blur: UIVisualEffectView!
     @IBOutlet weak var userLocation: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var originCity: UITextField!
@@ -40,6 +42,8 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
     }
     // переделать через async Await, позже переделаю
     @IBAction func onSearchButton(_ sender: Any) {
+        blur.isHidden = false
+        activity.startAnimating()
         let date = DateFormatter()
         date.dateFormat = "yyyy-MM-dd"
         let setDate = date.string(from: datePicker.date)
@@ -64,6 +68,8 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
     }
     
     func setInfoFlights() {
+        blur.isHidden = true
+        activity.stopAnimating()
         tableView.reloadData()
     }
     @IBAction func onPlaceButton(_ sender: Any) {

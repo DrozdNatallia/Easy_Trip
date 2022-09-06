@@ -23,6 +23,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         return manager
     }()
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var blur: UIVisualEffectView!
     // текстовое поле для поиска направлений
     @IBOutlet weak var searchDirection: UITextField!
     @IBOutlet weak var searchButton: UIButton!
@@ -37,6 +39,9 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "PopularFlightsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: PopularFlightsCollectionViewCell.key)
+        
+        blur.isHidden = false
+        activityIndicator.startAnimating()
         // экземпляр класса в котором хранится массив имен популярных городов, и картинок
         coreManager.delegate = self
         coreManager.requestWhenInUseAuthorization()
@@ -62,6 +67,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     
     // поиск по заданному направлению
     @IBAction func onSearchButton(_ sender: Any) {
+        blur.isHidden = false
+        activityIndicator.startAnimating()
         presenter.clearArrays()
         guard let nameDirection = searchDirection.text else {return}
         // функция конвертирует полное имя в IATA - код
@@ -72,6 +79,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     func setPopularFlights(city: String, isName: Bool){
         //если получили полное имя(т.к. может быть код), то добавдяем в массив и обновляем таблицу
         if isName {
+            blur.isHidden = true
+            activityIndicator.stopAnimating()
             self.collectionView.reloadData()
         } else {
             // если получен код, то вызываем функцию для получения популярных полетов

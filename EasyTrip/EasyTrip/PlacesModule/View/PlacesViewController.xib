@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlacesViewController" customModule="EasyTrip" customModuleProvider="target">
             <connections>
+                <outlet property="activity" destination="2Rx-C2-Qd0" id="OAh-ig-n42"/>
+                <outlet property="blur" destination="WL1-Fk-8md" id="pFX-E3-Zau"/>
                 <outlet property="countAdults" destination="L5i-26-cPN" id="PR9-Ya-Qu7"/>
                 <outlet property="countChild" destination="FDr-jm-slm" id="ufc-Lt-A5Z"/>
                 <outlet property="endDate" destination="t4V-Ra-O2m" id="8PF-vn-183"/>
@@ -228,6 +230,24 @@
                     <rect key="frame" x="10" y="445" width="394" height="403.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WL1-Fk-8md">
+                    <rect key="frame" x="0.0" y="445" width="414" height="417"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ak7-wD-37z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="417"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="2Rx-C2-Qd0">
+                                <rect key="frame" x="188.5" y="190" width="37" height="37"/>
+                                <color key="color" systemColor="secondarySystemBackgroundColor"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="2Rx-C2-Qd0" firstAttribute="centerY" secondItem="Ak7-wD-37z" secondAttribute="centerY" id="0Jl-ll-mJW"/>
+                            <constraint firstItem="2Rx-C2-Qd0" firstAttribute="centerX" secondItem="Ak7-wD-37z" secondAttribute="centerX" id="6wS-Yr-R05"/>
+                        </constraints>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
@@ -241,13 +261,17 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WnC-PQ-eMj" secondAttribute="trailing" id="Pkl-M0-FGQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pp5-xY-V1q" secondAttribute="trailing" constant="10" id="Pot-Y3-EVf"/>
                 <constraint firstItem="WnC-PQ-eMj" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.08" id="RiG-dg-P9x"/>
+                <constraint firstItem="WL1-Fk-8md" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="RuV-WY-Jdy"/>
                 <constraint firstItem="h8Q-LE-tat" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="U6R-je-gJV"/>
+                <constraint firstItem="WL1-Fk-8md" firstAttribute="top" secondItem="zkP-0p-LCU" secondAttribute="bottom" multiplier="1.05" id="Wdm-LQ-Yk1"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zkP-0p-LCU" secondAttribute="trailing" constant="10" id="bWP-Xn-aoC"/>
+                <constraint firstItem="WL1-Fk-8md" firstAttribute="height" secondItem="h8Q-LE-tat" secondAttribute="height" multiplier="1.03346" id="ore-nf-C6g"/>
                 <constraint firstItem="h8Q-LE-tat" firstAttribute="top" secondItem="zkP-0p-LCU" secondAttribute="bottom" multiplier="1.05" id="qSl-yq-bgd"/>
                 <constraint firstItem="WnC-PQ-eMj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qaK-wc-Zcz"/>
                 <constraint firstItem="zkP-0p-LCU" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.25" id="rr8-49-Y1W"/>
                 <constraint firstItem="zkP-0p-LCU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="rxF-1a-AEC"/>
                 <constraint firstItem="pp5-xY-V1q" firstAttribute="height" secondItem="WnC-PQ-eMj" secondAttribute="height" multiplier="0.65" id="vEf-XK-TtP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WL1-Fk-8md" secondAttribute="trailing" id="wRJ-Rg-Zhz"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="66.964285714285708"/>
         </view>

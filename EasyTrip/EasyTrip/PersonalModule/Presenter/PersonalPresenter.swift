@@ -45,9 +45,11 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
     func fillField() {
         firebaseProvaider.getCurrentUserId { id in
             guard let id = id else { return }
-            self.firebaseProvaider.getInfoUser(collection: "User", userId: id) { user in
+            self.firebaseProvaider.getInfoUser(collection: "User", userId: id) { [weak self] user in
+                guard let self = self else { return }
                 if let user = user {
-                    guard let name = user.name, let secondName = user.secondname, let patronicum = user.patronicum, let date = user.dateOfBirth, let url = user.url, let sex = user.sex, let city = user.city else { return }
+                    guard let name = user.name, let secondName = user.secondname, let patronicum = user.patronicum, let date = user.dateOfBirth, let url = user.url, let sex = user.sex, let city = user.city else { self.view.stopAnimating()
+                        return }
                     self.firebaseProvaider.getIMageFromStorage(url: url) { [weak self] image in
                         guard let self = self else { return }
                         self.view.fillTextField(name: name, secondName: secondName, patronicum: patronicum, date: date, image: image, sex: sex, city: city)

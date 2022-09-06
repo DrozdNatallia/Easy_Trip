@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavouritesViewController" customModule="EasyTrip" customModuleProvider="target">
             <connections>
+                <outlet property="activity" destination="V4r-XQ-snp" id="6mu-LO-LYp"/>
+                <outlet property="blur" destination="CZP-0E-OMN" id="DoU-k1-c6e"/>
                 <outlet property="tableView" destination="fHj-Ss-ldb" id="OzI-Jj-uiq"/>
                 <outlet property="typeFavourites" destination="Zb9-nq-maD" id="P3w-kQ-lGY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -41,18 +43,40 @@
                     <rect key="frame" x="20" y="181.5" width="374" height="627"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CZP-0E-OMN">
+                    <rect key="frame" x="0.0" y="181.5" width="414" height="627"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="HRp-Ou-pAK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="627"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="V4r-XQ-snp">
+                                <rect key="frame" x="188.5" y="295" width="37" height="37"/>
+                                <color key="color" systemColor="secondarySystemBackgroundColor"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="V4r-XQ-snp" firstAttribute="centerY" secondItem="HRp-Ou-pAK" secondAttribute="centerY" id="d9L-Ga-3Bu"/>
+                            <constraint firstItem="V4r-XQ-snp" firstAttribute="centerX" secondItem="HRp-Ou-pAK" secondAttribute="centerX" id="gRF-t5-vDw"/>
+                        </constraints>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fHj-Ss-ldb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="2vh-1l-x2E"/>
+                <constraint firstItem="CZP-0E-OMN" firstAttribute="top" secondItem="Zb9-nq-maD" secondAttribute="bottom" multiplier="1.2" id="93e-Lo-7OI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Zb9-nq-maD" secondAttribute="trailing" constant="20" id="CcX-iJ-kg0"/>
                 <constraint firstItem="Zb9-nq-maD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="GV1-Fq-sT5"/>
                 <constraint firstItem="LHV-Ml-hb7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="IS7-J3-Uum"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fHj-Ss-ldb" secondAttribute="trailing" constant="20" id="MVM-8S-cjQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CZP-0E-OMN" secondAttribute="trailing" id="U64-VI-ssR"/>
                 <constraint firstItem="LHV-Ml-hb7" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.05" id="XxS-Ne-bzi"/>
                 <constraint firstItem="fHj-Ss-ldb" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.7" id="e2x-xU-Plo"/>
                 <constraint firstItem="Zb9-nq-maD" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.04" id="jcT-sb-Z0d"/>
+                <constraint firstItem="CZP-0E-OMN" firstAttribute="height" secondItem="fHj-Ss-ldb" secondAttribute="height" id="jm8-sz-qkB"/>
+                <constraint firstItem="CZP-0E-OMN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="luI-y8-ZQY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LHV-Ml-hb7" secondAttribute="trailing" id="nMA-eQ-r0J"/>
                 <constraint firstItem="fHj-Ss-ldb" firstAttribute="top" secondItem="Zb9-nq-maD" secondAttribute="bottom" multiplier="1.2" id="t6G-gm-6L0"/>
                 <constraint firstItem="LHV-Ml-hb7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vyy-cW-6bG"/>
