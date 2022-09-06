@@ -30,6 +30,9 @@ class PlacesViewController: UIViewController, PlacesViewProtocol {
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: "PlacesViewCell", bundle: nil), forCellReuseIdentifier: PlacesViewCell.key)
+        countChild.delegate = self
+        countAdults.delegate = self
+        nameCityArea.delegate = self
         presenter.getLocation()
     }
     func setLocation(location: String) {
@@ -87,4 +90,11 @@ extension PlacesViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     
+}
+
+extension PlacesViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

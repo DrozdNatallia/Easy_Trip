@@ -34,6 +34,8 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
         
         tableView.register(UINib(nibName: "FlightsViewCell", bundle: nil), forCellReuseIdentifier: FlightsViewCell.key)
         
+        originCity.delegate = self
+        destinationCity.delegate = self
         presenter.getLocation()
     }
     // переделать через async Await, позже переделаю
@@ -110,5 +112,12 @@ extension FlightsViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+    }
+}
+
+extension FlightsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

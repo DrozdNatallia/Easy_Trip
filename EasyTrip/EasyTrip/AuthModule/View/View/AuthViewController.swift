@@ -45,6 +45,10 @@ class AuthViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        passwordUser.delegate = self
+        emailUser.delegate = self
+        nameUser.delegate = self
+        
     }
     func closeVc() {
         dismiss(animated: true)
@@ -70,4 +74,11 @@ class AuthViewController
         signUp = !signUp
     }
     
+}
+
+extension AuthViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

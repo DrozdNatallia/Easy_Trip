@@ -25,6 +25,9 @@ class HotelsViewController: UIViewController, HotelsViewProtocol {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UINib(nibName: "HotelsCell", bundle: nil), forCellWithReuseIdentifier: HotelsCell.key)
+        
+        personCount.delegate = self
+        nameCityTextField.delegate = self
         presenter.getLocation()
     }
     
@@ -74,4 +77,11 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
        return UICollectionViewCell()
     }
     
+}
+
+extension HotelsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

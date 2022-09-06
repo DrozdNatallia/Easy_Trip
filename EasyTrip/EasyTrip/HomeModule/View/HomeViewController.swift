@@ -33,7 +33,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     var presenter: HomeViewPresenterProtocol!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        searchDirection.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "PopularFlightsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: PopularFlightsCollectionViewCell.key)
@@ -122,5 +122,12 @@ extension HomeViewController: CLLocationManagerDelegate {
             }
         }
         coreManager.stopUpdatingLocation()
+    }
+}
+
+extension HomeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
