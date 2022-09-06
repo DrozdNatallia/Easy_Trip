@@ -71,11 +71,8 @@ class FirebaseManager: FirebaseProtocol {
                 print(error.localizedDescription)
             }
             if let document = document {
-                guard let name = document.get("name") as? String, let secondName = document.get("secondName") as? String, let patronicum = document.get("patronumic") as? String, let date = document.get("dateOfBirth") as? String, let url = document.get("urlImage") as? String else {
-                    return
-                }
-                print (url)
-                let doc = Users(name: name, secondname: secondName, patronicum: patronicum, dateOfBirth: date, url: url)
+                guard let name = document.get("name") as? String, let secondName = document.get("secondName") as? String, let patronicum = document.get("patronumic") as? String, let date = document.get("dateOfBirth") as? String, let url = document.get("urlImage") as? String, let sex = document.get("sex") as? Int, let city = document.get("city") as? String else { return }
+                let doc = Users(name: name, secondname: secondName, patronicum: patronicum, city: city, sex: sex, dateOfBirth: date, url: url)
                 completion(doc)
             }
         }
@@ -94,13 +91,15 @@ class FirebaseManager: FirebaseProtocol {
         }
     }
     
-    func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL) {
+    func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL, sex: Int, city: String) {
         db.collection(collectionName).document(docName).setData([
             "name": name,
             "secondName": secondName,
             "patronumic": patronumic,
             "dateOfBirth" : date,
-            "urlImage" : url.absoluteString
+            "urlImage" : url.absoluteString,
+            "sex" : sex,
+            "city" : city
         ]) { err in
             if let err = err {
                 print(err.localizedDescription)

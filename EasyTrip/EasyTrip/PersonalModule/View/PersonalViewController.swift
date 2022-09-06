@@ -9,7 +9,7 @@
     import FirebaseStorage
     protocol PersonalViewProtocol: AnyObject {
         func writeUser(id: String)
-        func fillTextField(name: String?, secondName: String?, patronicum: String?, date: String?, image: UIImage?)
+        func fillTextField(name: String?, secondName: String?, patronicum: String?, date: String?, image: UIImage?, sex: Int?, city: String?)
         
     }
     class PersonalViewController: UIViewController, PersonalViewProtocol {
@@ -23,19 +23,29 @@
         @IBOutlet weak var chooseImageButton: UIButton!
         @IBOutlet weak var patronymicUser: UITextField!
         @IBOutlet weak var nameCityTextField: UITextField!
-        
         override func viewDidLoad() {
             super.viewDidLoad()
-            presenter.fillField()
+            chooseSexUser.dataSource = self
+            chooseSexUser.delegate = self
             
+            nameCityTextField.delegate = self
+            patronymicUser.delegate = self
+            nameUser.delegate = self
+            secondNameUser.delegate = self
+            presenter.fillField()
         }
-        
         @IBAction func onSignOutButton(_ sender: Any) {
             presenter.signOut()
         }
-        
-        func fillTextField(name: String?, secondName: String?, patronicum: String?, date: String?, image: UIImage?) {
-            guard let name = name, let secondName = secondName, let patronicum = patronicum, let date = date, let image = image else { return }
+        func fillTextField(name: String?, secondName: String?, patronicum: String?, date: String?, image: UIImage?, sex: Int?, city: String?) {
+            guard let name = name, let secondName = secondName, let patronicum = patronicum, let date = date, let image = image, let sex = sex, let city = city else { return }
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd-MM-yyyy"
+            let dayBirth = dateFormatter.date(from: date)
+            if let dayBirth = dayBirth {
+                dateBirth.date = dayBirth
+            }
+            nameCityTextField.text = city
             nameUser.text = name
             secondNameUser.text = secondName
             patronymicUser.text = patronicum

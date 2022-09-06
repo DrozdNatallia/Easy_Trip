@@ -22,7 +22,7 @@ protocol FirebaseProtocol {
     func signIn(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void)
     func signOut()
     func getCurrentUserId(completion: @escaping (String?) -> Void)
-    func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL)
+    func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL, sex: Int, city: String)
     func deleteUser()
     func getInfoUser(collection: String, userId: String, completion: @escaping (Users?) -> Void )
    // func checkFavouritesList(collection: String, nameDoc: String)
