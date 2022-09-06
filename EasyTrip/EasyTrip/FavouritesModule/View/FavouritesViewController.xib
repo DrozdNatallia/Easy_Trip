@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,13 +22,12 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHV-Ml-hb7">
                     <rect key="frame" x="0.0" y="44" width="414" height="45"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                    <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Zb9-nq-maD">
-                    <rect key="frame" x="20" y="115.5" width="374" height="63.5"/>
+                    <rect key="frame" x="20" y="115.5" width="374" height="37"/>
                     <segments>
                         <segment title="Hotels"/>
                         <segment title="Places"/>
@@ -38,12 +38,12 @@
                     </connections>
                 </segmentedControl>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fHj-Ss-ldb">
-                    <rect key="frame" x="20" y="214" width="374" height="582"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="20" y="181.5" width="374" height="627"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fHj-Ss-ldb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="2vh-1l-x2E"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Zb9-nq-maD" secondAttribute="trailing" constant="20" id="CcX-iJ-kg0"/>
@@ -51,8 +51,8 @@
                 <constraint firstItem="LHV-Ml-hb7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="IS7-J3-Uum"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fHj-Ss-ldb" secondAttribute="trailing" constant="20" id="MVM-8S-cjQ"/>
                 <constraint firstItem="LHV-Ml-hb7" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.05" id="XxS-Ne-bzi"/>
-                <constraint firstItem="fHj-Ss-ldb" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.65" id="e2x-xU-Plo"/>
-                <constraint firstItem="Zb9-nq-maD" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.07" id="jcT-sb-Z0d"/>
+                <constraint firstItem="fHj-Ss-ldb" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.7" id="e2x-xU-Plo"/>
+                <constraint firstItem="Zb9-nq-maD" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.04" id="jcT-sb-Z0d"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LHV-Ml-hb7" secondAttribute="trailing" id="nMA-eQ-r0J"/>
                 <constraint firstItem="fHj-Ss-ldb" firstAttribute="top" secondItem="Zb9-nq-maD" secondAttribute="bottom" multiplier="1.2" id="t6G-gm-6L0"/>
                 <constraint firstItem="LHV-Ml-hb7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vyy-cW-6bG"/>
@@ -62,4 +62,9 @@
             <point key="canvasLocation" x="137.68115942028987" y="66.964285714285708"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

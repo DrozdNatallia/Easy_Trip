@@ -75,6 +75,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="Jg9-BW-Ohu" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.3" id="3Jd-Ez-y3i"/>
                     <constraint firstItem="Jg9-BW-Ohu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="7Fr-Uw-pBW"/>
@@ -92,7 +93,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="departAt" destination="PNj-dS-wk0" id="BjI-00-AxT"/>
                 <outlet property="destination" destination="wM1-Qe-ucV" id="iVU-Tg-jkT"/>
