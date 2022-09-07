@@ -46,25 +46,6 @@ class FirebaseManager: FirebaseProtocol {
         }
     }
     
-    
-    // получение всех документов
-    func getAllDocuments(collection: String, completion: @escaping ([FavouritesHotels?]) -> Void ) {
-        db.collection(collection).getDocuments { querySnapshot, error in
-            if let err = error {
-                print(err.localizedDescription)
-            }
-            if let querySnapshot = querySnapshot {
-                var res: [FavouritesHotels?] = []
-                for document in querySnapshot.documents {
-                    guard let name = document.get("name") as? String, let url = document.get("url") as? String else { return }
-                    let doc = FavouritesHotels(name: name, url: url)
-                    res.append(doc)
-                }
-                completion(res)
-            }
-        }
-    }
-    
     func getInfoUser(collection: String, userId: String, completion: @escaping (Users?) -> Void) {
         db.collection(collection).document(userId).getDocument { document, error in
             if let error = error {
@@ -163,18 +144,32 @@ class FirebaseManager: FirebaseProtocol {
             }
         }
     }
-    // буду позже использовать
-    //    func checkFavouritesList(collection: String, nameDoc: String) {
-    //        print(db.collection(collection).whereField("name", isEqualTo: nameDoc))
-    //        db.collection(collection).whereField("name", isEqualTo: "Minsk")
-    //            .getDocuments() { (querySnapshot, err) in
-    //                if let err = err {
-    //                    print("Error getting documents: \(err)")
-    //                } else {
-    //                    for document in querySnapshot!.documents {
-    //                        print(document.data())
-    //                }
-    //            }
-    //        }
-    //    }
+    
+    func writeFavourites(collection: String, docName: String, hotels: [String : String]) {
+        db.collection(collection).document(docName).setData([
+            "favourites": hotels
+            ]) { err in
+                if let err = err {
+                    print(err.localizedDescription)
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+    }
+    
+    func getAllFavouritesDocuments(collection: String, docName: String, completion: @escaping (FavouritesHotels?) -> Void ) {
+        db.collection(collection).document(docName).getDocument { querySnapshot, error in
+            if let err = error {
+                print(err.localizedDescription)
+            }
+            guard let document = querySnapshot else { return }
+                if let name = document.get("favourites") as? [String : String] {
+                    let doc = FavouritesHotels(favourites: name)
+                completion(doc)
+                 } else {
+                completion(nil)
+            }
+        }
+    }
+
 }

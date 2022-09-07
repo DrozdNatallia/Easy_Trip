@@ -7,7 +7,12 @@
 
 import Foundation
 
+//struct FavouritesHotels {
+//    var name: String
+//    var url: String
+//}
+
+
 struct FavouritesHotels {
-    var name: String
-    var url: String
+    var favourites: [String : String]
 }

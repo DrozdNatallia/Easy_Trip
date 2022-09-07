@@ -15,7 +15,6 @@ import FirebaseFirestore
 protocol FirebaseProtocol {
     func getIMageFromStorage(url: String, completion: @escaping (UIImage?) -> Void)
     func upload(id: String, image: UIImage, completion: @escaping (Result<URL, Error>) -> Void)
-    func getAllDocuments(collection: String, completion: @escaping ([FavouritesHotels?]) -> Void )
     func writeDate(collectionName: String, docName: String, name: String, url: String)
     func deleteDocument(collection: String, nameDoc: String)
     func createUser(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void)
@@ -25,5 +24,6 @@ protocol FirebaseProtocol {
     func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL, sex: Int, city: String, completion: @escaping (String?) -> Void)
     func deleteUser()
     func getInfoUser(collection: String, userId: String, completion: @escaping (Users?) -> Void )
-   // func checkFavouritesList(collection: String, nameDoc: String)
+    func getAllFavouritesDocuments(collection: String, docName: String, completion: @escaping (FavouritesHotels?) -> Void )
+    func writeFavourites(collection: String, docName: String, hotels: [String : String])
 }

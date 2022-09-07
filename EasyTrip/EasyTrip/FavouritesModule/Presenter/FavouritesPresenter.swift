@@ -13,14 +13,15 @@ import FirebaseStorage
 import FirebaseFirestore
 
 protocol FavouritesViewPresenterProtocol {
-    func getAllDocument(collection: String)
     func getImagebyURLFavourites(url: String)
     func deleteDocument(collection: String, name: String)
     func deleteElementFromArray(num: Int)
     func getArrayName() -> [String]
     func getArrayImage() -> [UIImage]
     func clearArray()
-    
+    func getCurrentUserId(completion: @escaping (String?) -> Void)
+    func getAllFavouritesDocument(collection: String, docName: String)
+    func deleteElementFromFavourites(collection: String, docName: String, key: String)
 }
 
 final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
@@ -36,7 +37,7 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
         self.router = router
     }
     func getArrayImage() -> [UIImage] {
-         favourites.image
+        favourites.image
     }
     
     func getArrayName() -> [String] {
@@ -52,39 +53,55 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
         favourites.image.remove(at: num)
     }
     
-
-// получение всех документов по имени коллекции
-    func getAllDocument(collection: String) {
-        firebaseProvaider.getAllDocuments(collection: collection) { [weak self] list in
-            guard let self = self else { return }
+    func getAllFavouritesDocument(collection: String, docName: String) {
+        firebaseProvaider.getAllFavouritesDocuments(collection: collection, docName: docName) { [weak self] places in
+            guard let self = self, let places = places else { return }
             DispatchQueue.global(qos: .userInteractive).async {
-                for list in list {
-                    guard let name = list?.name, let url = list?.url else { return }
-                    self.favourites.name.append(name)
-                    self.getImagebyURLFavourites(url: url)
-                    //self.view?.updateTable()
-                }
-                DispatchQueue.main.sync {
-                    self.view?.updateTable()
+                let favouritesPlaces = places.favourites
+                for (key, value) in favouritesPlaces {
+                    self.favourites.name.append(key)
+                    self.getImagebyURLFavourites(url: value)
+                    DispatchQueue.main.sync {
+                        self.view?.updateTable()
+                    }
                 }
             }
         }
     }
     
+    func deleteElementFromFavourites(collection: String, docName: String, key: String){
+        firebaseProvaider.getAllFavouritesDocuments(collection: collection, docName: docName) { [weak self] favourites in
+            guard let self = self, let places = favourites else { return }
+            var favourites = places.favourites
+            favourites.removeValue(forKey: key)
+            self.firebaseProvaider.writeFavourites(collection: collection, docName: docName, hotels: favourites)
+            
+        }
+    }
     func getImagebyURLFavourites(url: String) {
-          if let url = URL(string: url) {
-              do {
-                  let data = try Data(contentsOf: url)
-                  guard let icon = UIImage(data: data) else {return}
-                  self.favourites.image.append(icon)
-              } catch let error {
-                  print(error.localizedDescription)
-              }
-          }
+        if let url = URL(string: url) {
+            do {
+                let data = try Data(contentsOf: url)
+                guard let icon = UIImage(data: data) else {return}
+                self.favourites.image.append(icon)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
     }
     
     func deleteDocument(collection: String, name: String){
         firebaseProvaider.deleteDocument(collection: collection, nameDoc: name)
+    }
+    
+    func getCurrentUserId(completion: @escaping (String?) -> Void) {
+        firebaseProvaider.getCurrentUserId { id in
+            if id != nil {
+                completion(id)
+            } else {
+                completion(nil)
+            }
+        }
     }
 }
 
