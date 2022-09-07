@@ -94,7 +94,7 @@ class FirebaseManager: FirebaseProtocol {
         }
     }
     
-    func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL, sex: Int, city: String) {
+    func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL, sex: Int, city: String, completion: @escaping (String?) -> Void) {
         db.collection(collectionName).document(docName).setData([
             "name": name,
             "secondName": secondName,
@@ -105,9 +105,11 @@ class FirebaseManager: FirebaseProtocol {
             "city" : city
         ]) { err in
             if let err = err {
+                completion(nil)
                 print(err.localizedDescription)
             } else {
-                print("Document successfully written!")
+                print("Success")
+                completion("Success")
             }
         }
     }

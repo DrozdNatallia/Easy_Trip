@@ -40,7 +40,24 @@
             presenter.fillField()
         }
         @IBAction func onSignOutButton(_ sender: Any) {
+            clearField()
             presenter.signOut()
+        }
+        func showAlert() {
+            let alert = UIAlertController(title: "Success", message: nil, preferredStyle: .alert)
+            let button = UIAlertAction(title: "Ok", style: .cancel)
+            alert.addAction(button)
+            stopAnimating()
+            self.present(alert, animated: true)
+        }
+        func clearField(){
+            nameUser.text = ""
+            nameCityTextField.text = ""
+            patronymicUser.text = ""
+            secondNameUser.text = ""
+            iconImageView.image = UIImage()
+            dateBirth.date = Date()
+            //dateBirth.setDate(Date(), animated: false)
         }
         
         func stopAnimating() {
@@ -77,6 +94,8 @@
         }
         
         @IBAction func onSaveButton(_ sender: Any) {
+            blur.isHidden = false
+            activity.startAnimating()
             presenter.getIdCurrentUser()
         }
         
