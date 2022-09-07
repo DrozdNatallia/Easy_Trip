@@ -16,10 +16,12 @@ protocol PlacesViewPresenterProtocol {
     func getPhotoByURL(url: String)
     func getArrayUrl() -> [String]
     func clearArray()
-    func tapOnButtonHotels(location: String)
-    func tapOnButtonFlights(location: String)
+    func tapOnButtonHotels(location: String, icon: UIImage)
+    func tapOnButtonFlights(location: String, icon: UIImage)
     func tapOnButtonExplore()
+    func addIconImage()
     func getLocation()
+    func writeDate(collectionName: String, docName: String, name: String, url: String)
 }
 
 final class PlacesViewPresenter: PlacesViewPresenterProtocol {
@@ -28,20 +30,28 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
     private var router: RouterProtocol?
     private var alamofireProvaider: RestAPIProviderProtocol!
     private var location: String?
+    private var firebaseProvaider: FirebaseProtocol!
+    var icon: UIImage?
     
-    required init(view: PlacesViewProtocol, info: InfoExcursion, provaider: RestAPIProviderProtocol, router: RouterProtocol, location: String) {
+    required init(view: PlacesViewProtocol, info: InfoExcursion, provaider: RestAPIProviderProtocol, router: RouterProtocol, location: String, firebase: FirebaseProtocol, icon: UIImage?) {
         self.view = view
         self.excursionInfo = info
         self.alamofireProvaider = provaider
         self.router = router
         self.location = location
+        self.firebaseProvaider = firebase
+        self.icon = icon
+    }
+    func addIconImage() {
+        guard let image = icon else {return}
+        self.view?.setIconImage(image: image)
     }
     
-    func tapOnButtonHotels(location: String) {
-        router?.showHotelsModule(location: location)
+    func tapOnButtonHotels(location: String, icon: UIImage) {
+        router?.showHotelsModule(location: location, icon: icon)
     }
-    func tapOnButtonFlights(location: String) {
-        router?.showFlightsModule(location: location)
+    func tapOnButtonFlights(location: String, icon: UIImage) {
+        router?.showFlightsModule(location: location, icon: icon)
     }
     func tapOnButtonExplore() {
         router?.popToRoot()
@@ -130,6 +140,10 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func writeDate(collectionName: String, docName: String, name: String, url: String) {
+        firebaseProvaider.writeDate(collectionName: collectionName, docName: docName, name: name, url: url)
     }
 }
 

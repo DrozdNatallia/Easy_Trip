@@ -16,9 +16,10 @@ protocol HomeViewPresenterProtocol {
     func getArrayNameCity() -> [String]
     func getArrayImageCity() -> [UIImage]
     func clearArrays()
-    func tapOnButton(location: String)
-    func tapOnButtonHotels(location: String)
-    func tapOnButtonPlaces(location: String)
+    func tapOnButton(location: String, icon: UIImage?)
+    func tapOnButtonHotels(location: String, icon: UIImage)
+    func tapOnButtonPlaces(location: String, icon: UIImage)
+    func addImageFromStorage()
 }
 
 final class HomeViewPresenter: HomeViewPresenterProtocol {
@@ -26,23 +27,38 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
     private var popularCityInfo: PopulareCityDate
     private var router: RouterProtocol?
     private var alamofireProvaider: RestAPIProviderProtocol!
-    
-    required init(view: HomeViewProtocol, info: PopulareCityDate, provaider: RestAPIProviderProtocol, router: RouterProtocol) {
+    private var firebaseProvaider: FirebaseProtocol!
+    required init(view: HomeViewProtocol, info: PopulareCityDate, provaider: RestAPIProviderProtocol, router: RouterProtocol, firebase: FirebaseProtocol) {
         self.view = view
         self.popularCityInfo = info
         self.alamofireProvaider = provaider
         self.router = router
+        self.firebaseProvaider = firebase
     }
     
-    func tapOnButton(location: String) {
-        router?.showFlightsModule(location: location )
-    }
-    func tapOnButtonHotels(location: String) {
-        router?.showHotelsModule(location: location)
+    func addImageFromStorage() {
+        firebaseProvaider.getCurrentUserId { [weak self] id in
+            guard let self = self else {return}
+            guard let id = id else { return }
+            self.firebaseProvaider.getInfoUser(collection: "User", userId: id) { [weak self] user in
+                guard let self = self, let user = user, let url = user.url else { return }
+                self.firebaseProvaider.getIMageFromStorage(url: url) { [weak self]image in
+                    guard let self = self, let image = image else { return }
+                    self.view?.updateIcon(image: image)
+                }
+            }
+        }
     }
     
-    func tapOnButtonPlaces(location: String) {
-        router?.showPlacesModule(location: location)
+    func tapOnButton(location: String, icon: UIImage?) {
+        router?.showFlightsModule(location: location, icon: icon )
+    }
+    func tapOnButtonHotels(location: String, icon: UIImage) {
+        router?.showHotelsModule(location: location, icon: icon)
+    }
+    
+    func tapOnButtonPlaces(location: String, icon: UIImage) {
+        router?.showPlacesModule(location: location, icon: icon)
     }
     
     func getArrayNameCity() -> [String] {

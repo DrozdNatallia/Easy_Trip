@@ -17,9 +17,10 @@ protocol HotelsViewPresenterProtocol: AnyObject {
     func getArrayUrl() -> [String]
     func clearArray()
     func getLocation()
-    func tapOnButtonFlights(location: String)
-    func tapOnButtonPlaces(location: String)
+    func tapOnButtonFlights(location: String, icon: UIImage)
+    func tapOnButtonPlaces(location: String, icon: UIImage)
     func tapOnButtonExplore()
+    func getIconImage()
 }
 
 
@@ -30,13 +31,20 @@ class HotelsViewPresenter: HotelsViewPresenterProtocol {
     private var alamofireProvaider: RestAPIProviderProtocol!
     private var router: RouterProtocol?
     private var location: String?
+    var icon: UIImage?
     
-    required init(view: HotelsViewProtocol, info: InfoHotel, provaider: RestAPIProviderProtocol, location: String, router: RouterProtocol) {
+    required init(view: HotelsViewProtocol, info: InfoHotel, provaider: RestAPIProviderProtocol, location: String, router: RouterProtocol, icon: UIImage?) {
         self.view = view
         self.infoHotels = info
         self.alamofireProvaider = provaider
         self.router = router
         self.location = location
+        self.icon = icon
+    }
+    
+    func getIconImage() {
+        guard let image = icon else {return}
+        self.view?.addIconImage(image: image)
     }
     
     func getLocation() {
@@ -58,12 +66,12 @@ class HotelsViewPresenter: HotelsViewPresenterProtocol {
         infoHotels.url
     }
     
-    func tapOnButtonPlaces(location: String) {
-        router?.showPlacesModule(location: location)
+    func tapOnButtonPlaces(location: String, icon: UIImage) {
+        router?.showPlacesModule(location: location, icon: icon)
     }
     
-    func tapOnButtonFlights(location: String) {
-        router?.showFlightsModule(location: location)
+    func tapOnButtonFlights(location: String, icon: UIImage) {
+        router?.showFlightsModule(location: location, icon: icon)
     }
     func tapOnButtonExplore() {
         router?.popToRoot()

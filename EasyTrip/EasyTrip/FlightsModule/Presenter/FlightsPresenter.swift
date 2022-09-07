@@ -7,16 +7,17 @@
 
 import UIKit
 protocol FlightsViewPresenterProtocol: AnyObject {
-    init(view: FlightsViewProtocol, info: InfoFlight, provaider: RestAPIProviderProtocol, router: RouterProtocol, location: String)
+    init(view: FlightsViewProtocol, info: InfoFlight, provaider: RestAPIProviderProtocol, router: RouterProtocol, location: String, icon: UIImage?)
     func getFlightsInfo(originName: String, destinationName: String, date: String)
     func getArrayInfo(type: TypeDate) -> [Any]
     func getCodeCityByName(code: String, completion: @escaping (String) -> Void)
     func getImage() -> [UIImage]
     func getIconbyURL(url: String)
     func getLocation()
-    func tapOnButtonHotels(location: String)
-    func tapOnButtonPlaces(location: String)
+    func tapOnButtonHotels(location: String, icon: UIImage)
+    func tapOnButtonPlaces(location: String, icon: UIImage)
     func tapOnButtonExplore()
+    func getIconImage()
 }
 
 
@@ -26,21 +27,27 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
     private var alamofireProvaider: RestAPIProviderProtocol!
     private var router: RouterProtocol?
     private var location: String?
+    private var icon: UIImage?
     
-    required init(view: FlightsViewProtocol, info: InfoFlight, provaider: RestAPIProviderProtocol, router: RouterProtocol, location: String) {
+    required init(view: FlightsViewProtocol, info: InfoFlight, provaider: RestAPIProviderProtocol, router: RouterProtocol, location: String, icon: UIImage?) {
         self.view = view
         self.infoFlights = info
         self.alamofireProvaider = provaider
         self.router = router
         self.location = location
-    }
+        self.icon = icon
 
-    func tapOnButtonHotels(location: String) {
-        router?.showHotelsModule(location: location)
+    }
+    func getIconImage() {
+        guard let image = icon else {return}
+        self.view?.updateIcon(image: image)
+    }
+    func tapOnButtonHotels(location: String, icon: UIImage) {
+        router?.showHotelsModule(location: location, icon: icon)
     }
     
-    func tapOnButtonPlaces(location: String) {
-        router?.showPlacesModule(location: location)
+    func tapOnButtonPlaces(location: String, icon: UIImage) {
+        router?.showPlacesModule(location: location, icon: icon)
     }
     
     func tapOnButtonExplore() {

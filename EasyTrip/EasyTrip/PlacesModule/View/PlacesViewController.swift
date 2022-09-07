@@ -11,6 +11,7 @@ protocol PlacesViewProtocol: AnyObject {
     func updateTableView()
     func setInfoExc(code: String)
     func setLocation(location: String)
+    func setIconImage(image: UIImage)
 }
 
 class PlacesViewController: UIViewController, PlacesViewProtocol {
@@ -19,6 +20,7 @@ class PlacesViewController: UIViewController, PlacesViewProtocol {
     @IBOutlet weak var blur: UIVisualEffectView!
     @IBOutlet weak var endDate: UIDatePicker!
 
+    @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var countChild: UITextField!
     @IBOutlet weak var countAdults: UITextField!
     @IBOutlet weak var startDate: UIDatePicker!
@@ -35,7 +37,12 @@ class PlacesViewController: UIViewController, PlacesViewProtocol {
         countChild.delegate = self
         countAdults.delegate = self
         nameCityArea.delegate = self
+        presenter.addIconImage()
         presenter.getLocation()
+    }
+    
+    func setIconImage(image: UIImage) {
+        iconImage.image = image
     }
     func setLocation(location: String) {
         userLocation.text = location
@@ -46,12 +53,12 @@ class PlacesViewController: UIViewController, PlacesViewProtocol {
     }
     
     @IBAction func onFlightsButton(_ sender: Any) {
-        guard let location = userLocation.text else { return }
-        presenter.tapOnButtonFlights(location: location)
+        guard let location = userLocation.text, let image = iconImage.image else { return }
+        presenter.tapOnButtonFlights(location: location, icon: image)
     }
     @IBAction func onHotelsButton(_ sender: Any) {
-        guard let location = userLocation.text else { return }
-        presenter.tapOnButtonHotels(location: location)
+        guard let location = userLocation.text, let image = iconImage.image else { return }
+        presenter.tapOnButtonHotels(location: location, icon: image)
     }
     
     @IBAction func onSearchButton(_ sender: Any) {

@@ -9,10 +9,12 @@ import UIKit
 protocol HotelsViewProtocol: AnyObject {
     func updateCollectionView()
     func setLocation(location: String)
+    func addIconImage(image: UIImage)
     
 }
 class HotelsViewController: UIViewController, HotelsViewProtocol {
 
+    @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var blur: UIVisualEffectView!
     @IBOutlet weak var userLocation: UILabel!
@@ -30,7 +32,11 @@ class HotelsViewController: UIViewController, HotelsViewProtocol {
         
         personCount.delegate = self
         nameCityTextField.delegate = self
+        presenter.getIconImage()
         presenter.getLocation()
+    }
+    func addIconImage(image: UIImage) {
+        iconImage.image = image
     }
     
     func setLocation(location: String) {
@@ -42,12 +48,12 @@ class HotelsViewController: UIViewController, HotelsViewProtocol {
     }
     
     @IBAction func onFlightsButton(_ sender: Any) {
-        guard let location = userLocation.text else { return }
-        presenter.tapOnButtonFlights(location: location)
+        guard let location = userLocation.text, let image = iconImage.image else { return }
+        presenter.tapOnButtonFlights(location: location, icon: image)
     }
     @IBAction func onPlaceButton(_ sender: Any) {
-        guard let location = userLocation.text else { return }
-        presenter.tapOnButtonPlaces(location: location)
+        guard let location = userLocation.text, let image = iconImage.image else { return }
+        presenter.tapOnButtonPlaces(location: location, icon: image)
     }
     @IBAction func onSearchButton(_ sender: Any) {
         blur.isHidden = false

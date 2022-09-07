@@ -17,9 +17,9 @@ protocol RouterProtocol: RouterMain {
     func initialViewController()
     func initialTabBArController()
     func showRegistration()
-    func showFlightsModule(location: String)
-    func showHotelsModule(location: String)
-    func showPlacesModule(location: String)
+    func showFlightsModule(location: String, icon: UIImage?)
+    func showHotelsModule(location: String, icon: UIImage?)
+    func showPlacesModule(location: String, icon: UIImage?)
     func popToRoot()
     func initFavouritesViewControllers()
     func initPersonalViewControllers()
@@ -73,23 +73,23 @@ class Router: RouterProtocol {
         }
     }
     
-    func showFlightsModule(location: String) {
+    func showFlightsModule(location: String, icon: UIImage?) {
         if let navigationController = navigationController {
-            guard let flightsViewController = assemblyBuilder?.createFlightsModule(location: location, router: self) else { return }
+            guard let flightsViewController = assemblyBuilder?.createFlightsModule(location: location, image: icon, router: self) else { return }
             navigationController.pushViewController(flightsViewController, animated: true)
         }
     }
     
-    func showHotelsModule(location: String) {
+    func showHotelsModule(location: String, icon: UIImage?) {
         if let navigationController = navigationController {
-            guard let hotelsViewController = assemblyBuilder?.createHotelsModule(location: location, router: self) else { return }
+            guard let hotelsViewController = assemblyBuilder?.createHotelsModule(location: location, image: icon, router: self) else { return }
             navigationController.pushViewController(hotelsViewController, animated: true)
         }
     }
     
-    func showPlacesModule(location: String) {
+    func showPlacesModule(location: String, icon: UIImage?) {
         if let navigationController = navigationController {
-            guard let placesViewController = assemblyBuilder?.createPlacesModule(location: location, router: self) else { return }
+            guard let placesViewController = assemblyBuilder?.createPlacesModule(location: location, image: icon, router: self) else { return }
             navigationController.pushViewController(placesViewController, animated: true)
         }
     }

@@ -11,6 +11,7 @@ import CoreLocation
 
 protocol HomeViewProtocol: AnyObject {
     func setPopularFlights(city: String, isName: Bool)
+    func updateIcon(image: UIImage)
 }
 // Попыталась переделать паттерн, не факт, что правильно, но как есть. Возможно, немного смесь получилась
 class HomeViewController: UIViewController, HomeViewProtocol {
@@ -23,6 +24,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         return manager
     }()
+    @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var blur: UIVisualEffectView!
     // текстовое поле для поиска направлений
@@ -39,30 +41,33 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "PopularFlightsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: PopularFlightsCollectionViewCell.key)
-        
         blur.isHidden = false
         activityIndicator.startAnimating()
-        // экземпляр класса в котором хранится массив имен популярных городов, и картинок
         coreManager.delegate = self
         coreManager.requestWhenInUseAuthorization()
+  //      self.presenter.addImageFromStorage()
         
     }
     // функция для работы pageControl
       func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         pageControl.currentPage = Int(targetContentOffset.pointee.x / view.frame.width)
     }
+    
+    func updateIcon(image: UIImage) {
+        iconImageView.image = image
+    }
     @IBAction func onHotelsButton(_ sender: Any) {
-        guard let location = userLocation.text else { return }
-        presenter.tapOnButtonHotels(location: location)
+        guard let location = userLocation.text, let icon = iconImageView.image else { return }
+        presenter.tapOnButtonHotels(location: location, icon: icon)
     }
     
     @IBAction func onPlacesButton(_ sender: Any) {
-        guard let location = userLocation.text else { return }
-        presenter.tapOnButtonPlaces(location: location)
+        guard let location = userLocation.text, let icon = iconImageView.image else { return }
+        presenter.tapOnButtonPlaces(location: location, icon: icon)
     }
     @IBAction func onFlightsButton(_ sender: Any) {
         guard let location = userLocation.text else { return }
-        presenter.tapOnButton(location: location)
+        presenter.tapOnButton(location: location, icon: iconImageView.image)
     }
     
     // поиск по заданному направлению
@@ -127,6 +132,7 @@ extension HomeViewController: CLLocationManagerDelegate {
             if let placemarks = placemarks, let placemark = placemarks.first, let locality = placemark.locality, self.userLocation.text == "" {
                 // функция вызывается 3 раза так как стоит kCLLocationAccuracyBest, чтоб запрос тоже не вызывался 3 раза присваиваю значение, только если его не было. Обновляется при каждом запуске приложения, больше Геолокация не нужна. Другого способа пока не придумала
                     self.userLocation.text = locality
+                    self.presenter.addImageFromStorage()
                     self.presenter.getNamePopularCityByCode(code: locality, isName: false)
             }
         }

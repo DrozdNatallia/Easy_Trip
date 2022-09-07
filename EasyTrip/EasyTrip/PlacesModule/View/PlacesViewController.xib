@@ -15,6 +15,7 @@
                 <outlet property="countAdults" destination="L5i-26-cPN" id="PR9-Ya-Qu7"/>
                 <outlet property="countChild" destination="FDr-jm-slm" id="ufc-Lt-A5Z"/>
                 <outlet property="endDate" destination="t4V-Ra-O2m" id="8PF-vn-183"/>
+                <outlet property="iconImage" destination="gmj-hQ-8Ca" id="gqq-RD-x1g"/>
                 <outlet property="nameCityArea" destination="dwl-Wz-MXy" id="i1F-t5-ZSi"/>
                 <outlet property="startDate" destination="Pdg-2N-3Xb" id="a2v-CC-za0"/>
                 <outlet property="tableView" destination="h8Q-LE-tat" id="GRo-AZ-pGs"/>

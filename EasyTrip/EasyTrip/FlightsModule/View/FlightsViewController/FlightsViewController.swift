@@ -17,9 +17,12 @@ extension Date {
 protocol FlightsViewProtocol: AnyObject {
     func setInfoFlights()
     func setLocation(location: String)
+    func updateIcon(image: UIImage)
+   
 }
 
 class FlightsViewController: UIViewController, FlightsViewProtocol {
+    @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var blur: UIVisualEffectView!
     @IBOutlet weak var userLocation: UILabel!
@@ -38,6 +41,7 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
         
         originCity.delegate = self
         destinationCity.delegate = self
+        presenter.getIconImage()
         presenter.getLocation()
     }
     // переделать через async Await, позже переделаю
@@ -63,6 +67,9 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
         presenter.tapOnButtonExplore()
     }
     
+    func updateIcon(image: UIImage) {
+        iconImage.image = image
+    }
     func setLocation(location: String) {
         self.userLocation.text = location
     }
@@ -73,13 +80,13 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
         tableView.reloadData()
     }
     @IBAction func onPlaceButton(_ sender: Any) {
-        guard let location = userLocation.text else { return }
-        presenter.tapOnButtonPlaces(location: location)
+        guard let location = userLocation.text, let icon = iconImage.image else { return }
+        presenter.tapOnButtonPlaces(location: location, icon: icon)
     }
     
     @IBAction func onHotelsButton(_ sender: Any) {
-        guard let location = userLocation.text else { return }
-        presenter.tapOnButtonHotels(location: location)
+        guard let location = userLocation.text, let icon = iconImage.image else { return }
+        presenter.tapOnButtonHotels(location: location, icon: icon)
     }
 }
 

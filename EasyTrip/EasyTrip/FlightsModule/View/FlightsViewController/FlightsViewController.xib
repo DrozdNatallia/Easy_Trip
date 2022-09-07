@@ -14,6 +14,7 @@
                 <outlet property="blur" destination="WyE-AL-db8" id="94X-PG-3pR"/>
                 <outlet property="datePicker" destination="Y2q-c1-ji4" id="WUh-9u-h2Q"/>
                 <outlet property="destinationCity" destination="gro-pW-DNa" id="Z8d-yA-Hsk"/>
+                <outlet property="iconImage" destination="DRO-z7-Gtw" id="ljM-vN-Sb1"/>
                 <outlet property="originCity" destination="IUz-BE-cEl" id="UfQ-Xd-ozO"/>
                 <outlet property="tableView" destination="tt5-3l-aQR" id="MVh-Cn-9MI"/>
                 <outlet property="userLocation" destination="uVK-Z0-aQn" id="hGT-S6-Km5"/>

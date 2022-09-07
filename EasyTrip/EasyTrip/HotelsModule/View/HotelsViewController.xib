@@ -15,6 +15,7 @@
                 <outlet property="checkIn" destination="OoE-m5-yQQ" id="c03-PG-ZiY"/>
                 <outlet property="checkOut" destination="cR1-0e-xcM" id="zdL-h0-Yhr"/>
                 <outlet property="collectionView" destination="sJP-qz-eDc" id="T1S-2Q-Z4D"/>
+                <outlet property="iconImage" destination="VQ1-hU-aEM" id="IRn-zP-p1F"/>
                 <outlet property="nameCityTextField" destination="9No-yQ-FcH" id="rwY-Rh-UTV"/>
                 <outlet property="personCount" destination="sE6-fs-rdg" id="0ad-E8-Omf"/>
                 <outlet property="userLocation" destination="EsX-of-dKt" id="6E6-jV-IEg"/>
