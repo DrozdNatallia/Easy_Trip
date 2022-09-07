@@ -37,7 +37,6 @@
                                         <rect key="frame" x="324" y="3" width="70" height="68"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" systemColor="labelColor"/>
-                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
@@ -48,7 +47,7 @@
                                     <constraint firstItem="kZP-pM-huI" firstAttribute="width" secondItem="jVV-WG-jn6" secondAttribute="width" multiplier="0.55" id="dEP-Ks-q38"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="Lql-VM-M8A">
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lql-VM-M8A">
                                 <rect key="frame" x="10" y="127" width="394" height="72"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HTk-qW-Ym6">
@@ -78,8 +77,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="NxP-KA-E4Q" firstAttribute="width" secondItem="Lql-VM-M8A" secondAttribute="width" multiplier="0.15" id="CM7-o9-Cte"/>
-                                    <constraint firstItem="HTk-qW-Ym6" firstAttribute="width" secondItem="Lql-VM-M8A" secondAttribute="width" multiplier="0.85" id="bxQ-tC-KHd"/>
+                                    <constraint firstItem="NxP-KA-E4Q" firstAttribute="width" secondItem="Lql-VM-M8A" secondAttribute="width" multiplier="0.15" id="g7G-vK-Vpv"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="NDd-fJ-B5F">
@@ -184,7 +182,6 @@
                             <constraint firstItem="jVV-WG-jn6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="AHJ-Jt-T07"/>
                             <constraint firstItem="jVV-WG-jn6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="AQT-Qm-P1m"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7zt-Nk-4SY" secondAttribute="trailing" id="DhY-OE-u3J"/>
-                            <constraint firstItem="Lql-VM-M8A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Drx-GG-Fet"/>
                             <constraint firstItem="LWb-lo-unT" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="HWF-1t-zew"/>
                             <constraint firstItem="ugS-qd-0M6" firstAttribute="top" secondItem="LWb-lo-unT" secondAttribute="bottom" constant="7.5" id="HoT-al-og3"/>
                             <constraint firstItem="LWb-lo-unT" firstAttribute="top" secondItem="NDd-fJ-B5F" secondAttribute="bottom" multiplier="1.2" id="PQ8-E5-H4V"/>
@@ -193,7 +190,8 @@
                             <constraint firstItem="Lql-VM-M8A" firstAttribute="top" secondItem="jVV-WG-jn6" secondAttribute="bottom" multiplier="1.1" id="X5Z-yu-7gj"/>
                             <constraint firstItem="ugS-qd-0M6" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.4" id="YEK-aP-ffH"/>
                             <constraint firstItem="Lql-VM-M8A" firstAttribute="height" secondItem="jVV-WG-jn6" secondAttribute="height" id="fFR-PL-XsZ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Lql-VM-M8A" secondAttribute="trailing" constant="10" id="gGD-5U-eMY"/>
+                            <constraint firstItem="Lql-VM-M8A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="fIL-v0-xdt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Lql-VM-M8A" secondAttribute="trailing" constant="10" id="fMN-ky-UBy"/>
                             <constraint firstItem="NDd-fJ-B5F" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="io7-9L-olB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jVV-WG-jn6" secondAttribute="trailing" constant="10" id="m1S-H9-4Zf"/>
                             <constraint firstItem="jVV-WG-jn6" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.08" id="nVd-XD-dDl"/>
@@ -204,6 +202,7 @@
                         <outlet property="activityIndicator" destination="Edi-iX-mb9" id="Ln1-0l-u7p"/>
                         <outlet property="blur" destination="7zt-Nk-4SY" id="98e-tS-1mI"/>
                         <outlet property="collectionView" destination="LWb-lo-unT" id="igf-lY-PTn"/>
+                        <outlet property="iconImageView" destination="RHq-MO-e1O" id="Phl-9a-efW"/>
                         <outlet property="pageControl" destination="ugS-qd-0M6" id="Ck9-IA-b6S"/>
                         <outlet property="searchButton" destination="NxP-KA-E4Q" id="ZPt-oa-hCV"/>
                         <outlet property="searchDirection" destination="HTk-qW-Ym6" id="59K-IX-eIy"/>
