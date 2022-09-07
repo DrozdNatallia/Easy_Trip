@@ -16,6 +16,7 @@ protocol PersonalViewPresenterProtocol {
     func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL, sex: Int, city: String)
     func fillField()
     func upload(id: String, image: UIImage, completion: @escaping (Result<URL, Error>) -> Void)
+    func deleteDocument(id: String)
     
 }
 
@@ -42,6 +43,10 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
         }
     }
     
+    func deleteDocument(id: String) {
+        firebaseProvaider.deleteDocument(collection: "User", nameDoc: id)
+    }
+    
     func fillField() {
         firebaseProvaider.getCurrentUserId { id in
             guard let id = id else { return }
@@ -52,7 +57,7 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
                         return }
                     self.firebaseProvaider.getIMageFromStorage(url: url) { [weak self] image in
                         guard let self = self else { return }
-                        self.view.fillTextField(name: name, secondName: secondName, patronicum: patronicum, date: date, image: image, sex: sex, city: city)
+                        self.view.fillTextField(name: name, secondName: secondName, patronicum: patronicum, date: date, image: image, sex: sex, city: city, id: id)
                     }
                 }
             }
@@ -77,6 +82,11 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
     }
     
     func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL, sex: Int, city: String) {
-        firebaseProvaider.writeUser(collectionName: collectionName, docName: docName, name: name, secondName: secondName, patronumic: patronumic, date: date, url: url, sex: sex, city: city)
+        firebaseProvaider.writeUser(collectionName: collectionName, docName: docName, name: name, secondName: secondName, patronumic: patronumic, date: date, url: url, sex: sex, city: city) { result in
+            guard result != nil else {
+                return
+            }
+            self.view.showAlert()
+        }
     }
 }

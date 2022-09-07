@@ -9,8 +9,9 @@
     import FirebaseStorage
     protocol PersonalViewProtocol: AnyObject {
         func writeUser(id: String)
-        func fillTextField(name: String?, secondName: String?, patronicum: String?, date: String?, image: UIImage?, sex: Int?, city: String?)
+        func fillTextField(name: String?, secondName: String?, patronicum: String?, date: String?, image: UIImage?, sex: Int?, city: String?, id: String?)
         func stopAnimating()
+        func showAlert()
         
     }
     class PersonalViewController: UIViewController, PersonalViewProtocol {
@@ -26,6 +27,7 @@
         @IBOutlet weak var chooseImageButton: UIButton!
         @IBOutlet weak var patronymicUser: UITextField!
         @IBOutlet weak var nameCityTextField: UITextField!
+        var idUser: String!
         override func viewDidLoad() {
             super.viewDidLoad()
             chooseSexUser.dataSource = self
@@ -64,8 +66,9 @@
             blur.isHidden = true
             activity.stopAnimating()
         }
-        func fillTextField(name: String?, secondName: String?, patronicum: String?, date: String?, image: UIImage?, sex: Int?, city: String?) {
-            guard let name = name, let secondName = secondName, let patronicum = patronicum, let date = date, let image = image, let sex = sex, let city = city else { return }
+        func fillTextField(name: String?, secondName: String?, patronicum: String?, date: String?, image: UIImage?, sex: Int?, city: String?, id: String?) {
+            stopAnimating()
+            guard let name = name, let secondName = secondName, let patronicum = patronicum, let date = date, let image = image, let sex = sex, let city = city, let id = id else { return }
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd-MM-yyyy"
             let dayBirth = dateFormatter.date(from: date)
@@ -78,11 +81,15 @@
             patronymicUser.text = patronicum
             iconImageView.image = image
             chooseSexUser.selectRow(sex, inComponent: 0, animated: true)
+            idUser = id
             
         }
         
         @IBAction func onDeleteAccountButton(_ sender: Any) {
             presenter.deleteUser()
+            guard idUser != nil else { return }
+            presenter.deleteDocument(id: idUser)
+            
         }
         
         
