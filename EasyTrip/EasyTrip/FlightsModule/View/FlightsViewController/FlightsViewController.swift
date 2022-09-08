@@ -112,11 +112,11 @@ extension FlightsViewController: UITableViewDelegate, UITableViewDataSource {
                 
             }
             let image = presenter.getImage()[indexPath.section]
-            let price = "\(presenter.getArrayInfo(type: .price)[indexPath.section])"
-            let transfer = "пересадок: \(presenter.getArrayInfo(type: .transfer)[indexPath.section])"
+            let price = "\(presenter.getArrayInfo(type: .price)[indexPath.section])$"
+            let transfer = "transfer: \(presenter.getArrayInfo(type: .transfer)[indexPath.section])"
             let origin = "\(presenter.getArrayInfo(type: .origin)[indexPath.section])"
             let destination = "\(presenter.getArrayInfo(type: .destination)[indexPath.section])"
-            let flightTime = "\(presenter.getArrayInfo(type: .duration)[indexPath.section])"
+            let flightTime = "in flight: \(presenter.getArrayInfo(type: .duration)[indexPath.section])"
             
             cell.presenter.getInfoFlight(originCity: origin, destinationCity: destination, priceFlights: price, transferFlight: transfer, flightTime: flightTime, icon: image)
             //            let dateFormatter = ISO8601DateFormatter()
