@@ -13,7 +13,6 @@
                 <outlet property="buttonSign" destination="Xha-gs-bEG" id="RN6-IO-u6U"/>
                 <outlet property="emailUser" destination="JoP-b9-MkR" id="99p-DC-HVq"/>
                 <outlet property="enterButton" destination="SiA-rM-apu" id="9nA-Jd-PRd"/>
-                <outlet property="nameUser" destination="8yn-bC-9YR" id="P7n-Al-ikd"/>
                 <outlet property="passwordUser" destination="LuP-rq-mxZ" id="KUz-VL-VHw"/>
                 <outlet property="questionLabel" destination="q55-7C-tMX" id="rV5-Zx-LRp"/>
                 <outlet property="titleLabel" destination="1Sb-G9-EWK" id="gWe-XS-bzv"/>
@@ -35,26 +34,20 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="khK-QX-zav">
                     <rect key="frame" x="41.5" y="228" width="331" height="170"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8yn-bC-9YR">
-                            <rect key="frame" x="0.0" y="0.0" width="331" height="39"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
-                        </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JoP-b9-MkR">
-                            <rect key="frame" x="0.0" y="44" width="331" height="39"/>
+                            <rect key="frame" x="0.0" y="0.0" width="331" height="53"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" textContentType="email"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LuP-rq-mxZ">
-                            <rect key="frame" x="0.0" y="88" width="331" height="39"/>
+                            <rect key="frame" x="0.0" y="58" width="331" height="53"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xha-gs-bEG">
-                            <rect key="frame" x="0.0" y="132" width="331" height="38"/>
+                            <rect key="frame" x="0.0" y="116" width="331" height="54"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
