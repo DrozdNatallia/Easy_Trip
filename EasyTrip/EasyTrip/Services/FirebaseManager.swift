@@ -75,8 +75,7 @@ class FirebaseManager: FirebaseProtocol {
                 completion(nil)
                 print(err.localizedDescription)
             } else {
-                print("Success")
-                completion("Success")
+                completion("Document successfully written!")
             }
         }
     }

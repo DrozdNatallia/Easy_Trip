@@ -11,7 +11,7 @@ import UIKit
 protocol PLacesCellPresenterProtocol{
     func fieldCell(image: UIImage, excPrice: String, name: String, urlPlaces: String)
     func getAllFavouritesDocuments(id: String, name: String, url: String)
-    func writeFafourites(id: String, dictionary: [String : String])
+    func writeFavourites(id: String, dictionary: [String : String])
     func getCurrentUserId()
 }
 
@@ -38,16 +38,16 @@ class PlacesCellPresenter: PLacesCellPresenterProtocol {
         firebaseProvaider.getAllFavouritesDocuments(collection: "favouritesPlaces", docName: id) { [weak self] list in
             guard let self = self else { return }
             if list == nil {
-                self.writeFafourites(id: id, dictionary: [name : url])
+                self.writeFavourites(id: id, dictionary: [name : url])
             } else {
                 guard var dictionary = list?.favourites else { return }
                 dictionary[name] = "\(url)"
-                self.writeFafourites(id: id, dictionary: dictionary)
+                self.writeFavourites(id: id, dictionary: dictionary)
             }
         }
     }
     
-    func writeFafourites(id: String, dictionary: [String : String]){
+    func writeFavourites(id: String, dictionary: [String : String]){
         self.firebaseProvaider.writeFavourites(collection: "favouritesPlaces", docName: id, hotels: dictionary)
     }
 }
