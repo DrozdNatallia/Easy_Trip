@@ -14,7 +14,7 @@ protocol PlacesViewProtocol: AnyObject {
     func setIconImage(image: UIImage)
 }
 
-class PlacesViewController: UIViewController, PlacesViewProtocol {
+class PlacesViewController: UIViewController, PlacesViewProtocol, PlacesCellDelegate {
 
     @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var blur: UIVisualEffectView!
@@ -82,6 +82,14 @@ class PlacesViewController: UIViewController, PlacesViewProtocol {
         blur.isHidden = true
         tableView.reloadData()
     }
+    
+    func showAlertFromCell(cell: PlacesCellProtocol, didTapButton button: UIButton) {
+            let alert = UIAlertController(title: "Added to favourites", message: nil, preferredStyle: .alert)
+            let button = UIAlertAction(title: "Ok", style: .cancel)
+            alert.addAction(button)
+            present(alert, animated: true)
+    }
+   
 }
 
 
@@ -95,6 +103,7 @@ extension PlacesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: PlacesViewCell.key) as? PlacesViewCell {
+            cell.delegate = self
             cell.presenter.fieldCell(image: presenter.getArrayImage()[indexPath.section], excPrice: presenter.getArrayPrice()[indexPath.section].description, name: presenter.getArrayNameExc()[indexPath.section], urlPlaces: presenter.getArrayUrl()[indexPath.section])
             return cell
         }

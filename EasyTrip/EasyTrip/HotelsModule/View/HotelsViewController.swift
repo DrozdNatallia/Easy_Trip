@@ -72,6 +72,13 @@ class HotelsViewController: UIViewController, HotelsViewProtocol, HotelsCellDele
         activity.stopAnimating()
         self.collectionView.reloadData()
     }
+    
+    func showAlertFromCell(cell: HotelsCellProtocol, didTapButton button: UIButton) {
+        let alert = UIAlertController(title: "Added to favourites", message: nil, preferredStyle: .alert)
+        let button = UIAlertAction(title: "Ok", style: .cancel)
+        alert.addAction(button)
+        present(alert, animated: true)
+    }
 }
 
 extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
