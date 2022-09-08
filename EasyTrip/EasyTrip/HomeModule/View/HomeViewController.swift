@@ -45,6 +45,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         activityIndicator.startAnimating()
         coreManager.delegate = self
         coreManager.requestWhenInUseAuthorization()
+   //     print(presenter.getArrayImageCity())
   //      self.presenter.addImageFromStorage()
         
     }
@@ -102,8 +103,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularFlightsCollectionViewCell.key, for: indexPath) as? PopularFlightsCollectionViewCell {
-            cell.namePopularCity.text = presenter.getArrayNameCity()[indexPath.row]
-            cell.imagePopularCity.image = presenter.getArrayImageCity()[indexPath.row]
+            cell.presenter.getInfoPopularCity(name: presenter.getArrayNameCity()[indexPath.row], image: presenter.getArrayImageCity()[indexPath.row])
             return cell
         }
         return UICollectionViewCell()

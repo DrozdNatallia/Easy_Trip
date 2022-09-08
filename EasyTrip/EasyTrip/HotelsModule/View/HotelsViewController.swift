@@ -81,9 +81,7 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
     // не получается закинуть ячкейки в презетнер (
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HotelsCell.key, for: indexPath) as? HotelsCell {
-            cell.nameHotel.text = presenter.getArrayNameHotel()[indexPath.row]
-            cell.imageView.image = presenter.getArrayImages()[indexPath.row]
-            cell.url = presenter.getArrayUrl()[indexPath.row]
+            cell.presenter.getInfoHotels(name: presenter.getArrayNameHotel()[indexPath.row], image: presenter.getArrayImages()[indexPath.row], url: presenter.getArrayUrl()[indexPath.row])
             return cell
         }
        return UICollectionViewCell()

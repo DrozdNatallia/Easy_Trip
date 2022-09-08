@@ -34,6 +34,7 @@ class PlacesViewController: UIViewController, PlacesViewProtocol {
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: "PlacesViewCell", bundle: nil), forCellReuseIdentifier: PlacesViewCell.key)
+        
         countChild.delegate = self
         countAdults.delegate = self
         nameCityArea.delegate = self
@@ -94,10 +95,7 @@ extension PlacesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: PlacesViewCell.key) as? PlacesViewCell {
-            cell.excursionImage.image = presenter.getArrayImage()[indexPath.section]
-            cell.nameExcursion.text = presenter.getArrayNameExc()[indexPath.section]
-            cell.price.text = presenter.getArrayPrice()[indexPath.section].description
-            cell.url = presenter.getArrayUrl()[indexPath.section]
+            cell.presenter.fieldCell(image: presenter.getArrayImage()[indexPath.section], excPrice: presenter.getArrayPrice()[indexPath.section].description, name: presenter.getArrayNameExc()[indexPath.section], urlPlaces: presenter.getArrayUrl()[indexPath.section])
             return cell
         }
         return UITableViewCell()

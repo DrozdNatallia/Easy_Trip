@@ -6,35 +6,42 @@
 //
 
 import UIKit
-
-class HotelsCell: UICollectionViewCell {
+protocol HotelsCellProtocol: AnyObject {
+    func fillField(name: String, image: UIImage, hotelsUrl: String)
+    func setIdUser(id: String)
+    
+}
+class HotelsCell: UICollectionViewCell, HotelsCellProtocol {
     static let key = "HotelsCell"
     @IBOutlet weak var nameHotel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var likesButton: UIButton!
+    var presenter: HotelsCellPresenterProtocol!
     var url: String!
     var provaider: FirebaseProtocol!
     private var userId: String!
     override func awakeFromNib() {
         super.awakeFromNib()
-        provaider = FirebaseManager()
-        provaider.getCurrentUserId { id in
-            guard let id = id else { return }
-            self.userId = id
-        }
+        configure()
+        presenter.getIdUser()
+    }
+    private func configure(){
+        let firebase = FirebaseManager()
+        presenter = HotelsCellPresenter(view: self, firebase: firebase)
+    }
+    func setIdUser(id: String){
+        userId = id
+    }
+    
+    func fillField(name: String, image: UIImage, hotelsUrl: String) {
+        nameHotel.text = name
+        imageView.image = image
+        url = hotelsUrl
     }
     // по нажатию на кнопку записыавем место в избранное. Ui пока не делала, еще буду менять
     @IBAction func onButton(_ sender: Any) {
+        likesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         guard let name = nameHotel.text, let url = url, let id = userId  else { return }
-        provaider.getAllFavouritesDocuments(collection: "favouritesHotels", docName: id) { [weak self] favourites in
-            guard let self = self else { return }
-            if favourites == nil {
-                self.provaider.writeFavourites(collection: "favouritesHotels", docName: id, hotels: [name : url])
-            } else {
-                guard var dictionary = favourites?.favourites else { return }
-                dictionary[name] = "\(url)"
-                self.provaider.writeFavourites(collection: "favouritesHotels", docName: id, hotels: dictionary)
-            }
-        }
+        presenter.getFavouritesHotels(id: id, name: name, url: url)
     }
 }

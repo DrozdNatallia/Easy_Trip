@@ -64,8 +64,7 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // добавоение избранного в ячейки. Удаления пока нет,сделаю позже, не решила где именно будет реализовано
         if let cell = tableView.dequeueReusableCell(withIdentifier: FavouritesViewCell.key) as? FavouritesViewCell {
-            cell.name.text = presenter.getArrayName()[indexPath.section]
-            cell.favouritesImage.image = presenter.getArrayImage()[indexPath.section]
+            cell.presenter.getInfoFavourites(nameFavourites: presenter.getArrayName()[indexPath.section], image: presenter.getArrayImage()[indexPath.section])
             return cell
         }
         return UITableViewCell()

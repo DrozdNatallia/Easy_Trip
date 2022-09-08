@@ -6,14 +6,25 @@
 //
 
 import UIKit
-
-class PopularFlightsCollectionViewCell: UICollectionViewCell {
+protocol PopularCellProtocol: AnyObject {
+    func fillField(name: String, image: UIImage)
+}
+class PopularFlightsCollectionViewCell: UICollectionViewCell, PopularCellProtocol {
     @IBOutlet weak var imagePopularCity: UIImageView!
     @IBOutlet weak var namePopularCity: UILabel!
     static let key = "PopularFlightsCollectionViewCell"
+    var presenter: PopularCellPresenterProtocol!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        configure()
+    }
+    private func configure(){
+        presenter = PopularCellPresenter(view: self)
+    }
+    
+    func fillField(name: String, image: UIImage){
+        imagePopularCity.image = image
+        namePopularCity.text = name
     }
 
 }

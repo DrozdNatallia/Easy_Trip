@@ -21,7 +21,6 @@ protocol PlacesViewPresenterProtocol {
     func tapOnButtonExplore()
     func addIconImage()
     func getLocation()
-    func writeDate(collectionName: String, docName: String, name: String, url: String)
 }
 
 final class PlacesViewPresenter: PlacesViewPresenterProtocol {
@@ -140,10 +139,6 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
                 print(error.localizedDescription)
             }
         }
-    }
-    
-    func writeDate(collectionName: String, docName: String, name: String, url: String) {
-        firebaseProvaider.writeDate(collectionName: collectionName, docName: docName, name: name, url: url)
     }
 }
 

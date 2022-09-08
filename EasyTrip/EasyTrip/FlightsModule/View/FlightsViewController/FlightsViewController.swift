@@ -111,16 +111,17 @@ extension FlightsViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.departAt.text = dateFormatter.string(from: isoDate)
                 
             }
+            let image = presenter.getImage()[indexPath.section]
+            let price = "\(presenter.getArrayInfo(type: .price)[indexPath.section])"
+            let transfer = "пересадок: \(presenter.getArrayInfo(type: .transfer)[indexPath.section])"
+            let origin = "\(presenter.getArrayInfo(type: .origin)[indexPath.section])"
+            let destination = "\(presenter.getArrayInfo(type: .destination)[indexPath.section])"
+            let flightTime = "\(presenter.getArrayInfo(type: .duration)[indexPath.section])"
+            
+            cell.presenter.getInfoFlight(originCity: origin, destinationCity: destination, priceFlights: price, transferFlight: transfer, flightTime: flightTime, icon: image)
             //            let dateFormatter = ISO8601DateFormatter()
             //            let date = dateFormatter.date(from:isoDate)?.convertToTimeZone(initTimeZone: TimeZone(secondsFromGMT: 0) ?? .current, timeZone: TimeZone.current)
             //            print(date)
-            
-            cell.iconAirlines.image = presenter.getImage()[indexPath.section]
-            cell.price.text = "\(presenter.getArrayInfo(type: .price)[indexPath.section]) $"
-            cell.transfer.text = "пересадок: \(presenter.getArrayInfo(type: .transfer)[indexPath.section])"
-            cell.origin.text = "\(presenter.getArrayInfo(type: .origin)[indexPath.section])"
-            cell.destination.text = "\(presenter.getArrayInfo(type: .destination)[indexPath.section])"
-            cell.timeInFlight.text = "\(presenter.getArrayInfo(type: .duration)[indexPath.section])"
             //  cell.returnAt.text = "\(presenter.getArrayInfo(type: .arrave)[indexPath.row])"
             return cell
         }

@@ -6,43 +6,50 @@
 //
 
 import UIKit
-
-class PlacesViewCell: UITableViewCell {
+protocol PlacesCellProtocol: AnyObject {
+    func fieldCell(image: UIImage, excPrice: String, name: String, urlPlaces: String)
+    func setUserId(id: String)
+}
+class PlacesViewCell: UITableViewCell, PlacesCellProtocol {
 static let key = "PlacesViewCell"
 
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var excursionImage: UIImageView!
     @IBOutlet weak var nameExcursion: UILabel!
+    @IBOutlet weak var likesButton: UIButton!
     var firebase: FirebaseProtocol!
+    var presenter: PLacesCellPresenterProtocol!
     var url: String!
     private var userId: String!
-    var dict: [String : String]!
     override func awakeFromNib() {
         super.awakeFromNib()
-        firebase = FirebaseManager()
-        firebase.getCurrentUserId { id in
-            guard let id = id else { return }
-            self.userId = id
-        }
+        configure()
+        presenter.getCurrentUserId()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    }
+   private func configure() {
+       let firebase = FirebaseManager()
+       presenter = PlacesCellPresenter(view: self, firebase: firebase)
+    }
+    
+    func setUserId(id: String){
+        userId = id
+    }
+    
+    func fieldCell(image: UIImage, excPrice: String, name: String, urlPlaces: String) {
+        price.text = excPrice
+        excursionImage.image = image
+        nameExcursion.text = name
+        url = urlPlaces
+       
     }
     // по нажатию на кнопку записыавем место в избранное. Ui пока не делала, еще буду менять
     @IBAction func onLikesButton(_ sender: Any) {
+        likesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         guard let name = nameExcursion.text, let url = url, let id = userId else { return }
-        firebase.getAllFavouritesDocuments(collection: "favouritesPlaces", docName: id) { [weak self] favourites in
-            guard let self = self else { return }
-            if favourites == nil {
-                self.firebase.writeFavourites(collection: "favouritesPlaces", docName: id, hotels: [name : url])
-            } else {
-                guard var dictionary = favourites?.favourites else { return }
-                dictionary[name] = "\(url)"
-                self.firebase.writeFavourites(collection: "favouritesPlaces", docName: id, hotels: dictionary)
-            }
-        }
+        presenter.getAllFavouritesDocuments(id: id, name: name, url: url)
     }
 }

@@ -35,10 +35,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bzm-sJ-Biw">
-                        <rect key="frame" x="258" y="12" width="46" height="31"/>
+                        <rect key="frame" x="257" y="12" width="47" height="31"/>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="0.72213886589999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" systemColor="systemBlueColor"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system">
+                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="bold"/>
+                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </buttonConfiguration>
                         <connections>
                             <action selector="onLikesButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5e7-8U-Dw8"/>
                         </connections>
@@ -63,6 +67,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="excursionImage" destination="t3p-u4-gSN" id="5iy-e8-Rs3"/>
+                <outlet property="likesButton" destination="Bzm-sJ-Biw" id="P2q-m3-y5X"/>
                 <outlet property="nameExcursion" destination="LLH-fU-8Gu" id="fIL-W8-dzh"/>
                 <outlet property="price" destination="uS9-PN-FEf" id="sve-Rf-PmA"/>
             </connections>
