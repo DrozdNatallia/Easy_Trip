@@ -18,6 +18,7 @@ protocol FlightsViewProtocol: AnyObject {
     func setInfoFlights()
     func setLocation(location: String)
     func updateIcon(image: UIImage)
+    func stopAnimation()
    
 }
 
@@ -67,6 +68,11 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
         presenter.tapOnButtonExplore()
     }
     
+    func stopAnimation(){
+        blur.isHidden = true
+        activity.stopAnimating()
+    }
+    
     func updateIcon(image: UIImage) {
         iconImage.image = image
     }
@@ -75,8 +81,7 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
     }
     
     func setInfoFlights() {
-        blur.isHidden = true
-        activity.stopAnimating()
+        stopAnimation()
         tableView.reloadData()
     }
     @IBAction func onPlaceButton(_ sender: Any) {

@@ -55,7 +55,9 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
     
     func getAllFavouritesDocument(collection: String, docName: String) {
         firebaseProvaider.getAllFavouritesDocuments(collection: collection, docName: docName) { [weak self] places in
-            guard let self = self, let places = places else { return }
+            guard let self = self, let places = places else {
+                self?.view?.stopAnimation()
+                return }
             DispatchQueue.global(qos: .userInteractive).async {
                 let favouritesPlaces = places.favourites
                 for (key, value) in favouritesPlaces {

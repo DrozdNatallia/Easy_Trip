@@ -10,6 +10,7 @@ protocol HotelsViewProtocol: AnyObject {
     func updateCollectionView()
     func setLocation(location: String)
     func addIconImage(image: UIImage)
+    func stopAnimation()
     
 }
 class HotelsViewController: UIViewController, HotelsViewProtocol, HotelsCellDelegate {
@@ -43,6 +44,11 @@ class HotelsViewController: UIViewController, HotelsViewProtocol, HotelsCellDele
         userLocation.text = location
     }
     
+    func stopAnimation(){
+        blur.isHidden = true
+        activity.stopAnimating()
+    }
+    
     @IBAction func onExploreButton(_ sender: Any) {
         presenter.tapOnButtonExplore()
     }
@@ -68,8 +74,7 @@ class HotelsViewController: UIViewController, HotelsViewProtocol, HotelsCellDele
     }
 
     func updateCollectionView() {
-        blur.isHidden = true
-        activity.stopAnimating()
+        stopAnimation()
         self.collectionView.reloadData()
     }
     

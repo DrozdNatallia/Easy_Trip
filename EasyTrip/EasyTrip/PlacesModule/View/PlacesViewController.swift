@@ -12,6 +12,7 @@ protocol PlacesViewProtocol: AnyObject {
     func setInfoExc(code: String)
     func setLocation(location: String)
     func setIconImage(image: UIImage)
+    func stopAnimation()
 }
 
 class PlacesViewController: UIViewController, PlacesViewProtocol, PlacesCellDelegate {
@@ -49,6 +50,11 @@ class PlacesViewController: UIViewController, PlacesViewProtocol, PlacesCellDele
         userLocation.text = location
     }
     
+    func stopAnimation(){
+        blur.isHidden = true
+        activity.stopAnimating()
+    }
+    
     @IBAction func onExploreButton(_ sender: Any) {
         presenter.tapOnButtonExplore()
     }
@@ -78,8 +84,7 @@ class PlacesViewController: UIViewController, PlacesViewProtocol, PlacesCellDele
     }
     
     func updateTableView() {
-        activity.stopAnimating()
-        blur.isHidden = true
+        stopAnimation()
         tableView.reloadData()
     }
     

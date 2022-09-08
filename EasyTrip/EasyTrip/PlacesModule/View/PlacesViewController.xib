@@ -239,7 +239,7 @@
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="2Rx-C2-Qd0">
                                 <rect key="frame" x="188.5" y="190" width="37" height="37"/>
-                                <color key="color" systemColor="secondarySystemBackgroundColor"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <constraints>

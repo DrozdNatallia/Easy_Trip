@@ -9,6 +9,7 @@ import UIKit
 
 protocol FavouritesViewProtocol: AnyObject {
     func updateTable()
+    func stopAnimation()
     
 }
 class FavouritesViewController: UIViewController, FavouritesViewProtocol {
@@ -44,10 +45,13 @@ class FavouritesViewController: UIViewController, FavouritesViewProtocol {
             presenter.getAllFavouritesDocument(collection: "favouritesPlaces", docName: userId)
         }
     }
-    
-    func updateTable() {
+    func stopAnimation(){
         blur.isHidden = true
         activity.stopAnimating()
+    }
+    
+    func updateTable() {
+        stopAnimation()
         tableView.reloadData()
     }
 }

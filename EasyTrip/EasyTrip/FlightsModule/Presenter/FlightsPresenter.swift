@@ -103,6 +103,7 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
                 guard let code = value.first?.code else { return }
                 completion(code)
             case .failure(let error):
+                self.view?.stopAnimation()
                 print(error.localizedDescription)
             }
         }

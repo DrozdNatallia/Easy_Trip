@@ -103,6 +103,7 @@ class HotelsViewPresenter: HotelsViewPresenterProtocol {
                     self.view?.updateCollectionView()
                 }
             case .failure(let error):
+                self.view?.stopAnimation()
                 print(error.localizedDescription)
             }
         }

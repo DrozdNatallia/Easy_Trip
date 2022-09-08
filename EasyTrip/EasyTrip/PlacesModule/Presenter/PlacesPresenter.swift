@@ -91,6 +91,7 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
                 guard let code = value.first?.code else { return }
                 self.view?.setInfoExc(code: code)
             case .failure(let error):
+                self.view?.stopAnimation()
                 print(error.localizedDescription)
             }
         }
