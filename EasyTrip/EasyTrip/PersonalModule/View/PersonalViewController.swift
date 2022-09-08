@@ -59,7 +59,6 @@
             secondNameUser.text = ""
             iconImageView.image = UIImage()
             dateBirth.date = Date()
-            //dateBirth.setDate(Date(), animated: false)
         }
         
         func stopAnimating() {

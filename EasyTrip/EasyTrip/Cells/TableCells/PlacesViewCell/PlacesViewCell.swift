@@ -6,18 +6,20 @@
 //
 
 import UIKit
+protocol PlacesCellDelegate: AnyObject {
+    func showAlertFromCell(cell: PlacesCellProtocol, didTapButton button: UIButton)
+}
 protocol PlacesCellProtocol: AnyObject {
     func fieldCell(image: UIImage, excPrice: String, name: String, urlPlaces: String)
     func setUserId(id: String)
 }
 class PlacesViewCell: UITableViewCell, PlacesCellProtocol {
 static let key = "PlacesViewCell"
-
+    weak var delegate: PlacesCellDelegate?
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var excursionImage: UIImageView!
     @IBOutlet weak var nameExcursion: UILabel!
     @IBOutlet weak var likesButton: UIButton!
-    var firebase: FirebaseProtocol!
     var presenter: PLacesCellPresenterProtocol!
     var url: String!
     private var userId: String!
@@ -38,7 +40,6 @@ static let key = "PlacesViewCell"
     func setUserId(id: String){
         userId = id
     }
-    
     func fieldCell(image: UIImage, excPrice: String, name: String, urlPlaces: String) {
         price.text = excPrice
         excursionImage.image = image
@@ -48,6 +49,7 @@ static let key = "PlacesViewCell"
     }
     // по нажатию на кнопку записыавем место в избранное. Ui пока не делала, еще буду менять
     @IBAction func onLikesButton(_ sender: Any) {
+        self.delegate?.showAlertFromCell(cell: self, didTapButton: sender as! UIButton)
         likesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         guard let name = nameExcursion.text, let url = url, let id = userId else { return }
         presenter.getAllFavouritesDocuments(id: id, name: name, url: url)

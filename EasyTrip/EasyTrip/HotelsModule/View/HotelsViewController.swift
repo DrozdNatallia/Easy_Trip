@@ -12,7 +12,7 @@ protocol HotelsViewProtocol: AnyObject {
     func addIconImage(image: UIImage)
     
 }
-class HotelsViewController: UIViewController, HotelsViewProtocol {
+class HotelsViewController: UIViewController, HotelsViewProtocol, HotelsCellDelegate {
 
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
@@ -81,6 +81,7 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
     // не получается закинуть ячкейки в презетнер (
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HotelsCell.key, for: indexPath) as? HotelsCell {
+            cell.delegate = self
             cell.presenter.getInfoHotels(name: presenter.getArrayNameHotel()[indexPath.row], image: presenter.getArrayImages()[indexPath.row], url: presenter.getArrayUrl()[indexPath.row])
             return cell
         }
