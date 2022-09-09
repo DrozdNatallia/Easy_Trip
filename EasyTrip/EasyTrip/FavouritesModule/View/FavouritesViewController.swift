@@ -31,7 +31,11 @@ class FavouritesViewController: UIViewController, FavouritesViewProtocol {
             guard let id = id else { return }
             self.userId = id
         }
-        presenter.getAllFavouritesDocument(collection: "favouritesHotels", docName: userId)
+        if typeFavourites.selectedSegmentIndex == 0 {
+            presenter.getAllFavouritesDocument(collection: "favouritesHotels", docName: userId)
+        } else {
+            presenter.getAllFavouritesDocument(collection: "favouritesPlaces", docName: userId)
+        }
         
     }
     @IBAction func onSegmentControl(_ sender: Any) {
