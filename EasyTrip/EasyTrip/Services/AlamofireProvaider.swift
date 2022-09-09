@@ -63,10 +63,7 @@ class AlamofireProvaider: RestAPIProviderProtocol {
 
     func getFlightsInfo(origin: String, date: String, destination: String, completion: @escaping (Result<FligthsInfo, Error>) -> Void) {
         let params = addParams(queryItems: ["origin" : origin, "destination" : destination, "currency" : "usd",  "departure_at" : date, "sorting" : "price", "direct" : "true", "limit" : "10"])
-        // для того чтоб получали сразу дату из запроса
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        AF.request(Constants.getFlightsInfo, method: .get, parameters: params).responseDecodable(of: FligthsInfo.self, decoder: decoder) { response in
+        AF.request(Constants.getFlightsInfo, method: .get, parameters: params).responseDecodable(of: FligthsInfo.self) { response in
             switch response.result {
             case .success(let result):
                 completion(.success(result))

@@ -7,19 +7,11 @@
 
 import UIKit
 
-extension Date {
-    func convertToTimeZone(initTimeZone: TimeZone, timeZone: TimeZone) -> Date {
-        let delta = TimeInterval(timeZone.secondsFromGMT(for: self) - initTimeZone.secondsFromGMT(for: self))
-        return addingTimeInterval(delta)
-    }
-}
-
 protocol FlightsViewProtocol: AnyObject {
     func setInfoFlights()
     func setLocation(location: String)
     func updateIcon(image: UIImage)
     func stopAnimation()
-   
 }
 
 class FlightsViewController: UIViewController, FlightsViewProtocol {
@@ -107,27 +99,16 @@ extension FlightsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: FlightsViewCell.key) as? FlightsViewCell {
-            
-            // пока оставлю, вернусь позже к этому, все равно работает не правильно(
-            if let isoDate = presenter.getArrayInfo(type: .depart)[indexPath.section] as? Date {
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "HH:mm"
-                dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-                cell.departAt.text = dateFormatter.string(from: isoDate)
-                
-            }
+            guard let durationInMin = presenter.getArrayInfo(type: .duration)[indexPath.section] as? Int else { return UITableViewCell() }
+            let flightTime = "in flight: \(durationInMin / 60):\(durationInMin % 60)"
+            let departureTime = "departure: \(presenter.getArrayInfo(type: .depart)[indexPath.section])"
             let image = presenter.getImage()[indexPath.section]
             let price = "\(presenter.getArrayInfo(type: .price)[indexPath.section])$"
-            let transfer = "transfer: \(presenter.getArrayInfo(type: .transfer)[indexPath.section])"
-            let origin = "\(presenter.getArrayInfo(type: .origin)[indexPath.section])"
-            let destination = "\(presenter.getArrayInfo(type: .destination)[indexPath.section])"
-            let flightTime = "in flight: \(presenter.getArrayInfo(type: .duration)[indexPath.section])"
+            let transfer = "transfer: \n \(presenter.getArrayInfo(type: .transfer)[indexPath.section])"
+            let origin = "From: \(presenter.getArrayInfo(type: .origin)[indexPath.section])"
+            let destination = "To: \n \(presenter.getArrayInfo(type: .destination)[indexPath.section])"
             
-            cell.presenter.getInfoFlight(originCity: origin, destinationCity: destination, priceFlights: price, transferFlight: transfer, flightTime: flightTime, icon: image)
-            //            let dateFormatter = ISO8601DateFormatter()
-            //            let date = dateFormatter.date(from:isoDate)?.convertToTimeZone(initTimeZone: TimeZone(secondsFromGMT: 0) ?? .current, timeZone: TimeZone.current)
-            //            print(date)
-            //  cell.returnAt.text = "\(presenter.getArrayInfo(type: .arrave)[indexPath.row])"
+            cell.presenter.getInfoFlight(originCity: origin, destinationCity: destination, priceFlights: price, transferFlight: transfer, flightTime: flightTime, icon: image, depart: departureTime)
             return cell
         }
         return UITableViewCell()

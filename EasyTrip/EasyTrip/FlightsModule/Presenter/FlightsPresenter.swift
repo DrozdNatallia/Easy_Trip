@@ -67,8 +67,6 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
         switch type {
         case .price:
             return  infoFlights.arrayPrice
-        case .arrave:
-            return  infoFlights.arrayArrive
         case .depart:
             return  infoFlights.arrayDepart
         case .transfer:
@@ -79,8 +77,6 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
             return infoFlights.arrayDestination
         case .duration:
             return infoFlights.arrayDuration
-            //   case .image:
-            //    return infoFlights.iconAirlines
         }
     }
     
@@ -109,23 +105,35 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
         }
     }
     
+    private func convertDate(date: String) -> String {
+        let newDate = date.dropLast(6)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let convertDate = dateFormatter.date(from: String(newDate))
+        
+        if let convertDate = convertDate {
+            dateFormatter.dateFormat =  "HH:mm"
+            let res = dateFormatter.string(from: convertDate)
+            return res
+        }
+        return ""
+    }
+    
     func getFlightsInfo(originName: String, destinationName: String, date: String) {
         alamofireProvaider.getFlightsInfo(origin: originName, date: date, destination: destinationName) { result in
             switch result {
-                
             case .success(let value):
-                print(value)
                 guard let val = value.data else {return}
                 for flight in val {
-                    guard let price = flight.price, let depart = flight.departureAt, let transfer = flight.transfers, let origin = flight.origin, let destination = flight.destination, let duration = flight.duration, let icon = flight.airline else { return }
-                    
+                    guard let price = flight.price, let depart = flight.departureAt, let transfer = flight.transfers, let origin = flight.origin, let destination = flight.destination, let durationInMin = flight.duration, let icon = flight.airline else { return }
+                    let departure = self.convertDate(date: depart)
+                    self.infoFlights.arrayDepart.append(departure)
                     self.infoFlights.arrayPrice.append(price)
-                   self.infoFlights.arrayDepart.append(depart)
-                    // self.infoFlights.arrayArrive.append(arrive)
+                    self.infoFlights.arrayDepart.append(depart)
                     self.infoFlights.arrayTransfer.append(transfer)
                     self.infoFlights.arrayOrigin.append(origin)
                     self.infoFlights.arrayDestination.append(destination)
-                    self.infoFlights.arrayDuration.append(duration)
+                    self.infoFlights.arrayDuration.append(durationInMin)
                     let urlIcon = Constants.getIconAirline.appending("\(icon)@2x.png")
                     self.getIconbyURL(url: urlIcon)
                     self.view?.setInfoFlights()
