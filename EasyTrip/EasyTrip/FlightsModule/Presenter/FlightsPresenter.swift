@@ -38,31 +38,33 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
         self.icon = icon
 
     }
+    // получение иконки пользователя
     func getIconImage() {
         guard let image = icon else {return}
         self.view?.updateIcon(image: image)
     }
+    //переход на HotelsViewController
     func tapOnButtonHotels(location: String, icon: UIImage) {
         router?.showHotelsModule(location: location, icon: icon)
     }
-    
+    // переход на placesViewController
     func tapOnButtonPlaces(location: String, icon: UIImage) {
         router?.showPlacesModule(location: location, icon: icon)
     }
-    
+    // возвращение на rootViewController
     func tapOnButtonExplore() {
         router?.popToRoot()
     }
-    
+    // получение локации
     func getLocation(){
         guard let location = location else { return }
         view?.setLocation(location: location)
     }
-    
+    // получение логотипов
     func getImage() -> [UIImage] {
         return infoFlights.iconAirlines
     }
-    
+    // получение массивов
     func getArrayInfo(type: TypeDate) -> [Any] {
         switch type {
         case .price:
@@ -79,7 +81,7 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
             return infoFlights.arrayDuration
         }
     }
-    
+    //получение логотипов по ссылке
     func getIconbyURL(url: String) {
         if let url = URL(string: url) {
             do {
@@ -91,7 +93,7 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
             }
         }
     }
-    
+    // получение кода города
     func getCodeCityByName(code: String, completion: @escaping (String) -> Void){
         alamofireProvaider.getNameCityByCode(code: code) { result in
             switch result {
@@ -104,7 +106,7 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
             }
         }
     }
-    
+    // конвертация даты
     private func convertDate(date: String) -> String {
         let newDate = date.dropLast(6)
         let dateFormatter = DateFormatter()
@@ -118,7 +120,7 @@ class FlightsViewPresenter: FlightsViewPresenterProtocol {
         }
         return ""
     }
-    
+    // получение информации о полетах
     func getFlightsInfo(originName: String, destinationName: String, date: String) {
         alamofireProvaider.getFlightsInfo(origin: originName, date: date, destination: destinationName) { result in
             switch result {

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+// хранение иформации о полетах
 enum TypeDate {
     case price
     case depart

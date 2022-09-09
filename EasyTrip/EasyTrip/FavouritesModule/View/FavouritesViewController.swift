@@ -27,10 +27,12 @@ class FavouritesViewController: UIViewController, FavouritesViewProtocol {
         tableView.register(UINib(nibName: "FavouritesViewCell", bundle: nil), forCellReuseIdentifier: FavouritesViewCell.key)
         
         activity.startAnimating()
+        // получаем номер пользлвателя
         presenter.getCurrentUserId { id in
             guard let id = id else { return }
             self.userId = id
         }
+        // взависимости от сегмента подгружаем избранное
         if typeFavourites.selectedSegmentIndex == 0 {
             presenter.getAllFavouritesDocument(collection: "favouritesHotels", docName: userId)
         } else {
@@ -53,6 +55,7 @@ class FavouritesViewController: UIViewController, FavouritesViewProtocol {
         blur.isHidden = true
         activity.stopAnimating()
     }
+    // обновление таблицы после получения результата
     
     func updateTable() {
         stopAnimation()
@@ -87,6 +90,7 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // удаленте по свайпу работает тольео на девайсе, в симуляторе не получается
         if editingStyle == .delete {
             let name = presenter.getArrayName()[indexPath.section]
             if typeFavourites.selectedSegmentIndex == 0 {

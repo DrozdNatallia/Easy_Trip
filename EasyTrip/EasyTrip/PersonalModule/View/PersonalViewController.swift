@@ -45,6 +45,7 @@
             clearField()
             presenter.signOut()
         }
+        // сообщение о том что данные пользоваиелтя сохранены
         func showAlert() {
             let alert = UIAlertController(title: "Success", message: nil, preferredStyle: .alert)
             let button = UIAlertAction(title: "Ok", style: .cancel)
@@ -52,6 +53,7 @@
             stopAnimating()
             self.present(alert, animated: true)
         }
+        // очистка полей после удаления пользователя
         func clearField(){
             nameUser.text = ""
             nameCityTextField.text = ""
@@ -65,6 +67,7 @@
             blur.isHidden = true
             activity.stopAnimating()
         }
+        // заполнение полкй
         func fillTextField(name: String?, secondName: String?, patronicum: String?, date: String?, image: UIImage?, sex: Int?, city: String?, id: String?) {
             stopAnimating()
             guard let name = name, let secondName = secondName, let patronicum = patronicum, let date = date, let image = image, let sex = sex, let city = city, let id = id else { return }
@@ -83,7 +86,7 @@
             idUser = id
             
         }
-        
+        // удаление аккаунта, иноглда просит зайти езе раз в учетную запись и только потом удаляетю Не поняла еще почему так
         @IBAction func onDeleteAccountButton(_ sender: Any) {
             presenter.deleteUser()
             guard idUser != nil else { return }
@@ -91,20 +94,20 @@
             
         }
         
-        
+        // добавление фото из галереи
         @IBAction func onAddPhotoButton(_ sender: Any) {
             let imagePicker = UIImagePickerController()
             imagePicker.sourceType = .photoLibrary
             imagePicker.delegate = self
             self.present(imagePicker, animated: true)
         }
-        
+        // сохранение информации о пользователе
         @IBAction func onSaveButton(_ sender: Any) {
             blur.isHidden = false
             activity.startAnimating()
             presenter.getIdCurrentUser()
         }
-        
+        // запись пользователя в базу данных
         func writeUser(id: String) {
             let row = chooseSexUser.selectedRow(inComponent: 0)
             let dateFormatter = DateFormatter()

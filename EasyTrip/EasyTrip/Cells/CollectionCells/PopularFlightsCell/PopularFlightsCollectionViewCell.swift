@@ -18,10 +18,11 @@ class PopularFlightsCollectionViewCell: UICollectionViewCell, PopularCellProtoco
         super.awakeFromNib()
         configure()
     }
+    // настройка презентера
     private func configure(){
         presenter = PopularCellPresenter(view: self)
     }
-    
+    // заполнение полей
     func fillField(name: String, image: UIImage){
         imagePopularCity.image = image
         namePopularCity.text = name

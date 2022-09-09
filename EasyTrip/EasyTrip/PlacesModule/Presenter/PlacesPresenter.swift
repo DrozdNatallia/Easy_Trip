@@ -41,11 +41,12 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
         self.firebaseProvaider = firebase
         self.icon = icon
     }
+    // получение иконки пользователя
     func addIconImage() {
         guard let image = icon else {return}
         self.view?.setIconImage(image: image)
     }
-    
+    // переходы
     func tapOnButtonHotels(location: String, icon: UIImage) {
         router?.showHotelsModule(location: location, icon: icon)
     }
@@ -55,17 +56,19 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
     func tapOnButtonExplore() {
         router?.popToRoot()
     }
-    
+    // получкние локации
     func getLocation() {
         guard let location = location else { return }
         view?.setLocation(location: location)
     }
+    // чистка вскх массивов
     func clearArray() {
         self.excursionInfo.price.removeAll()
         self.excursionInfo.nameExcursion.removeAll()
         self.excursionInfo.image.removeAll()
         self.excursionInfo.url.removeAll()
     }
+    // получение инфоромации из массивов
     func getArrayPrice() -> [Int] {
        return excursionInfo.price
     }
@@ -78,6 +81,7 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
     func getArrayUrl() -> [String] {
         return excursionInfo.url
     }
+    // получение кода для получения информации об экскурсиях
     func getCodeByNameCity(code: String) {
         alamofireProvaider.getNameCityByCode(code: code) { [weak self] result in
             guard let self = self else { return }
@@ -96,14 +100,14 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
             }
         }
     }
-    
+    //конвертация дат
     func convertDateToString(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
         let stringDate = dateFormatter.string(from: date)
         return stringDate
     }
-    
+    // фото по урл
     func getPhotoByURL(url: String) {
         if let url = URL(string: url) {
             do {
@@ -115,7 +119,7 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
             }
         }
     }
-    
+    // получение инфы об экскурсиях
     func getExcursionInfo(code: String, start: Date, end: Date, adults: String, child: String) {
         let startDate = convertDateToString(date: start)
         let endDate = convertDateToString(date: end)

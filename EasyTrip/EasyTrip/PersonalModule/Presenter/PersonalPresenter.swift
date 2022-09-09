@@ -31,7 +31,7 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
         self.firebaseProvaider = provaider
         self.router = router
     }
-    
+    // добавление картинки в сторэдж
     func upload(id: String, image: UIImage, completion: @escaping (Result<URL, Error>) -> Void){
         firebaseProvaider.upload(id: id, image: image) { result in
             switch result {
@@ -42,11 +42,11 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
             }
         }
     }
-    
+    //удаление пользователя
     func deleteDocument(id: String) {
         firebaseProvaider.deleteDocument(collection: "User", nameDoc: id)
     }
-    
+    // заполнение всех полей ( если данные были ранее сохранены)
     func fillField() {
         firebaseProvaider.getCurrentUserId { id in
             guard let id = id else { return }
@@ -63,15 +63,15 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
             }
         }
     }
-    
+    // выход из аккаунта
     func signOut() {
         firebaseProvaider.signOut()
     }
-    
+    // удаление пользователя
     func deleteUser() {
         firebaseProvaider.deleteUser()
     }
-    
+    // получение номера
     func getIdCurrentUser() {
         firebaseProvaider.getCurrentUserId { [weak self] id in
             guard let self = self, let id = id else {
@@ -80,7 +80,7 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
             self.view.writeUser(id: id)
         }
     }
-    
+    // запись пользователя в базу данных
     func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL, sex: Int, city: String) {
         firebaseProvaider.writeUser(collectionName: collectionName, docName: docName, name: name, secondName: secondName, patronumic: patronumic, date: date, url: url, sex: sex, city: city) { result in
             guard result != nil else {

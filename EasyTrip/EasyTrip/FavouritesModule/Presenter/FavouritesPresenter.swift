@@ -36,6 +36,7 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
         self.firebaseProvaider = provaider
         self.router = router
     }
+    // получение массивов
     func getArrayImage() -> [UIImage] {
         favourites.image
     }
@@ -47,12 +48,12 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
         favourites.image.removeAll()
         favourites.name.removeAll()
     }
-    
+    // удаление элемента, используетмя при удалении по свайпу
     func deleteElementFromArray(num: Int) {
         favourites.name.remove(at: num)
         favourites.image.remove(at: num)
     }
-    
+    // получение избранного
     func getAllFavouritesDocument(collection: String, docName: String) {
         firebaseProvaider.getAllFavouritesDocuments(collection: collection, docName: docName) { [weak self] places in
             guard let self = self, let places = places, !places.favourites.isEmpty else {
@@ -71,7 +72,7 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
             }
         }
     }
-    
+    // удаление тз базы данных
     func deleteElementFromFavourites(collection: String, docName: String, key: String){
         firebaseProvaider.getAllFavouritesDocuments(collection: collection, docName: docName) { [weak self] favourites in
             guard let self = self, let places = favourites else { return }
@@ -92,11 +93,11 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
             }
         }
     }
-    
+    // удалить весть документ
     func deleteDocument(collection: String, name: String){
         firebaseProvaider.deleteDocument(collection: collection, nameDoc: name)
     }
-    
+    // получить id usera
     func getCurrentUserId(completion: @escaping (String?) -> Void) {
         firebaseProvaider.getCurrentUserId { id in
             if id != nil {

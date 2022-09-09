@@ -103,6 +103,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularFlightsCollectionViewCell.key, for: indexPath) as? PopularFlightsCollectionViewCell {
+        // заполнение ячеек через перезентер ячейки
             cell.presenter.getInfoPopularCity(name: presenter.getArrayNameCity()[indexPath.row], image: presenter.getArrayImageCity()[indexPath.row])
             return cell
         }
@@ -116,18 +117,18 @@ extension HomeViewController: CLLocationManagerDelegate {
         if manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse {
             coreManager.startUpdatingLocation()
         } else if manager.authorizationStatus == .restricted || manager.authorizationStatus == .denied {
-            // если отказано в получении геолокации, то будет лондон, возможно потом буду передавать город из личного кабинета
             self.userLocation.text = "LONDON"
             presenter.getPopularFlights(nameDirection: "LON")
         }
     }
+    // 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locations = locations.last else { return }
         let userLocation = locations as CLLocation
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(userLocation) { (placemarks, error) in
             if let error = error {
-                print("Unable to Reverse Geocode Location (\(error))")
+                print(error.localizedDescription)
             }
             if let placemarks = placemarks, let placemark = placemarks.first, let locality = placemark.locality, self.userLocation.text == "" {
                 // функция вызывается 3 раза так как стоит kCLLocationAccuracyBest, чтоб запрос тоже не вызывался 3 раза присваиваю значение, только если его не было. Обновляется при каждом запуске приложения, больше Геолокация не нужна. Другого способа пока не придумала

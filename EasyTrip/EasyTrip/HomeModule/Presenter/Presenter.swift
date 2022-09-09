@@ -35,7 +35,7 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
         self.router = router
         self.firebaseProvaider = firebase
     }
-    
+    // Добаыление иконки пользователя из storage
     func addImageFromStorage() {
         firebaseProvaider.getCurrentUserId { [weak self] id in
             guard let self = self else {return}
@@ -49,25 +49,27 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
             }
         }
     }
-    
+    // переход на FlightsViewController
     func tapOnButton(location: String, icon: UIImage?) {
         router?.showFlightsModule(location: location, icon: icon )
     }
+    //переход на HotelsViewController
     func tapOnButtonHotels(location: String, icon: UIImage) {
         router?.showHotelsModule(location: location, icon: icon)
     }
-    
+    // переход на PlacesViewController
     func tapOnButtonPlaces(location: String, icon: UIImage) {
         router?.showPlacesModule(location: location, icon: icon)
     }
-    
+    // получение имен городов
     func getArrayNameCity() -> [String] {
         return popularCityInfo.arrayNameCity
     }
-    
+    // получение картинок городов
     func getArrayImageCity() -> [UIImage] {
         return popularCityInfo.arrayImageCity
     }
+    // чистка всех массивов 
     func clearArrays() {
         popularCityInfo.arrayImageCity.removeAll()
         popularCityInfo.arrayNameCity.removeAll()

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 struct Constants {
     static var baseURL = "https://api.travelpayouts.com/"
-    // получение URL популярных направлений полета по данныи aviasales
+    // получение URL для запросов
     static var getHotelsByNameCity = "https://engine.hotellook.com/api/v2/cache.json"
     static var autocompleteURL = "https://autocomplete.travelpayouts.com/places2"
     static var getImageCityByURL = "https://photo.hotellook.com/static/cities/"

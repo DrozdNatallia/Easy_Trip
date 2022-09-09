@@ -23,17 +23,18 @@ class HotelsCellPresenter: HotelsCellPresenterProtocol {
         self.view = view
         self.firebaseProvaider = firebase
     }
+    // получение номера пользователя
     func getIdUser(){
         firebaseProvaider.getCurrentUserId { id in
             guard let id = id else { return }
             self.view.setIdUser(id: id)
         }
     }
-    
+    // получение инфы об отелях для заполнения
     func getInfoHotels(name: String, image: UIImage, url: String){
         self.view.fillField(name: name, image: image, hotelsUrl: url)
     }
-    
+    // получение списка избранных отелей
     func getFavouritesHotels(id: String, name: String, url: String){
         firebaseProvaider.getAllFavouritesDocuments(collection: "favouritesHotels", docName: id) { [weak self] list in
             guard let self = self else { return }

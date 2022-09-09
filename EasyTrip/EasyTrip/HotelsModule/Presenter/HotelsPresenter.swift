@@ -41,42 +41,46 @@ class HotelsViewPresenter: HotelsViewPresenterProtocol {
         self.location = location
         self.icon = icon
     }
-    
+    // получение иконки пользователя
     func getIconImage() {
         guard let image = icon else {return}
         self.view?.addIconImage(image: image)
     }
-    
+    // получение локации
     func getLocation() {
         guard let location = location else { return }
         view?.setLocation(location: location)
     }
-    
+    // чистка всех массивов
     func clearArray() {
         infoHotels.arrayImages.removeAll()
         infoHotels.arrayNameHotel.removeAll()
     }
+    // получение массивов с названиями отелей
     func getArrayNameHotel() -> [String] {
         infoHotels.arrayNameHotel
     }
+    // получение массива с картинками
     func getArrayImages() -> [UIImage] {
         infoHotels.arrayImages
     }
+    // получение массиврв урлов
     func getArrayUrl() -> [String] {
         infoHotels.url
     }
-    
+    // переход на placesViewController
     func tapOnButtonPlaces(location: String, icon: UIImage) {
         router?.showPlacesModule(location: location, icon: icon)
     }
-    
+    // переход на FlightsViewController
     func tapOnButtonFlights(location: String, icon: UIImage) {
         router?.showFlightsModule(location: location, icon: icon)
     }
+    // возвращение на HomeViewController
     func tapOnButtonExplore() {
         router?.popToRoot()
     }
-    
+    // получение картинки по url
     func getPhotoByURL(url: String) {
         if let url = URL(string: url) {
             do {
@@ -88,7 +92,7 @@ class HotelsViewPresenter: HotelsViewPresenterProtocol {
             }
         }
     }
-    
+    // получение отелей по имени города
     func getHotelsByCityName(name: String, checkIn: String, checkOut: String, adults: Int ) {
         alamofireProvaider.getHoltelsByCityName(name: name, chekIn: checkIn, checkOut: checkOut, adults: adults) { [weak self] result in
             guard let self = self else { return }

@@ -14,6 +14,7 @@ import FirebaseFirestore
 
 class FirebaseManager: FirebaseProtocol {
     var db = Firestore.firestore()
+    // добавление картинки в базу
     func upload(id: String, image: UIImage, completion: @escaping (Result<URL, Error>) -> Void) {
         let ref = Storage.storage().reference().child("avatars/\(id).jpeg")
         guard let imageData = image.jpegData(compressionQuality: 0.4) else {
@@ -35,7 +36,7 @@ class FirebaseManager: FirebaseProtocol {
             }
         }
     }
-    
+    // получение картинки из базы
     func getIMageFromStorage(url: String, completion: @escaping (UIImage?) -> Void){
         let ref = Storage.storage().reference(forURL: url)
         let size = Int64(1 * 1024 * 1024)
@@ -45,7 +46,7 @@ class FirebaseManager: FirebaseProtocol {
             completion(image)
         }
     }
-    
+    // получение информации о пользователе из базы данных
     func getInfoUser(collection: String, userId: String, completion: @escaping (Users?) -> Void) {
         db.collection(collection).document(userId).getDocument { document, error in
             if let error = error {
@@ -60,7 +61,9 @@ class FirebaseManager: FirebaseProtocol {
                 completion(doc)
             }
         }
-    } 
+    }
+    
+    // запись пользователя в базу данных
     func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL, sex: Int, city: String, completion: @escaping (String?) -> Void) {
         db.collection(collectionName).document(docName).setData([
             "name": name,
@@ -79,7 +82,7 @@ class FirebaseManager: FirebaseProtocol {
             }
         }
     }
-    //удаление
+    //удаление документа
     func deleteDocument(collection: String, nameDoc: String) {
         db.collection(collection).document(nameDoc).delete() { err in
             if let err = err {
@@ -90,18 +93,19 @@ class FirebaseManager: FirebaseProtocol {
         }
     }
     
+    // создание нового пользователя
     func createUser(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             completion(authResult, error)
         }
     }
-    
+    // вход в аккаунт
     func signIn(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             completion(authResult, error)
         }
     }
-    
+    // выход
     func signOut() {
         let firebaseAuth = Auth.auth()
         do {
@@ -110,7 +114,7 @@ class FirebaseManager: FirebaseProtocol {
             print("Error signing out: %@", signOutError)
         }
     }
-    
+    // получение номера пользователя
     func getCurrentUserId(completion: @escaping (String?) -> Void) {
         let user = Auth.auth().currentUser
         if let user = user {
@@ -118,7 +122,7 @@ class FirebaseManager: FirebaseProtocol {
             completion(uid)
         }
     }
-    
+    // удаление пользователя
     func deleteUser() {
         let user = Auth.auth().currentUser
         user?.delete { error in
@@ -129,7 +133,7 @@ class FirebaseManager: FirebaseProtocol {
             }
         }
     }
-    
+    // запись избрпнного в базу данных
     func writeFavourites(collection: String, docName: String, hotels: [String : String]) {
         db.collection(collection).document(docName).setData([
             "favourites": hotels
@@ -141,7 +145,7 @@ class FirebaseManager: FirebaseProtocol {
                 }
             }
     }
-    
+    // получение избранного из базы
     func getAllFavouritesDocuments(collection: String, docName: String, completion: @escaping (FavouritesHotels?) -> Void ) {
         db.collection(collection).document(docName).getDocument { querySnapshot, error in
             if let err = error {

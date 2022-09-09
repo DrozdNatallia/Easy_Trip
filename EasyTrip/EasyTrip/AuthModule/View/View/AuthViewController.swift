@@ -45,14 +45,15 @@ class AuthViewController
         passwordUser.delegate = self
         emailUser.delegate = self
     }
+    // закрытие
     func closeVc() {
         dismiss(animated: true)
     }
-    
+    // сообщение с ошибкой при регистрации
     func showAlertError(alert: UIAlertController){
         present(alert, animated: true)
     }
-    
+    // создаем нового пользователя, тлт входти по данным
     @IBAction func onSignButton(_ sender: Any) {
         guard let email = emailUser.text, let password = passwordUser.text else {return }
         if signUp {

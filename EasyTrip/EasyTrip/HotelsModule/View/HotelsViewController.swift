@@ -36,31 +36,35 @@ class HotelsViewController: UIViewController, HotelsViewProtocol, HotelsCellDele
         presenter.getIconImage()
         presenter.getLocation()
     }
+    // добавление тконки пользователя
     func addIconImage(image: UIImage) {
         iconImage.image = image
     }
-    
+    // установление локации
     func setLocation(location: String) {
         userLocation.text = location
     }
-    
+    // оставнока анимации ксли нет отелей
     func stopAnimation(){
         blur.isHidden = true
         activity.stopAnimating()
     }
-    
+    // переход на HomeViewController
     @IBAction func onExploreButton(_ sender: Any) {
         presenter.tapOnButtonExplore()
     }
-    
+    // переход на FlightsViewController
     @IBAction func onFlightsButton(_ sender: Any) {
         guard let location = userLocation.text, let image = iconImage.image else { return }
         presenter.tapOnButtonFlights(location: location, icon: image)
     }
+    // переход на placesViewController
     @IBAction func onPlaceButton(_ sender: Any) {
         guard let location = userLocation.text, let image = iconImage.image else { return }
         presenter.tapOnButtonPlaces(location: location, icon: image)
     }
+    
+    // поиск отелей после нажатия на кнопку
     @IBAction func onSearchButton(_ sender: Any) {
         blur.isHidden = false
         activity.startAnimating()
@@ -72,12 +76,12 @@ class HotelsViewController: UIViewController, HotelsViewProtocol, HotelsCellDele
         guard let nameCity = nameCityTextField.text, let personCount = personCount.text, let adults = Int(personCount) else { return }
         presenter.getHotelsByCityName(name: nameCity, checkIn: checkIn, checkOut: checkOut, adults: adults)
     }
-
+// обновление таблицы, когда получены результаты
     func updateCollectionView() {
         stopAnimation()
         self.collectionView.reloadData()
     }
-    
+ // алерт с сообщенией еслт отель добавлен в избранное
     func showAlertFromCell(cell: HotelsCellProtocol, didTapButton button: UIButton) {
         let alert = UIAlertController(title: "Added to favourites", message: nil, preferredStyle: .alert)
         let button = UIAlertAction(title: "Ok", style: .cancel)
@@ -93,6 +97,7 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
     // не получается закинуть ячкейки в презетнер (
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HotelsCell.key, for: indexPath) as? HotelsCell {
+            //заполненение ячеек через презентер
             cell.delegate = self
             cell.presenter.getInfoHotels(name: presenter.getArrayNameHotel()[indexPath.row], image: presenter.getArrayImages()[indexPath.row], url: presenter.getArrayUrl()[indexPath.row])
             return cell

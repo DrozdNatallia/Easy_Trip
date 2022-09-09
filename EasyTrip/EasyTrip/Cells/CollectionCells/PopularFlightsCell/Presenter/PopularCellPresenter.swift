@@ -18,7 +18,7 @@ class PopularCellPresenter: PopularCellPresenterProtocol {
     required init (view: PopularCellProtocol){
         self.view = view
     }
-    
+    //заполнение полей
     func getInfoPopularCity(name: String, image: UIImage){
         self.view.fillField(name: name, image: image)
     }

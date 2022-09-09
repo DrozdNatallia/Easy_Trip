@@ -28,14 +28,14 @@ class AuthPresenter: AuthViewPresenterProtocol {
         self.firebaseProvaider = provaider
         self.router = router
     }
-    
+    // сллбщение с ошибкой
     func showAlert(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let button = UIAlertAction(title: "Ok", style: .cancel)
         alert.addAction(button)
         view?.showAlertError(alert: alert)
     }
-    
+    // создание нового пользователя
     func createUser(email: String, password: String) {
         firebaseProvaider.createUser(email: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
@@ -47,7 +47,7 @@ class AuthPresenter: AuthViewPresenterProtocol {
             }
         }
     }
-    
+    // вход в аккаунт по данным
     func signIn(email: String, password: String) {
         firebaseProvaider.signIn(email: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
@@ -59,7 +59,7 @@ class AuthPresenter: AuthViewPresenterProtocol {
             }
         }
     }
-    // выход из аккаунта в личном кабинете. Будет настроен позже
+    // выход из аккаунта
     func signOut() {
         firebaseProvaider.signOut()
         

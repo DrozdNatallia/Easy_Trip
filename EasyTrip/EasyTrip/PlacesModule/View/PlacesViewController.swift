@@ -42,10 +42,11 @@ class PlacesViewController: UIViewController, PlacesViewProtocol, PlacesCellDele
         presenter.addIconImage()
         presenter.getLocation()
     }
-    
+    // иконка пользователя
     func setIconImage(image: UIImage) {
         iconImage.image = image
     }
+    // локация
     func setLocation(location: String) {
         userLocation.text = location
     }
@@ -75,19 +76,19 @@ class PlacesViewController: UIViewController, PlacesViewProtocol, PlacesCellDele
         guard let name = nameCityArea.text else { return }
         presenter.getCodeByNameCity(code: name)
     }
-  
+  // информация об экскурсиях
     func setInfoExc(code: String){
         guard let adults = countAdults.text, let children = countChild.text else {
             return
         }
         presenter.getExcursionInfo(code: code, start: startDate.date, end: endDate.date, adults: adults, child: children)
     }
-    
+    // обновление таблицы после получения результата
     func updateTableView() {
         stopAnimation()
         tableView.reloadData()
     }
-    
+    // сообщение о добавлении экскурсии в избранное
     func showAlertFromCell(cell: PlacesCellProtocol, didTapButton button: UIButton) {
             let alert = UIAlertController(title: "Added to favourites", message: nil, preferredStyle: .alert)
             let button = UIAlertAction(title: "Ok", style: .cancel)

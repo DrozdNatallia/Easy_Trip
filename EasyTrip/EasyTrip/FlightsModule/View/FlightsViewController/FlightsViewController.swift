@@ -37,8 +37,9 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
         presenter.getIconImage()
         presenter.getLocation()
     }
-    // переделать через async Await, позже переделаю
+// если успею переделаю
     @IBAction func onSearchButton(_ sender: Any) {
+        // activity indicator, пока загрузка полетов
         blur.isHidden = false
         activity.startAnimating()
         let date = DateFormatter()
@@ -55,32 +56,34 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
             }
         }
     }
-    
+    // переход на HomeViewController
     @IBAction func onExploreButton(_ sender: Any) {
         presenter.tapOnButtonExplore()
     }
-    
+    // остановка анимации
     func stopAnimation(){
         blur.isHidden = true
         activity.stopAnimating()
     }
-    
+    // обновление иконки пользователя
     func updateIcon(image: UIImage) {
         iconImage.image = image
     }
+    // установление геолокации
     func setLocation(location: String) {
         self.userLocation.text = location
     }
-    
+    // обновление таблицы после получения инфы
     func setInfoFlights() {
         stopAnimation()
         tableView.reloadData()
     }
+    // переход на PlaceViewController, передаем location
     @IBAction func onPlaceButton(_ sender: Any) {
         guard let location = userLocation.text, let icon = iconImage.image else { return }
         presenter.tapOnButtonPlaces(location: location, icon: icon)
     }
-    
+    // переход на HotelsViewController, передаем location
     @IBAction func onHotelsButton(_ sender: Any) {
         guard let location = userLocation.text, let icon = iconImage.image else { return }
         presenter.tapOnButtonHotels(location: location, icon: icon)
@@ -99,6 +102,7 @@ extension FlightsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: FlightsViewCell.key) as? FlightsViewCell {
+            // ячейки заполняю из перезентера
             guard let durationInMin = presenter.getArrayInfo(type: .duration)[indexPath.section] as? Int else { return UITableViewCell() }
             let flightTime = "in flight: \(durationInMin / 60):\(durationInMin % 60)"
             let departureTime = "departure: \(presenter.getArrayInfo(type: .depart)[indexPath.section])"
@@ -114,7 +118,7 @@ extension FlightsViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
 }
-
+// закрытие клавиатуры по нажатию на кнопку на телефоне
 extension FlightsViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
