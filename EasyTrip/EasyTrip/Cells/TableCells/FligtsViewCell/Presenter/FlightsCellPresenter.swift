@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol FlightsCellPresenterProtocol{
-    func getInfoFlight(originCity: String, destinationCity: String, priceFlights: String, transferFlight: String, flightTime: String, icon: UIImage )
+    func getInfoFlight(originCity: String, destinationCity: String, priceFlights: String, transferFlight: String, flightTime: String, icon: UIImage, depart: String  )
 }
 
 class FlightsCellPresenter: FlightsCellPresenterProtocol {
@@ -18,7 +18,7 @@ class FlightsCellPresenter: FlightsCellPresenterProtocol {
     required init(view: FlightsCellProtocol){
         self.view = view
     }
-    func getInfoFlight(originCity: String, destinationCity: String, priceFlights: String, transferFlight: String, flightTime: String, icon: UIImage ) {
-        self.view.fillField(originCity: originCity, destinationCity: destinationCity, priceFlights: priceFlights, transferFlight: transferFlight, flightTime: flightTime, icon: icon)
+    func getInfoFlight(originCity: String, destinationCity: String, priceFlights: String, transferFlight: String, flightTime: String, icon: UIImage, depart: String ) {
+        self.view.fillField(originCity: originCity, destinationCity: destinationCity, priceFlights: priceFlights, transferFlight: transferFlight, flightTime: flightTime, icon: icon, depart: depart)
     }
 }
