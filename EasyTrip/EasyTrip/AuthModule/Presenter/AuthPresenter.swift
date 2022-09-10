@@ -35,6 +35,14 @@ class AuthPresenter: AuthViewPresenterProtocol {
         alert.addAction(button)
         view?.showAlertError(alert: alert)
     }
+    // Предполагаю, что так делать нельзя) Но оно работает)) Более умного способа пока нет))) Это ксли меняется пользователь, но приложение не перезапускается
+  private  func updateApplication() {
+        self.router?.clearControllers()
+        self.router?.initialViewController()
+        self.router?.initFavouritesViewControllers()
+        self.router?.initPersonalViewControllers()
+        self.router?.initialTabBArController()
+    }
     // создание нового пользователя
     func createUser(email: String, password: String) {
         firebaseProvaider.createUser(email: email, password: password) { [weak self] authResult, error in
@@ -43,7 +51,8 @@ class AuthPresenter: AuthViewPresenterProtocol {
                 self.showAlert(message: err.localizedDescription)
             }
             if authResult != nil {
-                self.view?.closeVc()
+            self.updateApplication()
+            self.view?.closeVc()
             }
         }
     }
@@ -55,6 +64,7 @@ class AuthPresenter: AuthViewPresenterProtocol {
                 self.showAlert(message: error.localizedDescription)
             }
             if authResult != nil {
+                self.updateApplication()
                 self.view?.closeVc()
             }
         }

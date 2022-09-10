@@ -23,6 +23,7 @@ protocol RouterProtocol: RouterMain {
     func popToRoot()
     func initFavouritesViewControllers()
     func initPersonalViewControllers()
+    func clearControllers()
 }
 
 class Router: RouterProtocol {
@@ -52,6 +53,10 @@ class Router: RouterProtocol {
         guard let favouritesViewController = assemblyBuilder?.createFavouritesModule(router: self) else { return }
         favouritesViewController.tabBarItem = UITabBarItem(title: "Favourites", image: UIImage(systemName: "star"), tag: 1)
         controllers.append(favouritesViewController)
+    }
+    
+    func clearControllers(){
+        controllers.removeAll()
     }
     
     // PersonalViewCintroller
