@@ -11,7 +11,7 @@
         func writeUser(id: String)
         func fillTextField(name: String?, secondName: String?, patronicum: String?, date: String?, image: UIImage?, sex: Int?, city: String?, id: String?)
         func stopAnimating()
-        func showAlert()
+        func showAlert(alert: UIAlertController)
         
     }
     class PersonalViewController: UIViewController, PersonalViewProtocol {
@@ -32,7 +32,6 @@
             super.viewDidLoad()
             chooseSexUser.dataSource = self
             chooseSexUser.delegate = self
-            
             nameCityTextField.delegate = self
             patronymicUser.delegate = self
             nameUser.delegate = self
@@ -42,25 +41,12 @@
             presenter.fillField()
         }
         @IBAction func onSignOutButton(_ sender: Any) {
-            clearField()
             presenter.signOut()
         }
         // сообщение о том что данные пользоваиелтя сохранены
-        func showAlert() {
-            let alert = UIAlertController(title: "Success", message: nil, preferredStyle: .alert)
-            let button = UIAlertAction(title: "Ok", style: .cancel)
-            alert.addAction(button)
+        func showAlert(alert: UIAlertController) {
             stopAnimating()
             self.present(alert, animated: true)
-        }
-        // очистка полей после удаления пользователя
-        func clearField(){
-            nameUser.text = ""
-            nameCityTextField.text = ""
-            patronymicUser.text = ""
-            secondNameUser.text = ""
-            iconImageView.image = UIImage()
-            dateBirth.date = Date()
         }
         
         func stopAnimating() {
@@ -86,12 +72,12 @@
             idUser = id
             
         }
-        // удаление аккаунта, иноглда просит зайти езе раз в учетную запись и только потом удаляетю Не поняла еще почему так
+
+        // удаление аккаунта, просим пароль, потом удаляю аккаунт
         @IBAction func onDeleteAccountButton(_ sender: Any) {
-            presenter.deleteUser()
-            guard idUser != nil else { return }
-            presenter.deleteDocument(id: idUser)
-            
+            presenter.showAlertWithPassword()
+            guard self.idUser != nil else { return }
+            self.presenter.deleteDocument(id: self.idUser)
         }
         
         // добавление фото из галереи

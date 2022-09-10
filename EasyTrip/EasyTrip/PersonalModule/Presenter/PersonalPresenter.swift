@@ -17,7 +17,9 @@ protocol PersonalViewPresenterProtocol {
     func fillField()
     func upload(id: String, image: UIImage, completion: @escaping (Result<URL, Error>) -> Void)
     func deleteDocument(id: String)
-    
+    func reauthenticate(password: String)
+    func showAlertWithMessage()
+    func showAlertWithPassword()
 }
 
 class PersonalPresenter: PersonalViewPresenterProtocol {
@@ -86,7 +88,35 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
             guard result != nil else {
                 return
             }
-            self.view.showAlert()
+            self.showAlertWithMessage()
         }
+    }
+    // алерт с запросом пароля
+    func showAlertWithPassword(){
+        var pass: UITextField!
+        let alert = UIAlertController(title: "Do you want delete your accout?", message: "Enter your password", preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "Enter password"
+            pass = textField
+        }
+        let deletButton = UIAlertAction(title: "Delete", style: .default) { _ in
+            guard let pass = pass.text else { return }
+            self.reauthenticate(password: pass)
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .default)
+        alert.addAction(deletButton)
+        alert.addAction(cancelButton)
+        self.view.showAlert(alert: alert)
+    }
+    // алерт с сообщением о сохранении данных в базу
+    func showAlertWithMessage(){
+        let alert = UIAlertController(title: "Success", message: nil, preferredStyle: .alert)
+        let button = UIAlertAction(title: "Ok", style: .cancel)
+        alert.addAction(button)
+        self.view.showAlert(alert: alert)
+    }
+    
+    func reauthenticate(password: String){
+        firebaseProvaider.reauthenticate(password: password)
     }
 }

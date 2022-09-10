@@ -25,4 +25,5 @@ protocol FirebaseProtocol {
     func getInfoUser(collection: String, userId: String, completion: @escaping (Users?) -> Void )
     func getAllFavouritesDocuments(collection: String, docName: String, completion: @escaping (FavouritesHotels?) -> Void )
     func writeFavourites(collection: String, docName: String, hotels: [String : String])
+    func reauthenticate(password: String)
 }
