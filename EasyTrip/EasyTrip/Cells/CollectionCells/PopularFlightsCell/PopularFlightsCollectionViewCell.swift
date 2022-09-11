@@ -13,14 +13,8 @@ class PopularFlightsCollectionViewCell: UICollectionViewCell, PopularCellProtoco
     @IBOutlet weak var imagePopularCity: UIImageView!
     @IBOutlet weak var namePopularCity: UILabel!
     static let key = "PopularFlightsCollectionViewCell"
-    var presenter: PopularCellPresenterProtocol!
     override func awakeFromNib() {
         super.awakeFromNib()
-        configure()
-    }
-    // настройка презентера
-    private func configure(){
-        presenter = PopularCellPresenter(view: self)
     }
     // заполнение полей
     func fillField(name: String, image: UIImage){

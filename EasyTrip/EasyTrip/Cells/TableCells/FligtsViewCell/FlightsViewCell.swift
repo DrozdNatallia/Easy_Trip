@@ -18,18 +18,12 @@ class FlightsViewCell: UITableViewCell, FlightsCellProtocol {
     @IBOutlet weak var transfer: UILabel!
     @IBOutlet weak var iconAirlines: UIImageView!
     @IBOutlet weak var timeInFlight: UILabel!
-    var presenter: FlightsCellPresenterProtocol!
     override func awakeFromNib() {
         super.awakeFromNib()
-        configure()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }
-    
-    private func configure(){
-        presenter = FlightsCellPresenter(view: self)
     }
     
     func fillField(originCity: String, destinationCity: String, priceFlights: String, transferFlight: String, flightTime: String, icon: UIImage, depart: String ) {
