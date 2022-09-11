@@ -18,7 +18,7 @@ class HotelsCell: UICollectionViewCell, HotelsCellProtocol {
     @IBOutlet weak var nameHotel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var likesButton: UIButton!
-    var url: String!
+    private var url: String!
     override func awakeFromNib() {
         super.awakeFromNib()
     }

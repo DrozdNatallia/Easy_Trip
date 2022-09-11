@@ -20,7 +20,7 @@ static let key = "PlacesViewCell"
     @IBOutlet weak var excursionImage: UIImageView!
     @IBOutlet weak var nameExcursion: UILabel!
     @IBOutlet weak var likesButton: UIButton!
-    var url: String!
+    private var url: String!
     override func awakeFromNib() {
         super.awakeFromNib()
     }
