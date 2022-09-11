@@ -18,7 +18,7 @@ protocol AuthViewPresenterProtocol {
     func showAlert(message: String)
 }
 
-class AuthPresenter: AuthViewPresenterProtocol {
+final class AuthPresenter: AuthViewPresenterProtocol {
     private weak var view: AuthViewProtocol?
     private var router: RouterProtocol?
     private var firebaseProvaider: FirebaseProtocol!
