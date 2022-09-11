@@ -9,35 +9,58 @@ import UIKit
 
 protocol FavouritesViewProtocol: AnyObject {
     func updateTable()
+    func stopAnimation()
     
 }
-    class FavouritesViewController: UIViewController, FavouritesViewProtocol {
-        @IBOutlet weak var typeFavourites: UISegmentedControl!
+class FavouritesViewController: UIViewController, FavouritesViewProtocol {
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    @IBOutlet weak var typeFavourites: UISegmentedControl!
+    @IBOutlet weak var blur: UIVisualEffectView!
     var presenter: FavouritesViewPresenterProtocol!
+    private var userId: String!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-
+        
         tableView.register(UINib(nibName: "FavouritesViewCell", bundle: nil), forCellReuseIdentifier: FavouritesViewCell.key)
         
+        activity.startAnimating()
+        // получаем номер пользлвателя
+        presenter.getCurrentUserId { id in
+            guard let id = id else { return }
+            self.userId = id
+        }
+        // взависимости от сегмента подгружаем избранное
+        if typeFavourites.selectedSegmentIndex == 0 {
+            presenter.getAllFavouritesDocument(collection: "favouritesHotels", docName: userId)
+        } else {
+            presenter.getAllFavouritesDocument(collection: "favouritesPlaces", docName: userId)
+        }
         
-        presenter.getAllDocument(collection: "favouritesHotels")
     }
-        @IBAction func onSegmentControl(_ sender: Any) {
-            presenter.clearArray()
-            // в зависимости от сегмент контрола, подгружаем избранное
-            if typeFavourites.selectedSegmentIndex == 0 {
-                presenter.getAllDocument(collection: "favouritesHotels")
-            } else {
-                presenter.getAllDocument(collection: "favouritesPlaces")
-            }
+    @IBAction func onSegmentControl(_ sender: Any) {
+        presenter.clearArray()
+        blur.isHidden = false
+        activity.startAnimating()
+        // в зависимости от сегмент контрола, подгружаем избранное
+        if typeFavourites.selectedSegmentIndex == 0 {
+            presenter.getAllFavouritesDocument(collection: "favouritesHotels", docName: userId)
+        } else {
+            presenter.getAllFavouritesDocument(collection: "favouritesPlaces", docName: userId)
         }
-        
-        func updateTable() {
-            tableView.reloadData()
-        }
+    }
+    func stopAnimation(){
+        blur.isHidden = true
+        activity.stopAnimating()
+    }
+    // обновление таблицы после получения результата
+    
+    func updateTable() {
+        stopAnimation()
+        tableView.reloadData()
+    }
 }
 
 extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -52,8 +75,7 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // добавоение избранного в ячейки. Удаления пока нет,сделаю позже, не решила где именно будет реализовано
         if let cell = tableView.dequeueReusableCell(withIdentifier: FavouritesViewCell.key) as? FavouritesViewCell {
-            cell.name.text = presenter.getArrayName()[indexPath.section]
-            cell.favouritesImage.image = presenter.getArrayImage()[indexPath.section]
+            presenter.configure(cell: cell, row: indexPath.section)
             return cell
         }
         return UITableViewCell()
@@ -68,13 +90,13 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // удаленте по свайпу работает тольео на девайсе, в симуляторе не получается
         if editingStyle == .delete {
             let name = presenter.getArrayName()[indexPath.section]
-            print(name)
             if typeFavourites.selectedSegmentIndex == 0 {
-                presenter.deleteDocument(collection: "favouritesHotels", name: name)
+                presenter.deleteElementFromFavourites(collection: "favouritesHotels", docName: userId, key: name)
             } else {
-                presenter.deleteDocument(collection: "favouritesPlaces", name: name)
+                presenter.deleteElementFromFavourites(collection: "favouritesPlaces", docName: userId, key: name)
             }
             presenter.deleteElementFromArray(num: indexPath.section)
             let indexSet = IndexSet(arrayLiteral: indexPath.section)

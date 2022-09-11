@@ -10,16 +10,17 @@ protocol PlacesViewPresenterProtocol {
     func getCodeByNameCity(code: String)
     func getExcursionInfo(code: String, start: Date, end: Date, adults: String, child: String)
     func getArrayNameExc() -> [String]
-    func convertDateToString(date: Date) -> String
-    func getArrayPrice() -> [Int]
-    func getArrayImage() -> [UIImage]
     func getPhotoByURL(url: String)
-    func getArrayUrl() -> [String]
     func clearArray()
-    func tapOnButtonHotels(location: String)
-    func tapOnButtonFlights(location: String)
+    func tapOnButtonHotels(location: String, icon: UIImage)
+    func tapOnButtonFlights(location: String, icon: UIImage)
     func tapOnButtonExplore()
+    func addIconImage()
     func getLocation()
+    func configure(cell: PlacesCellProtocol, row: Int)
+    func getAllFavouritesDocuments(id: String, name: String, url: String)
+    func writeFavourites(id: String, dictionary: [String : String])
+    func getIdUser(completion: @escaping (String?) -> Void)
 }
 
 final class PlacesViewPresenter: PlacesViewPresenterProtocol {
@@ -28,47 +29,50 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
     private var router: RouterProtocol?
     private var alamofireProvaider: RestAPIProviderProtocol!
     private var location: String?
+    private var firebaseProvaider: FirebaseProtocol!
+    var icon: UIImage?
     
-    required init(view: PlacesViewProtocol, info: InfoExcursion, provaider: RestAPIProviderProtocol, router: RouterProtocol, location: String) {
+    required init(view: PlacesViewProtocol, info: InfoExcursion, provaider: RestAPIProviderProtocol, router: RouterProtocol, location: String, firebase: FirebaseProtocol, icon: UIImage?) {
         self.view = view
         self.excursionInfo = info
         self.alamofireProvaider = provaider
         self.router = router
         self.location = location
+        self.firebaseProvaider = firebase
+        self.icon = icon
     }
-    
-    func tapOnButtonHotels(location: String) {
-        router?.showHotelsModule(location: location)
+    // получение иконки пользователя
+    func addIconImage() {
+        guard let image = icon else {return}
+        self.view?.setIconImage(image: image)
     }
-    func tapOnButtonFlights(location: String) {
-        router?.showFlightsModule(location: location)
+    // переходы
+    func tapOnButtonHotels(location: String, icon: UIImage) {
+        router?.showHotelsModule(location: location, icon: icon)
+    }
+    func tapOnButtonFlights(location: String, icon: UIImage) {
+        router?.showFlightsModule(location: location, icon: icon)
     }
     func tapOnButtonExplore() {
         router?.popToRoot()
     }
-    
+    // получкние локации
     func getLocation() {
         guard let location = location else { return }
         view?.setLocation(location: location)
     }
+    // чистка вскх массивов
     func clearArray() {
         self.excursionInfo.price.removeAll()
         self.excursionInfo.nameExcursion.removeAll()
         self.excursionInfo.image.removeAll()
         self.excursionInfo.url.removeAll()
     }
-    func getArrayPrice() -> [Int] {
-       return excursionInfo.price
-    }
+    // получение инфоромации из массивов
     func getArrayNameExc() -> [String] {
         return excursionInfo.nameExcursion
     }
-    func getArrayImage() -> [UIImage] {
-        return excursionInfo.image
-    }
-    func getArrayUrl() -> [String] {
-        return excursionInfo.url
-    }
+    // получение кода для получения информации об экскурсиях
     func getCodeByNameCity(code: String) {
         alamofireProvaider.getNameCityByCode(code: code) { [weak self] result in
             guard let self = self else { return }
@@ -82,18 +86,12 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
                 guard let code = value.first?.code else { return }
                 self.view?.setInfoExc(code: code)
             case .failure(let error):
+                self.view?.stopAnimation()
                 print(error.localizedDescription)
             }
         }
     }
-    
-    func convertDateToString(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
-        let stringDate = dateFormatter.string(from: date)
-        return stringDate
-    }
-    
+    // фото по урл
     func getPhotoByURL(url: String) {
         if let url = URL(string: url) {
             do {
@@ -105,10 +103,10 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
             }
         }
     }
-    
+    // получение инфы об экскурсиях
     func getExcursionInfo(code: String, start: Date, end: Date, adults: String, child: String) {
-        let startDate = convertDateToString(date: start)
-        let endDate = convertDateToString(date: end)
+        let startDate = start.convertDateToString(formattedType: .time)
+        let endDate = end.convertDateToString(formattedType: .time)
         alamofireProvaider.getExcursionInfo(codeCity: code, start: startDate, end: endDate, adults: adults, child: child) { [weak self] result in
             guard let self = self else {return}
             switch result {
@@ -129,6 +127,40 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func configure(cell: PlacesCellProtocol, row: Int) {
+        let namePlaces = excursionInfo.nameExcursion[row]
+        let iconPlaces = excursionInfo.image[row]
+        let price = "\(excursionInfo.price[row])$"
+        let url = excursionInfo.url[row]
+        cell.fieldCell(image: iconPlaces, excPrice: price, name: namePlaces, urlPlaces: url)
+    }
+    
+    func getAllFavouritesDocuments(id: String, name: String, url: String){
+        firebaseProvaider.getAllFavouritesDocuments(collection: "favouritesPlaces", docName: id) { [weak self] list in
+            guard let self = self else { return }
+            if list == nil {
+                self.writeFavourites(id: id, dictionary: [name : url])
+                self.view?.showAlertWithMessage()
+            } else {
+                guard var dictionary = list?.favourites else { return }
+                dictionary[name] = "\(url)"
+                self.writeFavourites(id: id, dictionary: dictionary)
+                self.view?.showAlertWithMessage()
+            }
+        }
+    }
+    
+    func writeFavourites(id: String, dictionary: [String : String]){
+        self.firebaseProvaider.writeFavourites(collection: "favouritesPlaces", docName: id, hotels: dictionary)
+    }
+    
+    func getIdUser(completion: @escaping (String?) -> Void){
+        firebaseProvaider.getCurrentUserId { id in
+            guard let id = id else { return }
+            completion(id)
         }
     }
 }

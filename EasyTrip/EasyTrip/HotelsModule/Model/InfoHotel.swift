@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+// хранение инфы отелей
 struct InfoHotel {
     var arrayNameHotel: [String]
     var arrayImages: [UIImage]

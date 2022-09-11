@@ -7,19 +7,17 @@
 
 import UIKit
 
-extension Date {
-    func convertToTimeZone(initTimeZone: TimeZone, timeZone: TimeZone) -> Date {
-        let delta = TimeInterval(timeZone.secondsFromGMT(for: self) - initTimeZone.secondsFromGMT(for: self))
-        return addingTimeInterval(delta)
-    }
-}
-
 protocol FlightsViewProtocol: AnyObject {
     func setInfoFlights()
     func setLocation(location: String)
+    func updateIcon(image: UIImage)
+    func stopAnimation()
 }
 
 class FlightsViewController: UIViewController, FlightsViewProtocol {
+    @IBOutlet weak var iconImage: UIImageView!
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    @IBOutlet weak var blur: UIVisualEffectView!
     @IBOutlet weak var userLocation: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var originCity: UITextField!
@@ -34,10 +32,16 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
         
         tableView.register(UINib(nibName: "FlightsViewCell", bundle: nil), forCellReuseIdentifier: FlightsViewCell.key)
         
+        originCity.delegate = self
+        destinationCity.delegate = self
+        presenter.getIconImage()
         presenter.getLocation()
     }
-    // переделать через async Await, позже переделаю
+// если успею переделаю
     @IBAction func onSearchButton(_ sender: Any) {
+        // activity indicator, пока загрузка полетов
+        blur.isHidden = false
+        activity.startAnimating()
         let date = DateFormatter()
         date.dateFormat = "yyyy-MM-dd"
         let setDate = date.string(from: datePicker.date)
@@ -52,33 +56,44 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
             }
         }
     }
-    
+    // переход на HomeViewController
     @IBAction func onExploreButton(_ sender: Any) {
         presenter.tapOnButtonExplore()
     }
-    
+    // остановка анимации
+    func stopAnimation(){
+        blur.isHidden = true
+        activity.stopAnimating()
+    }
+    // обновление иконки пользователя
+    func updateIcon(image: UIImage) {
+        iconImage.image = image
+    }
+    // установление геолокации
     func setLocation(location: String) {
         self.userLocation.text = location
     }
-    
+    // обновление таблицы после получения инфы
     func setInfoFlights() {
+        stopAnimation()
         tableView.reloadData()
     }
+    // переход на PlaceViewController, передаем location
     @IBAction func onPlaceButton(_ sender: Any) {
-        guard let location = userLocation.text else { return }
-        presenter.tapOnButtonPlaces(location: location)
+        guard let location = userLocation.text, let icon = iconImage.image else { return }
+        presenter.tapOnButtonPlaces(location: location, icon: icon)
     }
-    
+    // переход на HotelsViewController, передаем location
     @IBAction func onHotelsButton(_ sender: Any) {
-        guard let location = userLocation.text else { return }
-        presenter.tapOnButtonHotels(location: location)
+        guard let location = userLocation.text, let icon = iconImage.image else { return }
+        presenter.tapOnButtonHotels(location: location, icon: icon)
     }
 }
 
 //MARK: Extension
 extension FlightsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        presenter.getArrayInfo(type: .price).count
+        presenter.getArrayFligts().count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,28 +102,17 @@ extension FlightsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: FlightsViewCell.key) as? FlightsViewCell {
-            
-            // пока оставлю, вернусь позже к этому, все равно работает не правильно(
-            if let isoDate = presenter.getArrayInfo(type: .depart)[indexPath.section] as? Date {
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "HH:mm"
-                dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-                cell.departAt.text = dateFormatter.string(from: isoDate)
-                
-            }
-            //            let dateFormatter = ISO8601DateFormatter()
-            //            let date = dateFormatter.date(from:isoDate)?.convertToTimeZone(initTimeZone: TimeZone(secondsFromGMT: 0) ?? .current, timeZone: TimeZone.current)
-            //            print(date)
-            
-            cell.iconAirlines.image = presenter.getImage()[indexPath.section]
-            cell.price.text = "\(presenter.getArrayInfo(type: .price)[indexPath.section]) $"
-            cell.transfer.text = "пересадок: \(presenter.getArrayInfo(type: .transfer)[indexPath.section])"
-            cell.origin.text = "\(presenter.getArrayInfo(type: .origin)[indexPath.section])"
-            cell.destination.text = "\(presenter.getArrayInfo(type: .destination)[indexPath.section])"
-            cell.timeInFlight.text = "\(presenter.getArrayInfo(type: .duration)[indexPath.section])"
-            //  cell.returnAt.text = "\(presenter.getArrayInfo(type: .arrave)[indexPath.row])"
+            // ячейки заполняю из перезентера
+            presenter.configure(cell: cell, row: indexPath.section)
             return cell
         }
         return UITableViewCell()
+    }
+}
+// закрытие клавиатуры по нажатию на кнопку на телефоне
+extension FlightsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

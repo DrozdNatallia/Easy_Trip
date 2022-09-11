@@ -20,20 +20,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let tabBar = UITabBarController()
             let assemblyBuilder = HomeBuilderClass()
             let router = Router(navigationController: navigationController, assemblyBuilder: assemblyBuilder, tabBar: tabBar)
+            Auth.auth().addStateDidChangeListener { auth, user in
+                if user == nil {
+                    router.showRegistration()
+                }
+            }
             router.initialViewController()
             router.initFavouritesViewControllers()
             router.initPersonalViewControllers()
             router.initialTabBArController()
             window.rootViewController = tabBar
             navigationController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
-            tabBar.tabBar.backgroundColor = .white
-            tabBar.tabBar.tintColor = .black
-            
-            Auth.auth().addStateDidChangeListener { auth, user in
-                if user == nil {
-                    router.showRegistration()
-                }
-            }
+            tabBar.tabBar.backgroundColor = .secondarySystemBackground
+            tabBar.tabBar.tintColor = .systemBlue
             window.makeKeyAndVisible()
         }
     }

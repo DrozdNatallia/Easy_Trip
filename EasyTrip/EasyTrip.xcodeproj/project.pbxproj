@@ -7,22 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CC0E3BD628A4493D00CD500C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CC0E3BD528A4493D00CD500C /* Alamofire */; };
-		CC0E3BE428A44E1C00CD500C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CC0E3BE328A44E1C00CD500C /* Alamofire */; };
 		CC1F054728B776820051091A /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1F054528B776820051091A /* FavouritesViewController.swift */; };
 		CC1F054828B776820051091A /* FavouritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1F054628B776820051091A /* FavouritesViewController.xib */; };
 		CC1F054B28B77C610051091A /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1F054928B77C610051091A /* PersonalViewController.swift */; };
-		CC1F054C28B77C610051091A /* PersonalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1F054A28B77C610051091A /* PersonalViewController.xib */; };
 		CC1F055428B7F5D90051091A /* FavouritesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1F055228B7F5D90051091A /* FavouritesViewCell.swift */; };
 		CC1F055528B7F5D90051091A /* FavouritesViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC1F055328B7F5D90051091A /* FavouritesViewCell.xib */; };
 		CC1F055828B8CE0B0051091A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC1F055728B8CE0B0051091A /* GoogleService-Info.plist */; };
 		CC1F056128B8E0AD0051091A /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1F056028B8E0AD0051091A /* FirebaseManager.swift */; };
-		CC1F056B28B8E46A0051091A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CC1F056A28B8E46A0051091A /* FirebaseAuth */; };
-		CC1F056D28B8E46A0051091A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CC1F056C28B8E46A0051091A /* FirebaseDatabase */; };
-		CC1F056F28B8E46A0051091A /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CC1F056E28B8E46A0051091A /* FirebaseDatabaseSwift */; };
-		CC1F057128B8E46A0051091A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CC1F057028B8E46A0051091A /* FirebaseFirestore */; };
-		CC1F057328B8E46A0051091A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CC1F057228B8E46A0051091A /* FirebaseFirestoreSwift */; };
-		CC1F057528B8E46A0051091A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CC1F057428B8E46A0051091A /* FirebaseStorage */; };
 		CC1F057728B8E9B00051091A /* FavouritesHotels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1F057628B8E9B00051091A /* FavouritesHotels.swift */; };
 		CC2BD03728AE23FB0031769A /* FlightsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BD03628AE23FB0031769A /* FlightsPresenter.swift */; };
 		CC2BD03928AE24440031769A /* InfoFlights.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BD03828AE24440031769A /* InfoFlights.swift */; };
@@ -39,7 +30,6 @@
 		CC64158528A2563A0052050E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC64158328A2563A0052050E /* Main.storyboard */; };
 		CC64158728A2563C0052050E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC64158628A2563C0052050E /* Assets.xcassets */; };
 		CC64158A28A2563C0052050E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC64158828A2563C0052050E /* LaunchScreen.storyboard */; };
-		CC64159628A27B680052050E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CC64159528A27B680052050E /* Alamofire */; };
 		CC64159828A27BE60052050E /* AlamofireProvaider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159728A27BE60052050E /* AlamofireProvaider.swift */; };
 		CC64159A28A28BE80052050E /* PopularFlights.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159928A28BE80052050E /* PopularFlights.swift */; };
 		CC64159C28A2CFE60052050E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64159B28A2CFE60052050E /* Constants.swift */; };
@@ -48,6 +38,15 @@
 		CC6415A628A2E74E0052050E /* FlightsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A528A2E74E0052050E /* FlightsInfo.swift */; };
 		CC6415A828A2FE9E0052050E /* ExcursionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A728A2FE9E0052050E /* ExcursionInfo.swift */; };
 		CC6415AA28A310950052050E /* Autocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6415A928A310950052050E /* Autocomplete.swift */; };
+		CC66635628C2C5E1003C33D1 /* PersonalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC66635528C2C5DF003C33D1 /* PersonalViewController.xib */; };
+		CC66635828C37251003C33D1 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC66635728C37251003C33D1 /* Users.swift */; };
+		CC76BA0F28C1662D006EDAAF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CC76BA0E28C1662D006EDAAF /* Alamofire */; };
+		CC76BA1F28C16A1B006EDAAF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CC76BA1E28C16A1B006EDAAF /* FirebaseAuth */; };
+		CC76BA2128C16A1B006EDAAF /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CC76BA2028C16A1B006EDAAF /* FirebaseDatabase */; };
+		CC76BA2328C16A1B006EDAAF /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CC76BA2228C16A1B006EDAAF /* FirebaseDatabaseSwift */; };
+		CC76BA2528C16A1B006EDAAF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CC76BA2428C16A1B006EDAAF /* FirebaseFirestore */; };
+		CC76BA2728C16A1B006EDAAF /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CC76BA2628C16A1B006EDAAF /* FirebaseFirestoreSwift */; };
+		CC76BA2928C16A1B006EDAAF /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CC76BA2828C16A1B006EDAAF /* FirebaseStorage */; };
 		CC8B2C4628BB923E0060AEB2 /* FavouritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8B2C4528BB923E0060AEB2 /* FavouritesPresenter.swift */; };
 		CC8B2C4928BC178E0060AEB2 /* FirebaseProvaiderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8B2C4828BC178E0060AEB2 /* FirebaseProvaiderProtocol.swift */; };
 		CC8B2C4E28BC18360060AEB2 /* Hotels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8B2C4D28BC18360060AEB2 /* Hotels.swift */; };
@@ -55,12 +54,16 @@
 		CCCF4B7328A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCCF4B7128A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib */; };
 		CCCF4B7628A3F40B0041ED9E /* PopularCityDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF4B7528A3F40B0041ED9E /* PopularCityDate.swift */; };
 		CCD0642C28C0DC84006F0EC2 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0642B28C0DC84006F0EC2 /* AuthPresenter.swift */; };
+		CCD0643128C14FE1006F0EC2 /* PersonalPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0643028C14FE1006F0EC2 /* PersonalPresenter.swift */; };
+		CCD0643C28C16105006F0EC2 /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCD0643B28C16105006F0EC2 /* AuthViewController.xib */; };
 		CCD1010E28B3813F004D67F0 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD1010C28B3813E004D67F0 /* PlacesViewController.swift */; };
 		CCD1010F28B3813F004D67F0 /* PlacesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCD1010D28B3813F004D67F0 /* PlacesViewController.xib */; };
 		CCD1011728B4094B004D67F0 /* PlacesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD1011528B4094B004D67F0 /* PlacesViewCell.swift */; };
 		CCD1011828B4094B004D67F0 /* PlacesViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCD1011628B4094B004D67F0 /* PlacesViewCell.xib */; };
 		CCD2B90428BFCA6300613426 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD2B90228BFCA6300613426 /* AuthViewController.swift */; };
-		CCD2B90528BFCA6300613426 /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCD2B90328BFCA6300613426 /* AuthViewController.xib */; };
+		CCEAF5F528CE1EDE00D08894 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEAF5F428CE1EDE00D08894 /* String+Extension.swift */; };
+		CCEAF5FA28CE22BC00D08894 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEAF5F928CE22BC00D08894 /* Date+Extension.swift */; };
+		CCEAF5FC28CE231600D08894 /* FormattedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEAF5FB28CE231600D08894 /* FormattedType.swift */; };
 		CCEBA1C128A7EBB1009C4917 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1C028A7EBB0009C4917 /* Presenter.swift */; };
 		CCEBA1C328A7FB71009C4917 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEBA1C228A7FB71009C4917 /* ModuleBuilder.swift */; };
 		CCF87B8028A9195C00929FA9 /* FlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF87B7E28A9195C00929FA9 /* FlightsViewController.swift */; };
@@ -76,7 +79,6 @@
 		CC1F054528B776820051091A /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		CC1F054628B776820051091A /* FavouritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouritesViewController.xib; sourceTree = "<group>"; };
 		CC1F054928B77C610051091A /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
-		CC1F054A28B77C610051091A /* PersonalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalViewController.xib; sourceTree = "<group>"; };
 		CC1F055228B7F5D90051091A /* FavouritesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewCell.swift; sourceTree = "<group>"; };
 		CC1F055328B7F5D90051091A /* FavouritesViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouritesViewCell.xib; sourceTree = "<group>"; };
 		CC1F055728B8CE0B0051091A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -106,6 +108,8 @@
 		CC6415A528A2E74E0052050E /* FlightsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsInfo.swift; sourceTree = "<group>"; };
 		CC6415A728A2FE9E0052050E /* ExcursionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcursionInfo.swift; sourceTree = "<group>"; };
 		CC6415A928A310950052050E /* Autocomplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autocomplete.swift; sourceTree = "<group>"; };
+		CC66635528C2C5DF003C33D1 /* PersonalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalViewController.xib; sourceTree = "<group>"; };
+		CC66635728C37251003C33D1 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		CC8B2C4528BB923E0060AEB2 /* FavouritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesPresenter.swift; sourceTree = "<group>"; };
 		CC8B2C4828BC178E0060AEB2 /* FirebaseProvaiderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvaiderProtocol.swift; sourceTree = "<group>"; };
 		CC8B2C4D28BC18360060AEB2 /* Hotels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hotels.swift; sourceTree = "<group>"; };
@@ -113,12 +117,16 @@
 		CCCF4B7128A3DB930041ED9E /* PopularFlightsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularFlightsCollectionViewCell.xib; sourceTree = "<group>"; };
 		CCCF4B7528A3F40B0041ED9E /* PopularCityDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCityDate.swift; sourceTree = "<group>"; };
 		CCD0642B28C0DC84006F0EC2 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		CCD0643028C14FE1006F0EC2 /* PersonalPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPresenter.swift; sourceTree = "<group>"; };
+		CCD0643B28C16105006F0EC2 /* AuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
 		CCD1010C28B3813E004D67F0 /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		CCD1010D28B3813F004D67F0 /* PlacesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlacesViewController.xib; sourceTree = "<group>"; };
 		CCD1011528B4094B004D67F0 /* PlacesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewCell.swift; sourceTree = "<group>"; };
 		CCD1011628B4094B004D67F0 /* PlacesViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlacesViewCell.xib; sourceTree = "<group>"; };
 		CCD2B90228BFCA6300613426 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		CCD2B90328BFCA6300613426 /* AuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
+		CCEAF5F428CE1EDE00D08894 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		CCEAF5F928CE22BC00D08894 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		CCEAF5FB28CE231600D08894 /* FormattedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedType.swift; sourceTree = "<group>"; };
 		CCEBA1C028A7EBB0009C4917 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		CCEBA1C228A7FB71009C4917 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		CCF87B7E28A9195C00929FA9 /* FlightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsViewController.swift; sourceTree = "<group>"; };
@@ -134,15 +142,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC1F056F28B8E46A0051091A /* FirebaseDatabaseSwift in Frameworks */,
-				CC1F056D28B8E46A0051091A /* FirebaseDatabase in Frameworks */,
-				CC1F057528B8E46A0051091A /* FirebaseStorage in Frameworks */,
-				CC0E3BE428A44E1C00CD500C /* Alamofire in Frameworks */,
-				CC64159628A27B680052050E /* Alamofire in Frameworks */,
-				CC0E3BD628A4493D00CD500C /* Alamofire in Frameworks */,
-				CC1F056B28B8E46A0051091A /* FirebaseAuth in Frameworks */,
-				CC1F057128B8E46A0051091A /* FirebaseFirestore in Frameworks */,
-				CC1F057328B8E46A0051091A /* FirebaseFirestoreSwift in Frameworks */,
+				CC76BA2328C16A1B006EDAAF /* FirebaseDatabaseSwift in Frameworks */,
+				CC76BA2128C16A1B006EDAAF /* FirebaseDatabase in Frameworks */,
+				CC76BA0F28C1662D006EDAAF /* Alamofire in Frameworks */,
+				CC76BA2528C16A1B006EDAAF /* FirebaseFirestore in Frameworks */,
+				CC76BA2928C16A1B006EDAAF /* FirebaseStorage in Frameworks */,
+				CC76BA1F28C16A1B006EDAAF /* FirebaseAuth in Frameworks */,
+				CC76BA2728C16A1B006EDAAF /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,19 +264,19 @@
 				CC64157D28A2563A0052050E /* AppDelegate.swift */,
 				CC64157F28A2563A0052050E /* SceneDelegate.swift */,
 				CC64159B28A2CFE60052050E /* Constants.swift */,
-				CC1F054928B77C610051091A /* PersonalViewController.swift */,
-				CC1F054A28B77C610051091A /* PersonalViewController.xib */,
 				CC5AB89228B1717C00A0260C /* Router.swift */,
 				CCEBA1C828A84455009C4917 /* HomeModule */,
 				CC2BD03428AE23C20031769A /* FlightsModule */,
 				CC5AB88E28B15F0600A0260C /* HotelsModule */,
 				CCFA56F228B4D70B00B778C4 /* PlacesModule */,
 				CC8B2C4C28BC17F20060AEB2 /* FavouritesModule */,
+				CC66635228C2C316003C33D1 /* PersonalModule */,
 				CCD0642D28C12BF7006F0EC2 /* AuthModule */,
 				CCEBA1C528A84409009C4917 /* ModuleBuilder */,
 				CC6415A328A2DEF70052050E /* Services */,
 				CC6415A428A2DF040052050E /* Protocols */,
 				CC6415A128A2DE870052050E /* Models */,
+				CCEAF5F628CE1EEF00D08894 /* Extension */,
 				CC64158328A2563A0052050E /* Main.storyboard */,
 				CCCF4B6D28A3D4210041ED9E /* Cells */,
 				CC64158628A2563C0052050E /* Assets.xcassets */,
@@ -286,6 +292,7 @@
 			children = (
 				CC8B2C4728BC17120060AEB2 /* FirebaseModels */,
 				CCCF4B7428A3F3EE0041ED9E /* QueryModels */,
+				CCEAF5FB28CE231600D08894 /* FormattedType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -316,10 +323,37 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		CC66635028C2C2CB003C33D1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CC1F054928B77C610051091A /* PersonalViewController.swift */,
+				CC66635528C2C5DF003C33D1 /* PersonalViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CC66635128C2C307003C33D1 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CCD0643028C14FE1006F0EC2 /* PersonalPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		CC66635228C2C316003C33D1 /* PersonalModule */ = {
+			isa = PBXGroup;
+			children = (
+				CC66635028C2C2CB003C33D1 /* View */,
+				CC66635128C2C307003C33D1 /* Presenter */,
+			);
+			path = PersonalModule;
+			sourceTree = "<group>";
+		};
 		CC8B2C4728BC17120060AEB2 /* FirebaseModels */ = {
 			isa = PBXGroup;
 			children = (
 				CC1F057628B8E9B00051091A /* FavouritesHotels.swift */,
+				CC66635728C37251003C33D1 /* Users.swift */,
 			);
 			name = FirebaseModels;
 			sourceTree = "<group>";
@@ -401,19 +435,10 @@
 		CCD0642D28C12BF7006F0EC2 /* AuthModule */ = {
 			isa = PBXGroup;
 			children = (
-				CCD0642E28C12C37006F0EC2 /* View */,
+				CCD0643228C157C2006F0EC2 /* View */,
 				CCD0642F28C12C3E006F0EC2 /* Presenter */,
 			);
 			path = AuthModule;
-			sourceTree = "<group>";
-		};
-		CCD0642E28C12C37006F0EC2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CCD2B90228BFCA6300613426 /* AuthViewController.swift */,
-				CCD2B90328BFCA6300613426 /* AuthViewController.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		CCD0642F28C12C3E006F0EC2 /* Presenter */ = {
@@ -424,6 +449,16 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		CCD0643228C157C2006F0EC2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CCD0643B28C16105006F0EC2 /* AuthViewController.xib */,
+				CCD2B90228BFCA6300613426 /* AuthViewController.swift */,
+			);
+			name = View;
+			path = View/View;
+			sourceTree = "<group>";
+		};
 		CCD1011928B40954004D67F0 /* PlacesViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +466,15 @@
 				CCD1011628B4094B004D67F0 /* PlacesViewCell.xib */,
 			);
 			path = PlacesViewCell;
+			sourceTree = "<group>";
+		};
+		CCEAF5F628CE1EEF00D08894 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				CCEAF5F428CE1EDE00D08894 /* String+Extension.swift */,
+				CCEAF5F928CE22BC00D08894 /* Date+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		CCEBA1C428A843D8009C4917 /* Presenter */ = {
@@ -479,20 +523,20 @@
 		CCF87B8728A987E300929FA9 /* TableCells */ = {
 			isa = PBXGroup;
 			children = (
-				CCF87B8828A987F300929FA9 /* FlifgtsViewCell */,
+				CCF87B8828A987F300929FA9 /* FligtsViewCell */,
 				CCD1011928B40954004D67F0 /* PlacesViewCell */,
 				CC1F055628B7F5E50051091A /* FavouritesViewCell */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
 		};
-		CCF87B8828A987F300929FA9 /* FlifgtsViewCell */ = {
+		CCF87B8828A987F300929FA9 /* FligtsViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				CCF87B8328A987D700929FA9 /* FlightsViewCell.swift */,
 				CCF87B8428A987D700929FA9 /* FlightsViewCell.xib */,
 			);
-			path = FlifgtsViewCell;
+			path = FligtsViewCell;
 			sourceTree = "<group>";
 		};
 		CCFA56F028B4D6F200B778C4 /* View */ = {
@@ -547,15 +591,13 @@
 			);
 			name = EasyTrip;
 			packageProductDependencies = (
-				CC64159528A27B680052050E /* Alamofire */,
-				CC0E3BD528A4493D00CD500C /* Alamofire */,
-				CC0E3BE328A44E1C00CD500C /* Alamofire */,
-				CC1F056A28B8E46A0051091A /* FirebaseAuth */,
-				CC1F056C28B8E46A0051091A /* FirebaseDatabase */,
-				CC1F056E28B8E46A0051091A /* FirebaseDatabaseSwift */,
-				CC1F057028B8E46A0051091A /* FirebaseFirestore */,
-				CC1F057228B8E46A0051091A /* FirebaseFirestoreSwift */,
-				CC1F057428B8E46A0051091A /* FirebaseStorage */,
+				CC76BA0E28C1662D006EDAAF /* Alamofire */,
+				CC76BA1E28C16A1B006EDAAF /* FirebaseAuth */,
+				CC76BA2028C16A1B006EDAAF /* FirebaseDatabase */,
+				CC76BA2228C16A1B006EDAAF /* FirebaseDatabaseSwift */,
+				CC76BA2428C16A1B006EDAAF /* FirebaseFirestore */,
+				CC76BA2628C16A1B006EDAAF /* FirebaseFirestoreSwift */,
+				CC76BA2828C16A1B006EDAAF /* FirebaseStorage */,
 			);
 			productName = EasyTrip;
 			productReference = CC64157A28A2563A0052050E /* EasyTrip.app */;
@@ -586,8 +628,8 @@
 			);
 			mainGroup = CC64157128A256390052050E;
 			packageReferences = (
-				CC64159428A27B680052050E /* XCRemoteSwiftPackageReference "Alamofire" */,
-				CC1F056928B8E46A0051091A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CC76BA0D28C1662D006EDAAF /* XCRemoteSwiftPackageReference "Alamofire" */,
+				CC76BA1D28C16A1B006EDAAF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = CC64157B28A2563A0052050E /* Products */;
 			projectDirPath = "";
@@ -610,13 +652,13 @@
 				CCF87B8628A987D700929FA9 /* FlightsViewCell.xib in Resources */,
 				CC1F054828B776820051091A /* FavouritesViewController.xib in Resources */,
 				CC64158728A2563C0052050E /* Assets.xcassets in Resources */,
-				CCD2B90528BFCA6300613426 /* AuthViewController.xib in Resources */,
+				CCD0643C28C16105006F0EC2 /* AuthViewController.xib in Resources */,
 				CCF87B8128A9195C00929FA9 /* FlightsViewController.xib in Resources */,
 				CCD1011828B4094B004D67F0 /* PlacesViewCell.xib in Resources */,
 				CCD1010F28B3813F004D67F0 /* PlacesViewController.xib in Resources */,
 				CC5AB88828B1039200A0260C /* HotelsCell.xib in Resources */,
-				CC1F054C28B77C610051091A /* PersonalViewController.xib in Resources */,
 				CC64158528A2563A0052050E /* Main.storyboard in Resources */,
+				CC66635628C2C5E1003C33D1 /* PersonalViewController.xib in Resources */,
 				CC1F055828B8CE0B0051091A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -637,7 +679,9 @@
 				CC2BD03928AE24440031769A /* InfoFlights.swift in Sources */,
 				CC64157E28A2563A0052050E /* AppDelegate.swift in Sources */,
 				CC1F057728B8E9B00051091A /* FavouritesHotels.swift in Sources */,
+				CCD0643128C14FE1006F0EC2 /* PersonalPresenter.swift in Sources */,
 				CCD1010E28B3813F004D67F0 /* PlacesViewController.swift in Sources */,
+				CCEAF5FA28CE22BC00D08894 /* Date+Extension.swift in Sources */,
 				CC8B2C4E28BC18360060AEB2 /* Hotels.swift in Sources */,
 				CCCF4B7228A3DB930041ED9E /* PopularFlightsCollectionViewCell.swift in Sources */,
 				CCD2B90428BFCA6300613426 /* AuthViewController.swift in Sources */,
@@ -646,6 +690,7 @@
 				CC1F056128B8E0AD0051091A /* FirebaseManager.swift in Sources */,
 				CC64159E28A2D0040052050E /* RestApiProvaiderProtocol.swift in Sources */,
 				CC6415AA28A310950052050E /* Autocomplete.swift in Sources */,
+				CCEAF5FC28CE231600D08894 /* FormattedType.swift in Sources */,
 				CCCF4B7628A3F40B0041ED9E /* PopularCityDate.swift in Sources */,
 				CCFA56F428B4D72C00B778C4 /* InfoExcursion.swift in Sources */,
 				CCD0642C28C0DC84006F0EC2 /* AuthPresenter.swift in Sources */,
@@ -659,6 +704,7 @@
 				CC5AB89328B1717C00A0260C /* Router.swift in Sources */,
 				CCEBA1C328A7FB71009C4917 /* ModuleBuilder.swift in Sources */,
 				CC64158028A2563A0052050E /* SceneDelegate.swift in Sources */,
+				CC66635828C37251003C33D1 /* Users.swift in Sources */,
 				CC64159828A27BE60052050E /* AlamofireProvaider.swift in Sources */,
 				CC8B2C4628BB923E0060AEB2 /* FavouritesPresenter.swift in Sources */,
 				CC5AB89028B15F2600A0260C /* InfoHotel.swift in Sources */,
@@ -666,6 +712,7 @@
 				CC5AB88B28B1133B00A0260C /* HotelsPresenter.swift in Sources */,
 				CCF87B8028A9195C00929FA9 /* FlightsViewController.swift in Sources */,
 				CC64159C28A2CFE60052050E /* Constants.swift in Sources */,
+				CCEAF5F528CE1EDE00D08894 /* String+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -889,15 +936,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CC1F056928B8E46A0051091A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-		CC64159428A27B680052050E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		CC76BA0D28C1662D006EDAAF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -905,53 +944,51 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		CC76BA1D28C16A1B006EDAAF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CC0E3BD528A4493D00CD500C /* Alamofire */ = {
+		CC76BA0E28C1662D006EDAAF /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC64159428A27B680052050E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = CC76BA0D28C1662D006EDAAF /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		CC0E3BE328A44E1C00CD500C /* Alamofire */ = {
+		CC76BA1E28C16A1B006EDAAF /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC64159428A27B680052050E /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		CC1F056A28B8E46A0051091A /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CC1F056928B8E46A0051091A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CC76BA1D28C16A1B006EDAAF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		CC1F056C28B8E46A0051091A /* FirebaseDatabase */ = {
+		CC76BA2028C16A1B006EDAAF /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC1F056928B8E46A0051091A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CC76BA1D28C16A1B006EDAAF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
 		};
-		CC1F056E28B8E46A0051091A /* FirebaseDatabaseSwift */ = {
+		CC76BA2228C16A1B006EDAAF /* FirebaseDatabaseSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC1F056928B8E46A0051091A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CC76BA1D28C16A1B006EDAAF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabaseSwift;
 		};
-		CC1F057028B8E46A0051091A /* FirebaseFirestore */ = {
+		CC76BA2428C16A1B006EDAAF /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC1F056928B8E46A0051091A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CC76BA1D28C16A1B006EDAAF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
-		CC1F057228B8E46A0051091A /* FirebaseFirestoreSwift */ = {
+		CC76BA2628C16A1B006EDAAF /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC1F056928B8E46A0051091A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CC76BA1D28C16A1B006EDAAF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
 		};
-		CC1F057428B8E46A0051091A /* FirebaseStorage */ = {
+		CC76BA2828C16A1B006EDAAF /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC1F056928B8E46A0051091A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CC76BA1D28C16A1B006EDAAF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
-		};
-		CC64159528A27B680052050E /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CC64159428A27B680052050E /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

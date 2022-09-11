@@ -13,14 +13,15 @@ import FirebaseStorage
 import FirebaseFirestore
 
 protocol FavouritesViewPresenterProtocol {
-    func getAllDocument(collection: String)
     func getImagebyURLFavourites(url: String)
     func deleteDocument(collection: String, name: String)
     func deleteElementFromArray(num: Int)
     func getArrayName() -> [String]
-    func getArrayImage() -> [UIImage]
     func clearArray()
-    
+    func getCurrentUserId(completion: @escaping (String?) -> Void)
+    func getAllFavouritesDocument(collection: String, docName: String)
+    func deleteElementFromFavourites(collection: String, docName: String, key: String)
+    func configure(cell: FavouritesCellProtocol, row: Int)
 }
 
 final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
@@ -35,10 +36,7 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
         self.firebaseProvaider = provaider
         self.router = router
     }
-    func getArrayImage() -> [UIImage] {
-         favourites.image
-    }
-    
+    // получение массивов
     func getArrayName() -> [String] {
         favourites.name
     }
@@ -46,45 +44,66 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
         favourites.image.removeAll()
         favourites.name.removeAll()
     }
-    
+    // удаление элемента, используетмя при удалении по свайпу
     func deleteElementFromArray(num: Int) {
         favourites.name.remove(at: num)
         favourites.image.remove(at: num)
     }
-    
-
-// получение всех документов по имени коллекции
-    func getAllDocument(collection: String) {
-        firebaseProvaider.getAllDocuments(collection: collection) { [weak self] list in
-            guard let self = self else { return }
+    // получение избранного
+    func getAllFavouritesDocument(collection: String, docName: String) {
+        firebaseProvaider.getAllFavouritesDocuments(collection: collection, docName: docName) { [weak self] places in
+            guard let self = self, let places = places, !places.favourites.isEmpty else {
+                self?.view?.stopAnimation()
+                self?.view?.updateTable()
+                return }
             DispatchQueue.global(qos: .userInteractive).async {
-                for list in list {
-                    guard let name = list?.name, let url = list?.url else { return }
-                    self.favourites.name.append(name)
-                    self.getImagebyURLFavourites(url: url)
-                    //self.view?.updateTable()
-                }
-                DispatchQueue.main.sync {
-                    self.view?.updateTable()
+                let favouritesPlaces = places.favourites
+                for (key, value) in favouritesPlaces {
+                    self.favourites.name.append(key)
+                    self.getImagebyURLFavourites(url: value)
+                    DispatchQueue.main.sync {
+                        self.view?.updateTable()
+                    }
                 }
             }
         }
     }
-    
-    func getImagebyURLFavourites(url: String) {
-          if let url = URL(string: url) {
-              do {
-                  let data = try Data(contentsOf: url)
-                  guard let icon = UIImage(data: data) else {return}
-                  self.favourites.image.append(icon)
-              } catch let error {
-                  print(error.localizedDescription)
-              }
-          }
+    // удаление тз базы данных
+    func deleteElementFromFavourites(collection: String, docName: String, key: String){
+        firebaseProvaider.getAllFavouritesDocuments(collection: collection, docName: docName) { [weak self] favourites in
+            guard let self = self, let places = favourites else { return }
+            var favourites = places.favourites
+            favourites.removeValue(forKey: key)
+            self.firebaseProvaider.writeFavourites(collection: collection, docName: docName, hotels: favourites)
+            
+        }
     }
-    
+    func getImagebyURLFavourites(url: String) {
+        if let url = URL(string: url) {
+            do {
+                let data = try Data(contentsOf: url)
+                guard let icon = UIImage(data: data) else {return}
+                self.favourites.image.append(icon)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    // удалить весть документ
     func deleteDocument(collection: String, name: String){
         firebaseProvaider.deleteDocument(collection: collection, nameDoc: name)
+    }
+    // получить id usera
+    func getCurrentUserId(completion: @escaping (String?) -> Void) {
+        firebaseProvaider.getCurrentUserId { id in
+                completion(id)
+        }
+    }
+    
+    func configure(cell: FavouritesCellProtocol, row: Int) {
+        let nameFavourites = favourites.name[row]
+        let iconFavourites = favourites.image[row]
+        cell.fillField(nameFavourites: nameFavourites, image: iconFavourites)
     }
 }
 

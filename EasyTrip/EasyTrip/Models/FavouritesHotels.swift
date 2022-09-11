@@ -6,8 +6,7 @@
 //
 
 import Foundation
-
+// хранение информации в виде словаря (так в базе)
 struct FavouritesHotels {
-    var name: String
-    var url: String
+    var favourites: [String : String]
 }

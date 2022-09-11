@@ -17,58 +17,111 @@ protocol HotelsViewPresenterProtocol: AnyObject {
     func getArrayUrl() -> [String]
     func clearArray()
     func getLocation()
-    func tapOnButtonFlights(location: String)
-    func tapOnButtonPlaces(location: String)
+    func tapOnButtonFlights(location: String, icon: UIImage)
+    func tapOnButtonPlaces(location: String, icon: UIImage)
     func tapOnButtonExplore()
+    func getIconImage()
+    func configure(cell: HotelsCellProtocol, section: Int)
+    func getFavouritesHotels(id: String, name: String, url: String)
+    func writeFavouritesHotel(id: String, dictionary: [String : String])
+    func getIdUser(completion: @escaping (String?) -> Void)
 }
 
 
-class HotelsViewPresenter: HotelsViewPresenterProtocol {
-    
+final class HotelsViewPresenter: HotelsViewPresenterProtocol {
+  
     private weak var view: HotelsViewProtocol?
     private var infoHotels: InfoHotel
     private var alamofireProvaider: RestAPIProviderProtocol!
+    private var firebaseProvaider: FirebaseProtocol!
     private var router: RouterProtocol?
     private var location: String?
+    var icon: UIImage?
     
-    required init(view: HotelsViewProtocol, info: InfoHotel, provaider: RestAPIProviderProtocol, location: String, router: RouterProtocol) {
+    required init(view: HotelsViewProtocol, info: InfoHotel, provaider: RestAPIProviderProtocol, location: String, router: RouterProtocol, icon: UIImage?, firebase: FirebaseProtocol) {
         self.view = view
         self.infoHotels = info
         self.alamofireProvaider = provaider
         self.router = router
         self.location = location
+        self.icon = icon
+        self.firebaseProvaider = firebase
     }
-    
+    // получение иконки пользователя
+    func getIconImage() {
+        guard let image = icon else {return}
+        self.view?.addIconImage(image: image)
+    }
+    // получение локации
     func getLocation() {
         guard let location = location else { return }
         view?.setLocation(location: location)
     }
-    
+    // чистка всех массивов
     func clearArray() {
         infoHotels.arrayImages.removeAll()
         infoHotels.arrayNameHotel.removeAll()
+        infoHotels.url.removeAll()
     }
+    // получение массивов с названиями отелей
     func getArrayNameHotel() -> [String] {
-        infoHotels.arrayNameHotel
+        return infoHotels.arrayNameHotel
     }
+    // получение массива с картинками
     func getArrayImages() -> [UIImage] {
         infoHotels.arrayImages
     }
+    // получение массиврв урлов
     func getArrayUrl() -> [String] {
         infoHotels.url
     }
-    
-    func tapOnButtonPlaces(location: String) {
-        router?.showPlacesModule(location: location)
+    // переход на placesViewController
+    func tapOnButtonPlaces(location: String, icon: UIImage) {
+        router?.showPlacesModule(location: location, icon: icon)
     }
-    
-    func tapOnButtonFlights(location: String) {
-        router?.showFlightsModule(location: location)
+    // переход на FlightsViewController
+    func tapOnButtonFlights(location: String, icon: UIImage) {
+        router?.showFlightsModule(location: location, icon: icon)
     }
+    // возвращение на HomeViewController
     func tapOnButtonExplore() {
         router?.popToRoot()
     }
     
+    func configure(cell: HotelsCellProtocol, section: Int) {
+        let nameHotels = infoHotels.arrayNameHotel[section]
+        let iconHotels = infoHotels.arrayImages[section]
+        let url = infoHotels.url[section]
+        cell.fillField(name: nameHotels, image: iconHotels, hotelsUrl: url)
+    }
+    func getIdUser(completion: @escaping (String?) -> Void){
+        firebaseProvaider.getCurrentUserId { id in
+            guard let id = id else { return }
+            completion(id)
+        }
+    }
+    
+    // получение списка избранных отелей
+    func getFavouritesHotels(id: String, name: String, url: String){
+        firebaseProvaider.getAllFavouritesDocuments(collection: "favouritesHotels", docName: id) { [weak self] list in
+            guard let self = self else { return }
+            if list == nil {
+                self.writeFavouritesHotel(id: id, dictionary: [name : url])
+                self.view?.showAlertWithMassage()
+            } else {
+                guard var dictionary = list?.favourites else { return }
+                dictionary[name] = "\(url)"
+                self.writeFavouritesHotel(id: id, dictionary: dictionary)
+                self.view?.showAlertWithMassage()
+            }
+        }
+    }
+    
+    func writeFavouritesHotel(id: String, dictionary: [String : String]) {
+        firebaseProvaider.writeFavourites(collection: "favouritesHotels", docName: id, hotels: dictionary)
+    }
+
+    // получение картинки по url
     func getPhotoByURL(url: String) {
         if let url = URL(string: url) {
             do {
@@ -80,7 +133,7 @@ class HotelsViewPresenter: HotelsViewPresenterProtocol {
             }
         }
     }
-    
+    // получение отелей по имени города
     func getHotelsByCityName(name: String, checkIn: String, checkOut: String, adults: Int ) {
         alamofireProvaider.getHoltelsByCityName(name: name, chekIn: checkIn, checkOut: checkOut, adults: adults) { [weak self] result in
             guard let self = self else { return }
@@ -95,6 +148,7 @@ class HotelsViewPresenter: HotelsViewPresenterProtocol {
                     self.view?.updateCollectionView()
                 }
             case .failure(let error):
+                self.view?.stopAnimation()
                 print(error.localizedDescription)
             }
         }

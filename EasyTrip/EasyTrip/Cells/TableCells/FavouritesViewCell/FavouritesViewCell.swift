@@ -6,21 +6,24 @@
 //
 
 import UIKit
-
-class FavouritesViewCell: UITableViewCell {
+protocol FavouritesCellProtocol: AnyObject {
+    func fillField(nameFavourites: String, image: UIImage)
+}
+class FavouritesViewCell: UITableViewCell, FavouritesCellProtocol {
     static let key = "FavouritesViewCell"
-
     @IBOutlet weak var favouritesImage: UIImageView!
     @IBOutlet weak var name: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
+    func fillField(nameFavourites: String, image: UIImage){
+        favouritesImage.image = image
+        name.text = nameFavourites
+    }
 }

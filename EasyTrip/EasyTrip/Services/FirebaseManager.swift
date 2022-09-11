@@ -14,45 +14,75 @@ import FirebaseFirestore
 
 class FirebaseManager: FirebaseProtocol {
     var db = Firestore.firestore()
-//    func configureFB() -> Firestore {
-//        var db: Firestore!
-//        let settings = FirestoreSettings()
-//        Firestore.firestore().settings = settings
-//        db = Firestore.firestore()
-//        return db
-//    }
-    
-    // получение всех документов
-    func getAllDocuments(collection: String, completion: @escaping ([FavouritesHotels?]) -> Void ) {
-        db.collection(collection).getDocuments { querySnapshot, error in
-            if let err = error {
-                print(err.localizedDescription)
+    // добавление картинки в базу
+    func upload(id: String, image: UIImage, completion: @escaping (Result<URL, Error>) -> Void) {
+        let ref = Storage.storage().reference().child("avatars/\(id).jpeg")
+        guard let imageData = image.jpegData(compressionQuality: 0.4) else {
+            return
+        }
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        ref.putData(imageData, metadata: nil) { metadata, error in
+            guard let _ = metadata else {
+                completion(.failure(error!))
+                return
             }
-            if let querySnapshot = querySnapshot {
-                var res: [FavouritesHotels?] = []
-                for document in querySnapshot.documents {
-                    guard let name = document.get("name") as? String, let url = document.get("url") as? String else { return }
-                    let doc = FavouritesHotels(name: name, url: url)
-                    res.append(doc)
+            ref.downloadURL { url, error in
+                guard let url = url else {
+                    completion(.failure(error!))
+                    return
                 }
-                completion(res)
+                completion(.success(url))
             }
         }
     }
-    // запись данных в базу
-    func writeDate(collectionName: String, docName: String, name: String, url: String) {
+    // получение картинки из базы
+    func getIMageFromStorage(url: String, completion: @escaping (UIImage?) -> Void){
+        let ref = Storage.storage().reference(forURL: url)
+        let size = Int64(1 * 1024 * 1024)
+        ref.getData(maxSize: size) { data, error in
+            guard let imageDate = data else { return }
+            let image = UIImage(data: imageDate)
+            completion(image)
+        }
+    }
+    // получение информации о пользователе из базы данных
+    func getInfoUser(collection: String, userId: String, completion: @escaping (Users?) -> Void) {
+        db.collection(collection).document(userId).getDocument { document, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let document = document {
+                guard let name = document.get("name") as? String, let secondName = document.get("secondName") as? String, let patronicum = document.get("patronumic") as? String, let date = document.get("dateOfBirth") as? String, let url = document.get("urlImage") as? String, let sex = document.get("sex") as? Int, let city = document.get("city") as? String else {
+                    let doc = Users()
+                    completion(doc)
+                    return }
+                let doc = Users(name: name, secondname: secondName, patronicum: patronicum, city: city, sex: sex, dateOfBirth: date, url: url)
+                completion(doc)
+            }
+        }
+    }
+    
+    // запись пользователя в базу данных
+    func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL, sex: Int, city: String, completion: @escaping (String?) -> Void) {
         db.collection(collectionName).document(docName).setData([
             "name": name,
-            "url": url
+            "secondName": secondName,
+            "patronumic": patronumic,
+            "dateOfBirth" : date,
+            "urlImage" : url.absoluteString,
+            "sex" : sex,
+            "city" : city
         ]) { err in
             if let err = err {
+                completion(nil)
                 print(err.localizedDescription)
             } else {
-                print("Document successfully written!")
+                completion("Document successfully written!")
             }
         }
     }
-    //удаление
+    //удаление документа
     func deleteDocument(collection: String, nameDoc: String) {
         db.collection(collection).document(nameDoc).delete() { err in
             if let err = err {
@@ -63,38 +93,84 @@ class FirebaseManager: FirebaseProtocol {
         }
     }
     
+    // создание нового пользователя
     func createUser(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             completion(authResult, error)
         }
     }
-    
+    // вход в аккаунт
     func signIn(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             completion(authResult, error)
         }
     }
-    
+    // выход
     func signOut() {
         let firebaseAuth = Auth.auth()
-    do {
-      try firebaseAuth.signOut()
-    } catch let signOutError as NSError {
-      print("Error signing out: %@", signOutError)
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
     }
+    // получение номера пользователя
+    func getCurrentUserId(completion: @escaping (String?) -> Void) {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            completion(uid)
+        }
     }
-    // буду позже использовать
-//    func checkFavouritesList(collection: String, nameDoc: String) {
-//        print(db.collection(collection).whereField("name", isEqualTo: nameDoc))
-//        db.collection(collection).whereField("name", isEqualTo: "Minsk")
-//            .getDocuments() { (querySnapshot, err) in
-//                if let err = err {
-//                    print("Error getting documents: \(err)")
-//                } else {
-//                    for document in querySnapshot!.documents {
-//                        print(document.data())
-//                }
-//            }
-//        }
-//    }
+    // удаление пользователя
+    func deleteUser() {
+        let user = Auth.auth().currentUser
+        user?.delete { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("account removed")
+            }
+        }
+    }
+    // запись избрпнного в базу данных
+    func writeFavourites(collection: String, docName: String, hotels: [String : String]) {
+        db.collection(collection).document(docName).setData([
+            "favourites": hotels
+            ]) { err in
+                if let err = err {
+                    print(err.localizedDescription)
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+    }
+    // получение избранного из базы
+    func getAllFavouritesDocuments(collection: String, docName: String, completion: @escaping (FavouritesHotels?) -> Void ) {
+        db.collection(collection).document(docName).getDocument { querySnapshot, error in
+            if let err = error {
+                print(err.localizedDescription)
+            }
+            guard let document = querySnapshot else { return }
+                if let name = document.get("favourites") as? [String : String] {
+                    let doc = FavouritesHotels(favourites: name)
+                completion(doc)
+                 } 
+        }
+    }
+
+    func reauthenticate(password: String, completion: @escaping (Error?) -> Void){
+        let user = Auth.auth().currentUser
+        guard let email = user?.email else { return }
+        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+        user?.reauthenticate(with: credential) { res, error in
+          if let error = error {
+              completion(error)
+              print(error.localizedDescription)
+          } else {
+              self.deleteUser()
+          }
+        }
+    }
 }
+

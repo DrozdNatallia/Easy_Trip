@@ -18,7 +18,7 @@ protocol AuthViewPresenterProtocol {
     func showAlert(message: String)
 }
 
-class AuthPresenter: AuthViewPresenterProtocol {
+final class AuthPresenter: AuthViewPresenterProtocol {
     private weak var view: AuthViewProtocol?
     private var router: RouterProtocol?
     private var firebaseProvaider: FirebaseProtocol!
@@ -28,14 +28,22 @@ class AuthPresenter: AuthViewPresenterProtocol {
         self.firebaseProvaider = provaider
         self.router = router
     }
-    
+    // сллбщение с ошибкой
     func showAlert(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let button = UIAlertAction(title: "Ok", style: .cancel)
         alert.addAction(button)
         view?.showAlertError(alert: alert)
     }
-    
+    // Предполагаю, что так делать нельзя) Но оно работает)) Более умного способа пока нет))) Это ксли меняется пользователь, но приложение не перезапускается
+  private  func updateApplication() {
+        self.router?.clearControllers()
+        self.router?.initialViewController()
+        self.router?.initFavouritesViewControllers()
+        self.router?.initPersonalViewControllers()
+        self.router?.initialTabBArController()
+    }
+    // создание нового пользователя
     func createUser(email: String, password: String) {
         firebaseProvaider.createUser(email: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
@@ -43,11 +51,12 @@ class AuthPresenter: AuthViewPresenterProtocol {
                 self.showAlert(message: err.localizedDescription)
             }
             if authResult != nil {
-                self.view?.closeVc()
+            self.updateApplication()
+            self.view?.closeVc()
             }
         }
     }
-    
+    // вход в аккаунт по данным
     func signIn(email: String, password: String) {
         firebaseProvaider.signIn(email: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
@@ -55,11 +64,12 @@ class AuthPresenter: AuthViewPresenterProtocol {
                 self.showAlert(message: error.localizedDescription)
             }
             if authResult != nil {
+                self.updateApplication()
                 self.view?.closeVc()
             }
         }
     }
-    // выход из аккаунта в личном кабинете. Будет настроен позже
+    // выход из аккаунта
     func signOut() {
         firebaseProvaider.signOut()
         

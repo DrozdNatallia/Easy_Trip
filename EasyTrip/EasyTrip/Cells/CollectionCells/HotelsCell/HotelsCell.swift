@@ -6,25 +6,33 @@
 //
 
 import UIKit
-
-class HotelsCell: UICollectionViewCell {
+protocol HotelsCellDelegate: AnyObject {
+    func getInfoAboutHotel(name: String, url: String)
+}
+protocol HotelsCellProtocol: AnyObject {
+    func fillField(name: String, image: UIImage, hotelsUrl: String)
+}
+class HotelsCell: UICollectionViewCell, HotelsCellProtocol {
     static let key = "HotelsCell"
+    weak var delegate: HotelsCellDelegate?
     @IBOutlet weak var nameHotel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var likesButton: UIButton!
-    var url: String!
-    var provaider: FirebaseProtocol!
+    private var url: String!
     override func awakeFromNib() {
         super.awakeFromNib()
-        provaider = FirebaseManager()
     }
-    // по нажатию на кнопку записыавем место в избранное. Ui пока не делала, еще буду менять
+    // заполнение ячеек
+    func fillField(name: String, image: UIImage, hotelsUrl: String) {
+        nameHotel.text = name
+        imageView.image = image
+        url = hotelsUrl
+    }
+    // по нажатию на кнопку записыавем место в избранное.
     @IBAction func onButton(_ sender: Any) {
-        guard let name = nameHotel.text, let url = url else {
-            return
-        }
-        provaider.writeDate(collectionName: "favouritesHotels", docName: name, name: name, url: url)
+        // меняется картинка по нажати
+        likesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        guard let name = nameHotel.text, let url = url else { return }
+        self.delegate?.getInfoAboutHotel(name: name, url: url)
     }
-    
-    
 }

@@ -15,6 +15,7 @@ class AlamofireProvaider: RestAPIProviderProtocol {
             Bundle.main.infoDictionary?["API_KEY"] as? String
         }
     }
+    // получение имени
     func getNameCityByCode(code: String, completion: @escaping (Result<[Autocomplete], Error>) -> Void) {
         let params = addParams(queryItems: ["locale" : "en", "types[]" : "city" , "term" : code])
         AF.request(Constants.autocompleteURL, method: .get, parameters: params).responseDecodable(of: [Autocomplete].self) { response in
@@ -49,6 +50,7 @@ class AlamofireProvaider: RestAPIProviderProtocol {
             }
         }
     }
+    // информация об отелях
     func getHoltelsByCityName(name: String, chekIn: String, checkOut: String, adults: Int, completion: @escaping (Result<[HotelsData], Error>) -> Void) {
         let params = addParams(queryItems: ["location" : name, "lang" : "en", "currency" : "usd", "limit" : "10", "checkIn" : chekIn, "checkOut" : checkOut, "adults" : "\(adults)"])
         AF.request(Constants.getHotelsByNameCity, method: .get, parameters: params).responseDecodable(of: [HotelsData].self) { response in
@@ -60,13 +62,10 @@ class AlamofireProvaider: RestAPIProviderProtocol {
             }
         }
     }
-
+// информация о полетах
     func getFlightsInfo(origin: String, date: String, destination: String, completion: @escaping (Result<FligthsInfo, Error>) -> Void) {
         let params = addParams(queryItems: ["origin" : origin, "destination" : destination, "currency" : "usd",  "departure_at" : date, "sorting" : "price", "direct" : "true", "limit" : "10"])
-        // для того чтоб получали сразу дату из запроса
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        AF.request(Constants.getFlightsInfo, method: .get, parameters: params).responseDecodable(of: FligthsInfo.self, decoder: decoder) { response in
+        AF.request(Constants.getFlightsInfo, method: .get, parameters: params).responseDecodable(of: FligthsInfo.self) { response in
             switch response.result {
             case .success(let result):
                 completion(.success(result))
@@ -77,7 +76,7 @@ class AlamofireProvaider: RestAPIProviderProtocol {
     }
     
     func getExcursionInfo(codeCity: String, start: String, end: String, adults: String, child: String, completion: @escaping (Result<ExcursionInfo, Error>) -> Void) {
-        let params = addParams(queryItems: ["code" : codeCity, "limit" : "5", "language" : "RU", "from_date" : start, "to_date" : end, "adults_count" : adults, "children_count" : child, "currency" : "usd"])
+        let params = addParams(queryItems: ["code" : codeCity, "limit" : "5", "language" : "ru", "from_date" : start, "to_date" : end, "adults_count" : adults, "children_count" : child, "currency" : "usd"])
         
         AF.request(Constants.getExcursionInfoURL, method: .get, parameters: params).responseDecodable(of: ExcursionInfo.self) { response in
             switch response.result {

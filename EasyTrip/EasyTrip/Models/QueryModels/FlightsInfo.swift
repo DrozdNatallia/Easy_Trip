@@ -19,7 +19,7 @@ struct DateElements: Codable {
     let origin, destination, originAirport, destinationAirport: String?
     let price: Int?
     let airline, flightNumber: String?
-    let departureAt, returnAt: Date?
+    let departureAt, returnAt: String?
     let transfers, returnTransfers, duration: Int?
     let link: String?
 
