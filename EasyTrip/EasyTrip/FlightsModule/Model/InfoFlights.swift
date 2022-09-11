@@ -7,14 +7,6 @@
 
 import UIKit
 // хранение иформации о полетах
-enum TypeDate {
-    case price
-    case depart
-    case transfer
-    case origin
-    case destination
-    case duration
-}
 struct InfoFlight {
     var arrayPrice: [Int]
     var arrayDepart: [String]
