@@ -93,7 +93,7 @@ class FlightsViewController: UIViewController, FlightsViewProtocol {
 //MARK: Extension
 extension FlightsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        presenter.getArrayInfo(type: .price).count
+        presenter.getArrayFligts().count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,16 +103,7 @@ extension FlightsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: FlightsViewCell.key) as? FlightsViewCell {
             // ячейки заполняю из перезентера
-            guard let durationInMin = presenter.getArrayInfo(type: .duration)[indexPath.section] as? Int else { return UITableViewCell() }
-            let flightTime = "in flight: \(durationInMin / 60):\(durationInMin % 60)"
-            let departureTime = "departure: \(presenter.getArrayInfo(type: .depart)[indexPath.section])"
-            let image = presenter.getImage()[indexPath.section]
-            let price = "\(presenter.getArrayInfo(type: .price)[indexPath.section])$"
-            let transfer = "transfer: \n \(presenter.getArrayInfo(type: .transfer)[indexPath.section])"
-            let origin = "From: \(presenter.getArrayInfo(type: .origin)[indexPath.section])"
-            let destination = "To: \n \(presenter.getArrayInfo(type: .destination)[indexPath.section])"
-            
-            cell.presenter.getInfoFlight(originCity: origin, destinationCity: destination, priceFlights: price, transferFlight: transfer, flightTime: flightTime, icon: image, depart: departureTime)
+            presenter.configure(cell: cell, row: indexPath.section)
             return cell
         }
         return UITableViewCell()

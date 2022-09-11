@@ -11,10 +11,11 @@ protocol HotelsViewProtocol: AnyObject {
     func setLocation(location: String)
     func addIconImage(image: UIImage)
     func stopAnimation()
+    func showAlertWithMassage()
     
 }
 class HotelsViewController: UIViewController, HotelsViewProtocol, HotelsCellDelegate {
-
+    
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var blur: UIVisualEffectView!
@@ -69,10 +70,8 @@ class HotelsViewController: UIViewController, HotelsViewProtocol, HotelsCellDele
         blur.isHidden = false
         activity.startAnimating()
         presenter.clearArray()
-        let date = DateFormatter()
-        date.dateFormat = "yyyy-MM-dd"
-        let checkIn = date.string(from: checkIn.date)
-        let checkOut = date.string(from: checkOut.date)
+        let checkIn = checkIn.date.convertDateToString(formattedType: .date)
+        let checkOut = checkOut.date.convertDateToString(formattedType: .date)
         guard let nameCity = nameCityTextField.text, let personCount = personCount.text, let adults = Int(personCount) else { return }
         presenter.getHotelsByCityName(name: nameCity, checkIn: checkIn, checkOut: checkOut, adults: adults)
     }
@@ -82,12 +81,20 @@ class HotelsViewController: UIViewController, HotelsViewProtocol, HotelsCellDele
         self.collectionView.reloadData()
     }
  // алерт с сообщенией еслт отель добавлен в избранное
-    func showAlertFromCell(cell: HotelsCellProtocol, didTapButton button: UIButton) {
+    func showAlertWithMassage() {
         let alert = UIAlertController(title: "Added to favourites", message: nil, preferredStyle: .alert)
         let button = UIAlertAction(title: "Ok", style: .cancel)
         alert.addAction(button)
         present(alert, animated: true)
     }
+    
+    func getInfoAboutHotel(name: String, url: String) {
+        presenter.getIdUser { [weak self] id in
+            guard let self = self, let id = id else { return }
+            self.presenter.getFavouritesHotels(id: id, name: name, url: url)
+        }
+    }
+    
 }
 
 extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -99,7 +106,7 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HotelsCell.key, for: indexPath) as? HotelsCell {
             //заполненение ячеек через презентер
             cell.delegate = self
-            cell.presenter.getInfoHotels(name: presenter.getArrayNameHotel()[indexPath.row], image: presenter.getArrayImages()[indexPath.row], url: presenter.getArrayUrl()[indexPath.row])
+            presenter.configure(cell: cell, section: indexPath.row)
             return cell
         }
        return UICollectionViewCell()

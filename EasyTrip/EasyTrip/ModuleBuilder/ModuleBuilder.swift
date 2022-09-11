@@ -45,7 +45,8 @@ class HomeBuilderClass: AsselderBuildProtocol {
         let vc = HotelsViewController(nibName: "HotelsViewController", bundle: nil)
         let provaider = AlamofireProvaider()
         let info = InfoHotel()
-        let presenter = HotelsViewPresenter(view: vc, info: info, provaider: provaider, location: location, router : router, icon: image)
+        let firebase = FirebaseManager()
+        let presenter = HotelsViewPresenter(view: vc, info: info, provaider: provaider, location: location, router : router, icon: image, firebase: firebase)
         vc.presenter = presenter
         return vc
     }

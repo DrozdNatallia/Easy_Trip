@@ -13,6 +13,7 @@ protocol PlacesViewProtocol: AnyObject {
     func setLocation(location: String)
     func setIconImage(image: UIImage)
     func stopAnimation()
+    func showAlertWithMessage()
 }
 
 class PlacesViewController: UIViewController, PlacesViewProtocol, PlacesCellDelegate {
@@ -89,11 +90,18 @@ class PlacesViewController: UIViewController, PlacesViewProtocol, PlacesCellDele
         tableView.reloadData()
     }
     // сообщение о добавлении экскурсии в избранное
-    func showAlertFromCell(cell: PlacesCellProtocol, didTapButton button: UIButton) {
+    func showAlertWithMessage() {
             let alert = UIAlertController(title: "Added to favourites", message: nil, preferredStyle: .alert)
             let button = UIAlertAction(title: "Ok", style: .cancel)
             alert.addAction(button)
             present(alert, animated: true)
+    }
+    
+    func getAllFavouritesDocuments(name: String, url: String) {
+        presenter.getIdUser { [weak self] id in
+            guard let self = self, let id = id else { return }
+            self.presenter.getAllFavouritesDocuments(id: id, name: name, url: url)
+        }
     }
    
 }
@@ -110,7 +118,7 @@ extension PlacesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: PlacesViewCell.key) as? PlacesViewCell {
             cell.delegate = self
-            cell.presenter.fieldCell(image: presenter.getArrayImage()[indexPath.section], excPrice: presenter.getArrayPrice()[indexPath.section].description, name: presenter.getArrayNameExc()[indexPath.section], urlPlaces: presenter.getArrayUrl()[indexPath.section])
+            presenter.configure(cell: cell, row: indexPath.section)
             return cell
         }
         return UITableViewCell()

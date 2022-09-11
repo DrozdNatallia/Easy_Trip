@@ -18,11 +18,11 @@ protocol PersonalViewPresenterProtocol {
     func upload(id: String, image: UIImage, completion: @escaping (Result<URL, Error>) -> Void)
     func deleteDocument(id: String)
     func reauthenticate(password: String)
-    func showAlertWithMessage()
+    func showAlertWithMessage(message: String)
     func showAlertWithPassword()
 }
 
-class PersonalPresenter: PersonalViewPresenterProtocol {
+final class PersonalPresenter: PersonalViewPresenterProtocol {
     
     private weak var view: PersonalViewProtocol!
     private var router: RouterProtocol?
@@ -50,18 +50,18 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
     }
     // заполнение всех полей ( если данные были ранее сохранены)
     func fillField() {
-        firebaseProvaider.getCurrentUserId { id in
-            guard let id = id else { return }
+        firebaseProvaider.getCurrentUserId { [weak self] id in
+            guard let id = id, let self = self else { return }
             self.firebaseProvaider.getInfoUser(collection: "User", userId: id) { [weak self] user in
-                guard let self = self else { return }
-                if let user = user {
-                    guard let name = user.name, let secondName = user.secondname, let patronicum = user.patronicum, let date = user.dateOfBirth, let url = user.url, let sex = user.sex, let city = user.city else { self.view.stopAnimating()
-                        return }
+                guard let self = self, let user = user else { return }
+                    guard let name = user.name, let secondName = user.secondname, let patronicum = user.patronicum, let date = user.dateOfBirth, let url = user.url, let sex = user.sex, let city = user.city else {
+                        self.view.stopAnimating()
+                        return
+                    }
                     self.firebaseProvaider.getIMageFromStorage(url: url) { [weak self] image in
                         guard let self = self else { return }
                         self.view.fillTextField(name: name, secondName: secondName, patronicum: patronicum, date: date, image: image, sex: sex, city: city, id: id)
                     }
-                }
             }
         }
     }
@@ -84,11 +84,11 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
     }
     // запись пользователя в базу данных
     func writeUser(collectionName: String, docName: String, name: String, secondName: String, patronumic: String, date: String, url: URL, sex: Int, city: String) {
-        firebaseProvaider.writeUser(collectionName: collectionName, docName: docName, name: name, secondName: secondName, patronumic: patronumic, date: date, url: url, sex: sex, city: city) { result in
-            guard result != nil else {
+        firebaseProvaider.writeUser(collectionName: collectionName, docName: docName, name: name, secondName: secondName, patronumic: patronumic, date: date, url: url, sex: sex, city: city) { [weak self] result in
+            guard let self = self, result != nil else {
                 return
             }
-            self.showAlertWithMessage()
+            self.showAlertWithMessage(message: "Success")
         }
     }
     // алерт с запросом пароля
@@ -109,14 +109,19 @@ class PersonalPresenter: PersonalViewPresenterProtocol {
         self.view.showAlert(alert: alert)
     }
     // алерт с сообщением о сохранении данных в базу
-    func showAlertWithMessage(){
-        let alert = UIAlertController(title: "Success", message: nil, preferredStyle: .alert)
+    func showAlertWithMessage(message: String){
+        let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
         let button = UIAlertAction(title: "Ok", style: .cancel)
         alert.addAction(button)
         self.view.showAlert(alert: alert)
     }
     
     func reauthenticate(password: String){
-        firebaseProvaider.reauthenticate(password: password)
+        firebaseProvaider.reauthenticate(password: password) { [weak self] error in
+            guard let self = self else { return}
+            if let error = error {
+                self.showAlertWithMessage(message: error.localizedDescription)
+            }
+        }
     }
 }

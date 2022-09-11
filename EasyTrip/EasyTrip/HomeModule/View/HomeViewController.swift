@@ -45,9 +45,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         activityIndicator.startAnimating()
         coreManager.delegate = self
         coreManager.requestWhenInUseAuthorization()
-   //     print(presenter.getArrayImageCity())
-  //      self.presenter.addImageFromStorage()
-        
     }
     // функция для работы pageControl
       func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -103,8 +100,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularFlightsCollectionViewCell.key, for: indexPath) as? PopularFlightsCollectionViewCell {
-        // заполнение ячеек через перезентер ячейки
-            cell.presenter.getInfoPopularCity(name: presenter.getArrayNameCity()[indexPath.row], image: presenter.getArrayImageCity()[indexPath.row])
+        // заполнение ячеек через перезентер
+            presenter.configure(cell: cell, row: indexPath.row)
             return cell
         }
         return UICollectionViewCell()

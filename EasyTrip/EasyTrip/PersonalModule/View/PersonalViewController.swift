@@ -57,12 +57,8 @@
         func fillTextField(name: String?, secondName: String?, patronicum: String?, date: String?, image: UIImage?, sex: Int?, city: String?, id: String?) {
             stopAnimating()
             guard let name = name, let secondName = secondName, let patronicum = patronicum, let date = date, let image = image, let sex = sex, let city = city, let id = id else { return }
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-MM-yyyy"
-            let dayBirth = dateFormatter.date(from: date)
-            if let dayBirth = dayBirth {
-                dateBirth.date = dayBirth
-            }
+            let dayBirth = date.convertStringToDate()
+            dateBirth.date = dayBirth
             nameCityTextField.text = city
             nameUser.text = name
             secondNameUser.text = secondName
@@ -96,14 +92,10 @@
         // запись пользователя в базу данных
         func writeUser(id: String) {
             let row = chooseSexUser.selectedRow(inComponent: 0)
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-MM-yyyy"
-            let dayBitrh = dateFormatter.string(from: dateBirth.date)
-            
-            guard let name = nameUser.text, let secondName = secondNameUser.text, let patronymic = patronymicUser.text, let image = iconImageView.image, let city = nameCityTextField.text else {
-                return
-            }
-            presenter.upload(id: id, image: image) { result in
+            let dayBitrh = dateBirth.date.convertDateToString(formattedType: .date)
+            guard let name = nameUser.text, let secondName = secondNameUser.text, let patronymic = patronymicUser.text, let image = iconImageView.image, let city = nameCityTextField.text else { return }
+            presenter.upload(id: id, image: image) { [weak self] result in
+                guard let self = self else { return }
                 switch result {
                 case .success(let url):
                     self.presenter.writeUser(collectionName: "User", docName: id, name: name, secondName: secondName, patronumic: patronymic, date: dayBitrh, url: url, sex: row, city: city)

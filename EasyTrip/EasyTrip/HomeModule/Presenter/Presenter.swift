@@ -14,12 +14,12 @@ protocol HomeViewPresenterProtocol {
     func getNamePopularCityByCode(code: String, isName: Bool)
     func getPopularFlights(nameDirection: String)
     func getArrayNameCity() -> [String]
-    func getArrayImageCity() -> [UIImage]
     func clearArrays()
     func tapOnButton(location: String, icon: UIImage?)
     func tapOnButtonHotels(location: String, icon: UIImage)
     func tapOnButtonPlaces(location: String, icon: UIImage)
     func addImageFromStorage()
+    func configure(cell: PopularCellProtocol, row: Int) 
 }
 
 final class HomeViewPresenter: HomeViewPresenterProtocol {
@@ -49,6 +49,12 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
             }
         }
     }
+    
+    func configure(cell: PopularCellProtocol, row: Int) {
+        let nameDirection = popularCityInfo.arrayNameCity[row]
+        let iconDirection = popularCityInfo.arrayImageCity[row]
+        cell.fillField(name: nameDirection, image: iconDirection)
+    }
     // переход на FlightsViewController
     func tapOnButton(location: String, icon: UIImage?) {
         router?.showFlightsModule(location: location, icon: icon )
@@ -64,10 +70,6 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
     // получение имен городов
     func getArrayNameCity() -> [String] {
         return popularCityInfo.arrayNameCity
-    }
-    // получение картинок городов
-    func getArrayImageCity() -> [UIImage] {
-        return popularCityInfo.arrayImageCity
     }
     // чистка всех массивов 
     func clearArrays() {

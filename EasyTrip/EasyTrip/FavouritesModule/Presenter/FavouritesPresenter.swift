@@ -17,11 +17,11 @@ protocol FavouritesViewPresenterProtocol {
     func deleteDocument(collection: String, name: String)
     func deleteElementFromArray(num: Int)
     func getArrayName() -> [String]
-    func getArrayImage() -> [UIImage]
     func clearArray()
     func getCurrentUserId(completion: @escaping (String?) -> Void)
     func getAllFavouritesDocument(collection: String, docName: String)
     func deleteElementFromFavourites(collection: String, docName: String, key: String)
+    func configure(cell: FavouritesCellProtocol, row: Int)
 }
 
 final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
@@ -37,10 +37,6 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
         self.router = router
     }
     // получение массивов
-    func getArrayImage() -> [UIImage] {
-        favourites.image
-    }
-    
     func getArrayName() -> [String] {
         favourites.name
     }
@@ -102,10 +98,14 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
         firebaseProvaider.getCurrentUserId { id in
             if id != nil {
                 completion(id)
-            } else {
-                completion(nil)
             }
         }
+    }
+    
+    func configure(cell: FavouritesCellProtocol, row: Int) {
+        let nameFavourites = favourites.name[row]
+        let iconFavourites = favourites.image[row]
+        cell.fillField(nameFavourites: nameFavourites, image: iconFavourites)
     }
 }
 
