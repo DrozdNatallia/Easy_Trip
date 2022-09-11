@@ -161,12 +161,13 @@ class FirebaseManager: FirebaseProtocol {
         }
     }
 
-    func reauthenticate(password: String){
+    func reauthenticate(password: String, completion: @escaping (Error?) -> Void){
         let user = Auth.auth().currentUser
         guard let email = user?.email else { return }
         let credential = EmailAuthProvider.credential(withEmail: email, password: password)
         user?.reauthenticate(with: credential) { res, error in
           if let error = error {
+              completion(error)
               print(error.localizedDescription)
           } else {
               self.deleteUser()
