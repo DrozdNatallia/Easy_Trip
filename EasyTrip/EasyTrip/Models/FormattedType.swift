@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+enum FormattedType {
+    case date
+    case time
+    
+    var description: String {
+        switch self {
+         case .date:
+             return "yyyy-MM-dd"
+         case .time:
+             return "yyyy-MM-dd'T'HH:mm"
+         }
+    }
+}
