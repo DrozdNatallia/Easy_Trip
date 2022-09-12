@@ -13,8 +13,6 @@ protocol HotelsViewPresenterProtocol: AnyObject {
     func getHotelsByCityName(name: String, checkIn: String, checkOut: String, adults: Int)
     func getArrayNameHotel() -> [String]
     func getPhotoByURL(url: String)
-    func getArrayImages() -> [UIImage]
-    func getArrayUrl() -> [String]
     func clearArray()
     func getLocation()
     func tapOnButtonFlights(location: String, icon: UIImage)
@@ -25,6 +23,7 @@ protocol HotelsViewPresenterProtocol: AnyObject {
     func getFavouritesHotels(id: String, name: String, url: String)
     func writeFavouritesHotel(id: String, dictionary: [String : String])
     func getIdUser(completion: @escaping (String?) -> Void)
+    func addRowCell(row: Int)
 }
 
 
@@ -62,18 +61,11 @@ final class HotelsViewPresenter: HotelsViewPresenterProtocol {
         infoHotels.arrayImages.removeAll()
         infoHotels.arrayNameHotel.removeAll()
         infoHotels.url.removeAll()
+        infoHotels.row.removeAll()
     }
     // получение массивов с названиями отелей
     func getArrayNameHotel() -> [String] {
         return infoHotels.arrayNameHotel
-    }
-    // получение массива с картинками
-    func getArrayImages() -> [UIImage] {
-        infoHotels.arrayImages
-    }
-    // получение массиврв урлов
-    func getArrayUrl() -> [String] {
-        infoHotels.url
     }
     // переход на placesViewController
     func tapOnButtonPlaces(location: String, icon: UIImage) {
@@ -92,7 +84,15 @@ final class HotelsViewPresenter: HotelsViewPresenterProtocol {
         let nameHotels = infoHotels.arrayNameHotel[section]
         let iconHotels = infoHotels.arrayImages[section]
         let url = infoHotels.url[section]
-        cell.fillField(name: nameHotels, image: iconHotels, hotelsUrl: url)
+        var nameImage = "heart"
+        if infoHotels.row.contains(section) {
+            nameImage = "heart.fill"
+        }
+        cell.fillField(name: nameHotels, image: iconHotels, hotelsUrl: url, section: section, nameImage: nameImage)
+    }
+    
+    func addRowCell(row: Int){
+        infoHotels.row.append(row)
     }
     func getIdUser(completion: @escaping (String?) -> Void){
         firebaseProvaider.getCurrentUserId { id in

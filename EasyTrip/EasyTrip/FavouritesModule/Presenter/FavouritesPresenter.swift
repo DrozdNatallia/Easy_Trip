@@ -99,7 +99,7 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
                 completion(id)
         }
     }
-    
+
     func configure(cell: FavouritesCellProtocol, row: Int) {
         let nameFavourites = favourites.name[row]
         let iconFavourites = favourites.image[row]

@@ -12,10 +12,12 @@ struct InfoHotel {
     var arrayNameHotel: [String]
     var arrayImages: [UIImage]
     var url: [String]
-    
-    init(name: [String] = [], image: [UIImage] = [], url: [String] = []) {
+    var row: [Int]
+    init(name: [String] = [], image: [UIImage] = [], url: [String] = [], row: [Int] = []) {
         self.arrayImages = image
         self.arrayNameHotel = name
         self.url = url
+        self.row = row
     }
+    
 }

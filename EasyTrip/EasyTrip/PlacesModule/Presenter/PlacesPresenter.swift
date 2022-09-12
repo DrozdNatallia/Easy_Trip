@@ -21,6 +21,7 @@ protocol PlacesViewPresenterProtocol {
     func getAllFavouritesDocuments(id: String, name: String, url: String)
     func writeFavourites(id: String, dictionary: [String : String])
     func getIdUser(completion: @escaping (String?) -> Void)
+    func addNumberRow(row: Int)
 }
 
 final class PlacesViewPresenter: PlacesViewPresenterProtocol {
@@ -67,6 +68,7 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
         self.excursionInfo.nameExcursion.removeAll()
         self.excursionInfo.image.removeAll()
         self.excursionInfo.url.removeAll()
+        self.excursionInfo.row.removeAll()
     }
     // получение инфоромации из массивов
     func getArrayNameExc() -> [String] {
@@ -135,7 +137,14 @@ final class PlacesViewPresenter: PlacesViewPresenterProtocol {
         let iconPlaces = excursionInfo.image[row]
         let price = "\(excursionInfo.price[row])$"
         let url = excursionInfo.url[row]
-        cell.fieldCell(image: iconPlaces, excPrice: price, name: namePlaces, urlPlaces: url)
+        var nameImage = "heart"
+        if excursionInfo.row.contains(row) {
+            nameImage = "heart.fill"
+        }
+        cell.fieldCell(image: iconPlaces, excPrice: price, name: namePlaces, urlPlaces: url, rowNumber: row, imageButton: nameImage)
+    }
+    func addNumberRow(row: Int) {
+        excursionInfo.row.append(row)
     }
     
     func getAllFavouritesDocuments(id: String, name: String, url: String){

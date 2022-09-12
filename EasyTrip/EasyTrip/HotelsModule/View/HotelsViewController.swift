@@ -95,6 +95,10 @@ class HotelsViewController: UIViewController, HotelsViewProtocol, HotelsCellDele
         }
     }
     
+    func addRowCell(row: Int) {
+        presenter.addRowCell(row: row)
+    }
+    
 }
 
 extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -106,7 +110,13 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HotelsCell.key, for: indexPath) as? HotelsCell {
             //заполненение ячеек через презентер
             cell.delegate = self
+//            if presenter.getArrayRows().contains(indexPath.row) {
+//                cell.likesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+//            } else {
+//                cell.likesButton.setImage(UIImage(systemName: "heart"), for: .normal)
+//            }
             presenter.configure(cell: cell, section: indexPath.row)
+            
             return cell
         }
        return UICollectionViewCell()
