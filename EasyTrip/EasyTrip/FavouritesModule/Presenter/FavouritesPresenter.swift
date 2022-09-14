@@ -96,7 +96,7 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
     // получить id usera
     func getCurrentUserId(completion: @escaping (String?) -> Void) {
         firebaseProvaider.getCurrentUserId { id in
-                completion(id)
+             completion(id)
         }
     }
 
