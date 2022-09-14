@@ -11,11 +11,13 @@ import UIKit
 struct PopulareCityDate {
     var arrayNameCity: [String]
     var arrayImageCity: [UIImage]
-    var sizeImage: Int
+    var width: Int
+    var height: Int
     
-    init (name: [String] = [], image: [UIImage] = [], size: Int) {
+    init (name: [String] = [], image: [UIImage] = [], width: Int, height: Int) {
         self.arrayImageCity = image
         self.arrayNameCity = name
-        self.sizeImage = size
+        self.width = width
+        self.height = height
     }
 }
