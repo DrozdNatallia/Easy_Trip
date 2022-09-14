@@ -50,6 +50,10 @@ class HomeViewController: UIViewController, HomeViewProtocol {
       func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         pageControl.currentPage = Int(targetContentOffset.pointee.x / view.frame.width)
     }
+    func stopAnimating(){
+        blur.isHidden = true
+        activityIndicator.stopAnimating()
+    }
     
     func updateIcon(image: UIImage) {
         iconImageView.image = image
@@ -82,8 +86,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     func setPopularFlights(city: String, isName: Bool){
         //если получили полное имя(т.к. может быть код), то добавдяем в массив и обновляем таблицу
         if isName {
-            blur.isHidden = true
-            activityIndicator.stopAnimating()
+            self.stopAnimating()
             self.collectionView.reloadData()
         } else {
             // если получен код, то вызываем функцию для получения популярных полетов
@@ -112,7 +115,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 extension HomeViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         if manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse {
+            self.stopAnimating()
             coreManager.startUpdatingLocation()
+            
         } else if manager.authorizationStatus == .restricted || manager.authorizationStatus == .denied {
             self.userLocation.text = "LONDON"
             presenter.getPopularFlights(nameDirection: "LON")
@@ -120,11 +125,14 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
     // 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locations = locations.last else { return }
+        guard let locations = locations.last else {
+            self.stopAnimating()
+            return }
         let userLocation = locations as CLLocation
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(userLocation) { (placemarks, error) in
             if let error = error {
+                self.stopAnimating()
                 print(error.localizedDescription)
             }
             if let placemarks = placemarks, let placemark = placemarks.first, let locality = placemark.locality, self.userLocation.text == "" {
@@ -134,6 +142,7 @@ extension HomeViewController: CLLocationManagerDelegate {
                     self.presenter.getNamePopularCityByCode(code: locality, isName: false)
             }
         }
+        self.stopAnimating()
         coreManager.stopUpdatingLocation()
     }
 }
