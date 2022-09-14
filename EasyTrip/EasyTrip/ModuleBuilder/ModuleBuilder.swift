@@ -21,9 +21,10 @@ protocol AsselderBuildProtocol {
 class HomeBuilderClass: AsselderBuildProtocol {
     func createModel(router: RouterProtocol) -> UIViewController {
         if  let viewContoller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
-            let size = Int(viewContoller.view.frame.width)
+            let sizeWidth = Int(viewContoller.view.frame.width)
+            let sizeHeight = Int(viewContoller.view.frame.height)
             let provaider = AlamofireProvaider()
-            let info = PopulareCityDate(size: size)
+            let info = PopulareCityDate(width: sizeWidth, height: sizeHeight)
             let firebaseProvaider = FirebaseManager()
             let presenter = HomeViewPresenter(view: viewContoller, info: info, provaider: provaider, router: router, firebase: firebaseProvaider)
             viewContoller.presenter = presenter
