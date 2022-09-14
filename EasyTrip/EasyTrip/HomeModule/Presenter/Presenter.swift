@@ -19,7 +19,7 @@ protocol HomeViewPresenterProtocol {
     func tapOnButtonHotels(location: String, icon: UIImage)
     func tapOnButtonPlaces(location: String, icon: UIImage)
     func addImageFromStorage()
-    func configure(cell: PopularCellProtocol, row: Int) 
+    func configure(cell: PopularCellProtocol, row: Int)
 }
 
 final class HomeViewPresenter: HomeViewPresenterProtocol {
@@ -55,6 +55,7 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
         let iconDirection = popularCityInfo.arrayImageCity[row]
         cell.fillField(name: nameDirection, image: iconDirection)
     }
+    
     // переход на FlightsViewController
     func tapOnButton(location: String, icon: UIImage?) {
         router?.showFlightsModule(location: location, icon: icon )
@@ -132,8 +133,9 @@ final class HomeViewPresenter: HomeViewPresenterProtocol {
                     // код страны прибытия
                     guard let destination = flight.destination else { return }
                     // картинки по url получаем
-                    let width = self.popularCityInfo.sizeImage
-                    let url = Constants.getImageCityByURL.appending("\(width)x250/\(destination).jpg")
+                    let width = self.popularCityInfo.width
+                    let height = Int(Double(self.popularCityInfo.height) * 0.35)
+                    let url = Constants.getImageCityByURL.appending("\(width)x\(height)/\(destination).jpg")
                     self.getImagebyURL(url: url)
                     // вызываем функцию и полученный код передаем
                     self.getNamePopularCityByCode(code: destination, isName: true)

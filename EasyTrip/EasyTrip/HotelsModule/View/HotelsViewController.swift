@@ -95,6 +95,10 @@ class HotelsViewController: UIViewController, HotelsViewProtocol, HotelsCellDele
         }
     }
     
+    func addRowCell(row: Int) {
+        presenter.addRowCell(row: row)
+    }
+    
 }
 
 extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -107,6 +111,7 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
             //заполненение ячеек через презентер
             cell.delegate = self
             presenter.configure(cell: cell, section: indexPath.row)
+            
             return cell
         }
        return UICollectionViewCell()

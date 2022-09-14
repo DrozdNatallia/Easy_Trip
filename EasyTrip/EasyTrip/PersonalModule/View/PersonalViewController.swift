@@ -36,6 +36,7 @@
             patronymicUser.delegate = self
             nameUser.delegate = self
             secondNameUser.delegate = self
+            dateBirth.maximumDate = Date()
             blur.isHidden = false
             activity.startAnimating()
             presenter.fillField()
@@ -128,6 +129,16 @@
     }
 
 extension PersonalViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = (view as? UILabel) ?? UILabel()
+        label.font = UIFont.systemFont(ofSize: 15.0, weight: .medium)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
+        label.textAlignment = .center
+        label.text = self.pickerView(pickerView, titleForRow: row, forComponent: component)
+        return label
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
     }

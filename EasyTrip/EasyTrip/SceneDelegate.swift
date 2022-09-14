@@ -11,8 +11,6 @@ import FirebaseAuth
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    
-    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         if let window = window {
@@ -20,11 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let tabBar = UITabBarController()
             let assemblyBuilder = HomeBuilderClass()
             let router = Router(navigationController: navigationController, assemblyBuilder: assemblyBuilder, tabBar: tabBar)
-            Auth.auth().addStateDidChangeListener { auth, user in
-                if user == nil {
-                    router.showRegistration()
-                }
-            }
+            let defaults = UserDefaults()
             router.initialViewController()
             router.initFavouritesViewControllers()
             router.initPersonalViewControllers()
@@ -34,6 +28,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             tabBar.tabBar.backgroundColor = .secondarySystemBackground
             tabBar.tabBar.tintColor = .systemBlue
             window.makeKeyAndVisible()
+            Auth.auth().addStateDidChangeListener { auth, user in
+                var newUser = user
+                if !defaults.bool(forKey: "isAppAlreadyLaunchedOnce") {
+                    newUser = nil
+                }
+                if newUser == nil {
+                    UserDefaults.standard.set(true, forKey: "isAppAlreadyLaunchedOnce")
+                    router.showRegistration()
+                }
+            }
         }
     }
     func sceneDidDisconnect(_ scene: UIScene) {

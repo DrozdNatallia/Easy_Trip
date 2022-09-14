@@ -61,7 +61,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="72.5" height="47"/>
                             <color key="tintColor" systemColor="labelColor"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Explore"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Explore">
+                                <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                            </buttonConfiguration>
                             <connections>
                                 <action selector="onExploreButton:" destination="-1" eventType="touchUpInside" id="S3v-Pj-VDg"/>
                             </connections>
@@ -70,7 +72,9 @@
                             <rect key="frame" x="113" y="0.0" width="67.5" height="47"/>
                             <color key="tintColor" systemColor="labelColor"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Flights"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Flights">
+                                <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                            </buttonConfiguration>
                             <connections>
                                 <action selector="onFlightsButton:" destination="-1" eventType="touchUpInside" id="LHy-AV-cHa"/>
                             </connections>
@@ -79,13 +83,17 @@
                             <rect key="frame" x="221" y="0.0" width="66" height="47"/>
                             <color key="tintColor" systemColor="labelColor"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Hotels"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Hotels">
+                                <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                            </buttonConfiguration>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5x-pc-UCN">
                             <rect key="frame" x="327.5" y="0.0" width="66.5" height="47"/>
                             <color key="tintColor" systemColor="labelColor"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Places"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Places">
+                                <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                            </buttonConfiguration>
                             <connections>
                                 <action selector="onPlaceButton:" destination="-1" eventType="touchUpInside" id="xbD-7J-9Ub"/>
                             </connections>
@@ -96,17 +104,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vtv-IB-cdZ">
                     <rect key="frame" x="10" y="191" width="394" height="224"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jJe-nf-gVm">
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jJe-nf-gVm">
                             <rect key="frame" x="0.0" y="0.0" width="394" height="67.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name city:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IP8-qc-cgw">
-                                    <rect key="frame" x="0.0" y="0.0" width="197" height="67.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name city" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IP8-qc-cgw">
+                                    <rect key="frame" x="0.0" y="0.0" width="192" height="67.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9No-yQ-FcH">
-                                    <rect key="frame" x="197" y="0.0" width="197" height="67.5"/>
+                                    <rect key="frame" x="202" y="0.0" width="192" height="67.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -115,33 +123,31 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dYI-8l-r22">
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="dYI-8l-r22">
                             <rect key="frame" x="0.0" y="74" width="394" height="89.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chek in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nj1-R3-1HD">
-                                    <rect key="frame" x="0.0" y="0.0" width="59" height="89.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nj1-R3-1HD">
+                                    <rect key="frame" x="0.0" y="0.0" width="98.5" height="89.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="OoE-m5-yQQ">
-                                    <rect key="frame" x="59" y="0.0" width="126" height="89.5"/>
+                                    <rect key="frame" x="98.5" y="0.0" width="98.5" height="89.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="tintColor" systemColor="labelColor"/>
                                     <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
                                         <!--1970-01-01 11:00:00 +0000-->
                                     </date>
                                 </datePicker>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chek out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QbK-Z8-kyV">
-                                    <rect key="frame" x="185" y="0.0" width="83" height="89.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QbK-Z8-kyV">
+                                    <rect key="frame" x="197" y="0.0" width="98.5" height="89.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="cR1-0e-xcM">
-                                    <rect key="frame" x="268" y="0.0" width="126" height="89.5"/>
+                                    <rect key="frame" x="295.5" y="0.0" width="98.5" height="89.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="tintColor" systemColor="labelColor"/>
                                     <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
                                         <!--1970-01-01 11:00:00 +0000-->
                                     </date>
@@ -150,10 +156,9 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="cR1-0e-xcM" firstAttribute="width" secondItem="OoE-m5-yQQ" secondAttribute="width" id="4wL-5A-4Bh"/>
-                                <constraint firstItem="OoE-m5-yQQ" firstAttribute="width" secondItem="dYI-8l-r22" secondAttribute="width" multiplier="0.32" id="OHe-xd-XCh"/>
-                                <constraint firstItem="QbK-Z8-kyV" firstAttribute="width" secondItem="dYI-8l-r22" secondAttribute="width" multiplier="0.21" id="SA5-86-Irn"/>
+                                <constraint firstItem="QbK-Z8-kyV" firstAttribute="width" secondItem="dYI-8l-r22" secondAttribute="width" multiplier="0.25" id="SA5-86-Irn"/>
                                 <constraint firstItem="OoE-m5-yQQ" firstAttribute="leading" secondItem="nj1-R3-1HD" secondAttribute="trailing" id="aRu-n9-g8Q"/>
-                                <constraint firstItem="nj1-R3-1HD" firstAttribute="width" secondItem="dYI-8l-r22" secondAttribute="width" multiplier="0.15" id="oSZ-Wp-SpD"/>
+                                <constraint firstItem="nj1-R3-1HD" firstAttribute="width" secondItem="dYI-8l-r22" secondAttribute="width" multiplier="0.25" id="oSZ-Wp-SpD"/>
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="q3g-z4-qLf">

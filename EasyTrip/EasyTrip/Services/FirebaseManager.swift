@@ -155,7 +155,9 @@ class FirebaseManager: FirebaseProtocol {
                 if let name = document.get("favourites") as? [String : String] {
                     let doc = FavouritesHotels(favourites: name)
                 completion(doc)
-                 } 
+                } else {
+                    completion(nil)
+                }
         }
     }
 

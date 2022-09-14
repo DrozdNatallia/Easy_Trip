@@ -96,10 +96,10 @@ final class FavouritesViewPresenter: FavouritesViewPresenterProtocol {
     // получить id usera
     func getCurrentUserId(completion: @escaping (String?) -> Void) {
         firebaseProvaider.getCurrentUserId { id in
-                completion(id)
+             completion(id)
         }
     }
-    
+
     func configure(cell: FavouritesCellProtocol, row: Int) {
         let nameFavourites = favourites.name[row]
         let iconFavourites = favourites.image[row]

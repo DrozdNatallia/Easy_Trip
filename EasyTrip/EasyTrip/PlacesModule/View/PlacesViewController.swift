@@ -103,6 +103,10 @@ class PlacesViewController: UIViewController, PlacesViewProtocol, PlacesCellDele
             self.presenter.getAllFavouritesDocuments(id: id, name: name, url: url)
         }
     }
+    
+    func addNumberRow(rowNumber: Int) {
+        presenter.addNumberRow(row: rowNumber)
+    }
    
 }
 
