@@ -97,11 +97,11 @@ final class FlightsViewPresenter: FlightsViewPresenterProtocol {
     }
     func configure(cell: FlightsCellProtocol, row: Int) {
         let durationInMin = infoFlights.arrayDuration[row]
-        let flightTime = "in flight: \(durationInMin / 60):\(durationInMin % 60)"
-        let originCity = "From: \n \(infoFlights.arrayOrigin[row])"
-        let destinationCity = "To: \n \(infoFlights.arrayDestination[row])"
-        let departureTime = "departure: \(infoFlights.arrayDepart[row])"
-        let transferCount = "transfer: \n \(infoFlights.arrayTransfer[row])"
+        let flightTime = "in flight \(durationInMin.minToTime())"
+        let originCity = "From\n \(infoFlights.arrayOrigin[row])"
+        let destinationCity = "To\n \(infoFlights.arrayDestination[row])"
+        let departureTime = "departure\n \(infoFlights.arrayDepart[row])"
+        let transferCount = "transfer\n \(infoFlights.arrayTransfer[row])"
         let icon = infoFlights.iconAirlines[row]
         let priceFlight = "\(infoFlights.arrayPrice[row])$"
         cell.fillField(originCity: originCity, destinationCity: destinationCity, priceFlights: priceFlight, transferFlight: transferCount, flightTime: flightTime, icon: icon, depart: departureTime)
@@ -131,3 +131,4 @@ final class FlightsViewPresenter: FlightsViewPresenterProtocol {
         }
     }
 }
+
