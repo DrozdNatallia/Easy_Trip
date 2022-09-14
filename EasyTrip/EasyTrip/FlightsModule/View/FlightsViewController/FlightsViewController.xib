@@ -71,34 +71,42 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" systemColor="labelColor"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Explore"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Explore">
+                                <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                            </buttonConfiguration>
                             <connections>
                                 <action selector="onExploreButton:" destination="-1" eventType="touchUpInside" id="85m-p6-S2U"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wia-Ni-u2n">
-                            <rect key="frame" x="115.5" y="0.0" width="67.5" height="47"/>
+                            <rect key="frame" x="113" y="0.0" width="67.5" height="47"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" systemColor="labelColor"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Flights"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Flights">
+                                <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                            </buttonConfiguration>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcM-Je-vuJ">
-                            <rect key="frame" x="225.5" y="0.0" width="66" height="47"/>
+                            <rect key="frame" x="221" y="0.0" width="66" height="47"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" systemColor="labelColor"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Hotels"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Hotels">
+                                <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                            </buttonConfiguration>
                             <connections>
                                 <action selector="onHotelsButton:" destination="-1" eventType="touchUpInside" id="IaW-lb-h9Z"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kzv-gm-oWH">
-                            <rect key="frame" x="334.5" y="0.0" width="59.5" height="47"/>
+                            <rect key="frame" x="327.5" y="0.0" width="66.5" height="47"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" systemColor="labelColor"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Place"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Places">
+                                <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                            </buttonConfiguration>
                             <connections>
                                 <action selector="onPlaceButton:" destination="-1" eventType="touchUpInside" id="0B9-Zh-V0J"/>
                             </connections>
@@ -154,21 +162,20 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="D1l-KU-ahO">
                             <rect key="frame" x="0.0" y="80.5" width="394" height="67.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departure date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baW-ls-T3O">
-                                    <rect key="frame" x="0.0" y="0.0" width="138" height="67.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departure date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baW-ls-T3O">
+                                    <rect key="frame" x="0.0" y="0.0" width="197" height="67.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Y2q-c1-ji4">
-                                    <rect key="frame" x="138" y="0.0" width="256" height="67.5"/>
+                                    <rect key="frame" x="197" y="0.0" width="197" height="67.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="tintColor" systemColor="labelColor"/>
                                 </datePicker>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="baW-ls-T3O" firstAttribute="width" secondItem="D1l-KU-ahO" secondAttribute="width" multiplier="0.35" id="oj9-OW-Ceb"/>
+                                <constraint firstItem="baW-ls-T3O" firstAttribute="width" secondItem="D1l-KU-ahO" secondAttribute="width" multiplier="0.5" id="oj9-OW-Ceb"/>
                             </constraints>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zsw-ky-yuk">

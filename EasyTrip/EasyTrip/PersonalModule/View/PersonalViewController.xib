@@ -16,11 +16,14 @@
                 <outlet property="chooseSexUser" destination="Szu-hu-5pC" id="ESm-Sk-KCg"/>
                 <outlet property="cityUser" destination="EWN-Mj-0kV" id="ICX-bK-ICj"/>
                 <outlet property="dateBirth" destination="PIX-y6-TxO" id="fh0-ma-ewD"/>
+                <outlet property="deleteButton" destination="fEJ-JI-BNN" id="vbN-CA-nQG"/>
                 <outlet property="iconImageView" destination="10b-ZT-zkQ" id="ZjV-xT-n3q"/>
                 <outlet property="nameCityTextField" destination="EWN-Mj-0kV" id="f5o-Ja-MXz"/>
                 <outlet property="nameUser" destination="zbB-Nm-I3h" id="LY5-K1-bNK"/>
                 <outlet property="patronymicUser" destination="3T4-JX-lqd" id="hcr-dn-7Ae"/>
+                <outlet property="saveButton" destination="K6v-LQ-c1C" id="xy3-px-gMP"/>
                 <outlet property="secondNameUser" destination="LIU-Gi-mbe" id="yqB-NE-9N3"/>
+                <outlet property="signOutButton" destination="9ry-RM-Hi2" id="RD8-JJ-ZYc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -80,22 +83,22 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xtO-VD-y9d">
                     <rect key="frame" x="20" y="398" width="186.5" height="179.5"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sex:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkd-Cg-dTL">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sex:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkd-Cg-dTL">
                             <rect key="frame" x="0.0" y="0.0" width="186.5" height="53.5"/>
                             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of Birth:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jgy-EM-in6">
                             <rect key="frame" x="0.0" y="63.5" width="186.5" height="53"/>
                             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xdm-HL-Fdm">
                             <rect key="frame" x="0.0" y="126.5" width="186.5" height="53"/>
                             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -104,15 +107,13 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="54x-l5-Lug">
                     <rect key="frame" x="207.5" y="398" width="186.5" height="179.5"/>
                     <subviews>
-                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Szu-hu-5pC">
+                        <pickerView contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Szu-hu-5pC">
                             <rect key="frame" x="0.0" y="0.0" width="186.5" height="53.5"/>
                             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </pickerView>
                         <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="PIX-y6-TxO">
                             <rect key="frame" x="0.0" y="63.5" width="186.5" height="53"/>
                             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
                                 <!--1970-01-01 11:00:00 +0000-->
                             </date>
@@ -126,12 +127,15 @@
                         </textField>
                     </subviews>
                     <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="Szu-hu-5pC" firstAttribute="width" secondItem="PIX-y6-TxO" secondAttribute="width" id="wEb-FW-DJH"/>
+                    </constraints>
                 </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="dib-l9-SaI">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dib-l9-SaI">
                     <rect key="frame" x="20" y="693" width="374" height="44.5"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6v-LQ-c1C">
-                            <rect key="frame" x="0.0" y="0.0" width="101.5" height="44.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="118" height="44.5"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Save">
@@ -145,7 +149,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ry-RM-Hi2">
-                            <rect key="frame" x="136.5" y="0.0" width="101" height="44.5"/>
+                            <rect key="frame" x="128" y="0.0" width="118" height="44.5"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Sign out">
@@ -159,10 +163,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEJ-JI-BNN">
-                            <rect key="frame" x="272.5" y="0.0" width="101.5" height="44.5"/>
+                            <rect key="frame" x="256" y="0.0" width="118" height="44.5"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Delete account">
+                            <buttonConfiguration key="configuration" style="plain" title="Delete">
                                 <backgroundConfiguration key="background">
                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="strokeColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
@@ -175,7 +179,7 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                 </stackView>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oak-co-tY1">
+                <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oak-co-tY1">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yng-or-Mvd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>

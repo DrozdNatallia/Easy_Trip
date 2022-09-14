@@ -88,14 +88,18 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Explore"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Explore">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                                        </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZSz-0c-DaI">
                                         <rect key="frame" x="113" y="0.0" width="67.5" height="31"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Flights"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Flights">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="onFlightsButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QcD-eS-3r0"/>
                                         </connections>
@@ -105,7 +109,9 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Hotels"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Hotels">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="onHotelsButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aVW-ol-yHE"/>
                                         </connections>
@@ -115,7 +121,9 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Places"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Places">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="onPlacesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Sh-Ep-BjL"/>
                                         </connections>
@@ -153,13 +161,13 @@
                                 <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
                             </pageControl>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7zt-Nk-4SY">
-                                <rect key="frame" x="0.0" y="323.5" width="414" height="288"/>
+                                <rect key="frame" x="0.0" y="323.5" width="414" height="314"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xeR-FX-nDO">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="288"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="314"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Edi-iX-mb9">
-                                            <rect key="frame" x="188.5" y="125.5" width="37" height="37"/>
+                                            <rect key="frame" x="188.5" y="138.5" width="37" height="37"/>
                                             <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </activityIndicatorView>
                                     </subviews>
@@ -185,7 +193,7 @@
                             <constraint firstItem="LWb-lo-unT" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="HWF-1t-zew"/>
                             <constraint firstItem="ugS-qd-0M6" firstAttribute="top" secondItem="LWb-lo-unT" secondAttribute="bottom" constant="7.5" id="HoT-al-og3"/>
                             <constraint firstItem="LWb-lo-unT" firstAttribute="top" secondItem="NDd-fJ-B5F" secondAttribute="bottom" multiplier="1.2" id="PQ8-E5-H4V"/>
-                            <constraint firstItem="7zt-Nk-4SY" firstAttribute="height" secondItem="LWb-lo-unT" secondAttribute="height" multiplier="0.917197" id="TUc-wv-ia2"/>
+                            <constraint firstItem="7zt-Nk-4SY" firstAttribute="height" secondItem="LWb-lo-unT" secondAttribute="height" id="TUc-wv-ia2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NDd-fJ-B5F" secondAttribute="trailing" constant="10" id="Vca-RA-rRz"/>
                             <constraint firstItem="Lql-VM-M8A" firstAttribute="top" secondItem="jVV-WG-jn6" secondAttribute="bottom" multiplier="1.1" id="X5Z-yu-7gj"/>
                             <constraint firstItem="ugS-qd-0M6" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.4" id="YEK-aP-ffH"/>

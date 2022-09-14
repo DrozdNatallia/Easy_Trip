@@ -15,6 +15,7 @@
 		CC1F055828B8CE0B0051091A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC1F055728B8CE0B0051091A /* GoogleService-Info.plist */; };
 		CC1F056128B8E0AD0051091A /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1F056028B8E0AD0051091A /* FirebaseManager.swift */; };
 		CC1F057728B8E9B00051091A /* FavouritesHotels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1F057628B8E9B00051091A /* FavouritesHotels.swift */; };
+		CC214DAB28D1D0C900871D36 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC214DAA28D1D0C900871D36 /* Int+Extension.swift */; };
 		CC2BD03728AE23FB0031769A /* FlightsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BD03628AE23FB0031769A /* FlightsPresenter.swift */; };
 		CC2BD03928AE24440031769A /* InfoFlights.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BD03828AE24440031769A /* InfoFlights.swift */; };
 		CC5AB88328B0DCA900A0260C /* HotelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5AB88128B0DCA900A0260C /* HotelsViewController.swift */; };
@@ -84,6 +85,7 @@
 		CC1F055728B8CE0B0051091A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CC1F056028B8E0AD0051091A /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		CC1F057628B8E9B00051091A /* FavouritesHotels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesHotels.swift; sourceTree = "<group>"; };
+		CC214DAA28D1D0C900871D36 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		CC2BD03628AE23FB0031769A /* FlightsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightsPresenter.swift; sourceTree = "<group>"; };
 		CC2BD03828AE24440031769A /* InfoFlights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoFlights.swift; sourceTree = "<group>"; };
 		CC5AB88128B0DCA900A0260C /* HotelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsViewController.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 			children = (
 				CCEAF5F428CE1EDE00D08894 /* String+Extension.swift */,
 				CCEAF5F928CE22BC00D08894 /* Date+Extension.swift */,
+				CC214DAA28D1D0C900871D36 /* Int+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				CC6415A628A2E74E0052050E /* FlightsInfo.swift in Sources */,
 				CC64159A28A28BE80052050E /* PopularFlights.swift in Sources */,
 				CC5AB88328B0DCA900A0260C /* HotelsViewController.swift in Sources */,
+				CC214DAB28D1D0C900871D36 /* Int+Extension.swift in Sources */,
 				CC64158228A2563A0052050E /* HomeViewController.swift in Sources */,
 				CC2BD03928AE24440031769A /* InfoFlights.swift in Sources */,
 				CC64157E28A2563A0052050E /* AppDelegate.swift in Sources */,
