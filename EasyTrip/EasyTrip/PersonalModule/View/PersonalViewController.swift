@@ -20,7 +20,7 @@
         @IBOutlet weak var blur: UIVisualEffectView!
         @IBOutlet weak var cityUser: UITextField!
         @IBOutlet weak var dateBirth: UIDatePicker!
-        @IBOutlet weak var chooseSexUser: UIPickerView!
+        @IBOutlet weak var chooseSex: UISegmentedControl!
         @IBOutlet weak var iconImageView: UIImageView!
         @IBOutlet weak var secondNameUser: UITextField!
         @IBOutlet weak var nameUser: UITextField!
@@ -30,8 +30,6 @@
         var idUser: String!
         override func viewDidLoad() {
             super.viewDidLoad()
-            chooseSexUser.dataSource = self
-            chooseSexUser.delegate = self
             nameCityTextField.delegate = self
             patronymicUser.delegate = self
             nameUser.delegate = self
@@ -65,7 +63,8 @@
             secondNameUser.text = secondName
             patronymicUser.text = patronicum
             iconImageView.image = image
-            chooseSexUser.selectRow(sex, inComponent: 0, animated: true)
+            chooseSex.selectedSegmentIndex = sex
+           // chooseSexUser.selectRow(sex, inComponent: 0, animated: true)
             idUser = id
             
         }
@@ -92,7 +91,7 @@
         }
         // запись пользователя в базу данных
         func writeUser(id: String) {
-            let row = chooseSexUser.selectedRow(inComponent: 0)
+            let row = chooseSex.selectedSegmentIndex
             let dayBitrh = dateBirth.date.convertDateToString(formattedType: .date)
             guard let name = nameUser.text, let secondName = secondNameUser.text, let patronymic = patronymicUser.text, let image = iconImageView.image, let city = nameCityTextField.text else { return }
             presenter.upload(id: id, image: image) { [weak self] result in
@@ -127,32 +126,6 @@
             }
         }
     }
-
-extension PersonalViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        let label = (view as? UILabel) ?? UILabel()
-        label.font = UIFont.systemFont(ofSize: 15.0, weight: .medium)
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.5
-        label.textAlignment = .center
-        label.text = self.pickerView(pickerView, titleForRow: row, forComponent: component)
-        return label
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        2
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let pickerDate = ["female", "male"]
-        return pickerDate[row]
-    }
-
-}
 
 extension PersonalViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -13,17 +13,14 @@
                 <outlet property="activity" destination="uja-ED-aUx" id="yPb-MM-b4N"/>
                 <outlet property="blur" destination="oak-co-tY1" id="MeC-L8-EdM"/>
                 <outlet property="chooseImageButton" destination="2Cg-Rn-dqw" id="gDT-7k-Eqy"/>
-                <outlet property="chooseSexUser" destination="Szu-hu-5pC" id="ESm-Sk-KCg"/>
+                <outlet property="chooseSex" destination="dGW-pm-pOe" id="cko-XR-Uvn"/>
                 <outlet property="cityUser" destination="EWN-Mj-0kV" id="ICX-bK-ICj"/>
                 <outlet property="dateBirth" destination="PIX-y6-TxO" id="fh0-ma-ewD"/>
-                <outlet property="deleteButton" destination="fEJ-JI-BNN" id="vbN-CA-nQG"/>
                 <outlet property="iconImageView" destination="10b-ZT-zkQ" id="ZjV-xT-n3q"/>
                 <outlet property="nameCityTextField" destination="EWN-Mj-0kV" id="f5o-Ja-MXz"/>
                 <outlet property="nameUser" destination="zbB-Nm-I3h" id="LY5-K1-bNK"/>
                 <outlet property="patronymicUser" destination="3T4-JX-lqd" id="hcr-dn-7Ae"/>
-                <outlet property="saveButton" destination="K6v-LQ-c1C" id="xy3-px-gMP"/>
                 <outlet property="secondNameUser" destination="LIU-Gi-mbe" id="yqB-NE-9N3"/>
-                <outlet property="signOutButton" destination="9ry-RM-Hi2" id="RD8-JJ-ZYc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -107,10 +104,14 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="54x-l5-Lug">
                     <rect key="frame" x="207.5" y="398" width="186.5" height="179.5"/>
                     <subviews>
-                        <pickerView contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Szu-hu-5pC">
-                            <rect key="frame" x="0.0" y="0.0" width="186.5" height="53.5"/>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dGW-pm-pOe">
+                            <rect key="frame" x="0.0" y="0.0" width="186.5" height="54.5"/>
                             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                        </pickerView>
+                            <segments>
+                                <segment title="female"/>
+                                <segment title="male"/>
+                            </segments>
+                        </segmentedControl>
                         <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="PIX-y6-TxO">
                             <rect key="frame" x="0.0" y="63.5" width="186.5" height="53"/>
                             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
@@ -127,9 +128,6 @@
                         </textField>
                     </subviews>
                     <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstItem="Szu-hu-5pC" firstAttribute="width" secondItem="PIX-y6-TxO" secondAttribute="width" id="wEb-FW-DJH"/>
-                    </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dib-l9-SaI">
                     <rect key="frame" x="20" y="693" width="374" height="44.5"/>
